@@ -21,12 +21,11 @@ function RegisterForm(props) {
 
     const postNewUser = (user) => {
         var neoUser = {
-            ERS_USERNAME: user.username,
-            ERS_PASSWORD: user.password,
-            USER_ROLE_ID: 0
+            username: user.username,
+            password: user.password
         }
         axios
-          .post('https://revature-ers-api-2021.herokuapp.com/api/auth/register', neoUser)
+          .post('https://dungeon-site-api.herokuapp.com/api/auth/register', neoUser)
           .then((res) => {
             history.push('/login');
           })

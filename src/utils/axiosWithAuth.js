@@ -7,7 +7,7 @@ export const axiosWithAuth = () => {
         headers: {
             authorization: JSON.parse(token)
         },
-        baseURL: 'https://revature-ers-api-2021.herokuapp.com/api'
+        baseURL: 'https://dungeon-site-api.herokuapp.com/api'
     });
 }
 
