@@ -18,10 +18,11 @@ function Dashboard(props) {
         if ((userID == null) || (!loginAsManager())) 
             userID = localStorage.getItem('userID');
        
-        axiosWithAuth().get(`https://revature-ers-api-2021.herokuapp.com/api/reimb/user/${userID}`)
-        .then(res => 
-            setReimb(res.data)
-        )
+        axiosWithAuth()
+            .get(`https://dungeon-site-api.herokuapp.com/api/reimb/user/${userID}`)
+            .then(res => 
+                setReimb(res.data)
+            )
         
     }, [trigger])
 

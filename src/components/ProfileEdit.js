@@ -39,7 +39,7 @@ function ProfileEdit(props) {
         }
         await axios({
             method: 'PUT',
-            url: `https://revature-ers-api-2021.herokuapp.com/api/users/${neoUser.ERS_USER_ID}`,
+            url: `https://dungeon-site-api.herokuapp.com//api/users/${neoUser.ERS_USER_ID}`,
             data: neoUser,
             headers: {
                 'authorization': JSON.parse(token)

@@ -15,7 +15,7 @@ function ViewAllUsers(props) {
     useEffect(()=> {
         if (loginAsManager()) {
             axiosWithAuth()
-            .get('https://revature-ers-api-2021.herokuapp.com/api/users')
+            .get('https://dungeon-site-api.herokuapp.com/api/users')
                 .then(res => 
                     setUsers(res.data)
                 )

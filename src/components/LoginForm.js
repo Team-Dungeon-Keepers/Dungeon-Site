@@ -36,11 +36,11 @@ function LoginForm(props) {
 
     const postNewLogin = (newLogin) => {
         var neoUser = {
-            ERS_USERNAME: newLogin.username,
-            ERS_PASSWORD: newLogin.password
+            username: newLogin.username,
+            password: newLogin.password
         };
         axios
-          .post('https://revature-ers-api-2021.herokuapp.com/api/auth/login', neoUser)
+          .post('https://dungeon-site-api.herokuapp.com/api/auth/login', neoUser)
           .then((res) => {
             const token = res.data.token;
             const user = res.data.user;
