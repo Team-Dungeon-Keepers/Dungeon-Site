@@ -1,2 +1,2 @@
-# Dungeon-Real-Estate-REACT
-Front end for Dungeon Real Estate
+# Dungeon-Site-REACT
+Front end for Dungeon Site
