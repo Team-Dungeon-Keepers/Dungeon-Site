@@ -4,7 +4,6 @@ import '../styles/login.css'
 import * as yup from 'yup'
 import { loginSchema as schema } from '../schema/loginSchema'
 import axios from 'axios';
-import { NavBar } from './NavBar'
 
 function LoginForm(props) {
 
@@ -71,28 +70,33 @@ function LoginForm(props) {
     }
 
     return (
-        <div>
-            <NavBar />
+        <div id="loginFormContainer">
             <div id="form-login" className="form form-login">
-                <h1>Login Form</h1>
-                <div id="error-login" className="error error-login" >
-                    {shaped.username}</div>
-                <div id="error-username" className="error error-username" ></div>
-                <label id="label-username" htmlFor="username">Username
-                    <input id="username" name="username" type="text" 
-                        onChange={handleChange} value={form.username} />
-                </label>
-                <div id="error-password" className="error error-password" >
-                    {shaped.password}
+				<div id="loginRow1">
+				<span id="dungeonSite">Dungeon Site</span><br/><br/>
+				<span id="loginSpan">Login</span>
+				</div>
+				<div id="loginRow2">
+                	<div id="error-login" className="error error-login" >
+                    	{shaped.username}</div>
+                	<div id="error-username" className="error error-username" ></div>
+						<span>UserName</span><br/>
+                    	<input id="username" name="username" type="text" 
+                        	onChange={handleChange} value={form.username} />
+                	<div id="error-password" className="error error-password" >
+                    	{shaped.password}
                 </div>
-                <label id="label-password" htmlFor="password">Password
-                    <input id="password" name="password" type="password"
-                    onChange={handleChange} value={form.password} />
-                </label>
-                <button id="button-login" className="btn btn-login" 
-                    disabled={disabled} onClick={handleSubmit}>Login</button>
-                <button id="button-nav-register" className="btn btn-nav btn-nav-register" onClick={goRegister}>Register</button>
-                {props.children}
+						<span>Password</span><br/>
+                    	<input id="password" name="password" type="password"
+                    	onChange={handleChange} value={form.password} />
+				</div>
+				<div id="loginRow3">
+                	<button id="button-login" className="btn btn-login" 
+                    	disabled={disabled} onClick={handleSubmit}>GO!</button><br/><br/>
+					<span>New To Dungeon Site?</span><br/>
+                	<span onClick={goRegister}>Register Here</span>
+                	{props.children}
+				</div>
             </div>
         </div>
     )
