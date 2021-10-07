@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Dungeon-Site-REACT/static/css/main.4448035b.chunk.css",
+    "main.js": "/Dungeon-Site-REACT/static/js/main.4b231ef8.chunk.js",
+    "main.js.map": "/Dungeon-Site-REACT/static/js/main.4b231ef8.chunk.js.map",
+    "runtime-main.js": "/Dungeon-Site-REACT/static/js/runtime-main.e06e8c31.js",
+    "runtime-main.js.map": "/Dungeon-Site-REACT/static/js/runtime-main.e06e8c31.js.map",
+    "static/js/2.e8560b05.chunk.js": "/Dungeon-Site-REACT/static/js/2.e8560b05.chunk.js",
+    "static/js/2.e8560b05.chunk.js.map": "/Dungeon-Site-REACT/static/js/2.e8560b05.chunk.js.map",
+    "index.html": "/Dungeon-Site-REACT/index.html",
+    "static/css/main.4448035b.chunk.css.map": "/Dungeon-Site-REACT/static/css/main.4448035b.chunk.css.map",
+    "static/js/2.e8560b05.chunk.js.LICENSE.txt": "/Dungeon-Site-REACT/static/js/2.e8560b05.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e06e8c31.js",
+    "static/js/2.e8560b05.chunk.js",
+    "static/css/main.4448035b.chunk.css",
+    "static/js/main.4b231ef8.chunk.js"
+  ]
+}
