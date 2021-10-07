@@ -8,6 +8,7 @@ import RegisterForm from './components/register';
 import PrivateRoute from './components/PrivateRoute';
 import ProfileEdit from './components/ProfileEdit';
 import ViewAllUsers from './components/ViewAllUsers';
+import { NavBar } from './components/NavBar';
 
 function App() {
   let [trigger, setTrigger] = useState(false);
@@ -15,7 +16,6 @@ function App() {
   return (
     <>
       <Router>
-        <div className="logoAndHeading"></div>
           <Switch>
           <PrivateRoute path='/dashboard/:userID'>
              <Dashboard trigger={trigger} setTrigger={setTrigger} /> 
