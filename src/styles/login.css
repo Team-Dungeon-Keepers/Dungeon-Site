@@ -1,17 +1,18 @@
-#loginFormContainer {
-	grid-row: 2;
-}
+
 #form-login {
 	max-width: 40vw;
 	min-height: 80vh;
 	background-color: white;
 	margin: auto;
+	position: absoulte;
+	margin-top: 10vh;
 	border-radius: 15px;
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr;
 	text-align: center;
 }
 #loginRow1 {
+	margin:auto;
 	grid-row: 1;
 }
 #loginRow2 {
@@ -32,7 +33,7 @@
 	border-radius: 20px;
 }
 #button-login {
-	background-color: powderblue;
+    background-image: linear-gradient(to bottom, #fdca40, #f79824);
 	font-size: 30px;
 	padding: 5px 20px;
 }

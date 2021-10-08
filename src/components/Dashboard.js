@@ -1,7 +1,7 @@
-import '../styles/login.css'
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from "react-router-dom";
+import '../styles/dashboard.css'
 
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { loginAsManager } from '../utils/authUtils';
@@ -11,6 +11,19 @@ function Dashboard(props) {
     const [reimb, setReimb] = useState(null);
     const {trigger, setTrigger} = props;
     const history = useHistory();
+
+	const goToCreateGame = () => {
+        history.push("/creategame");
+	}
+	const goToMyGames = () => {
+        history.push("/mygames");
+	}
+	const goToFindGames = () => {
+        history.push("/findgames");
+	}
+	const goToCompendium = () => {
+        history.push("/compendium");
+	}
 
     let { userID } = useParams();
 
@@ -27,30 +40,14 @@ function Dashboard(props) {
     }, [trigger])
 
     return(
-    <div>   
-        <NavBar />
-            <h2>My Reimbursements</h2> 
-        <div className="tablecontainer">
-        <table>
-            <tr>
-                <th>Reimb ID</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Type</th>
-                <th>Status</th>
-                <th>Author</th>
-                <th>Resolved By</th>
-                <th>Submitted</th>
-                <th>Resolved</th>
-            </tr>
-            {/* {reimb && reimb.map(el => {
-                return  <Reimbline key={el.REIMB_ID} el={el} 
-                    trigger={trigger} setTrigger={setTrigger} />
-            })} */}
-            
-
-        </table> 
-        </div>
+    <div id="dashBoardContainer">  
+        <NavBar /> 
+		<div id="dashBoardBody">
+			<button id="dashBoardCreateGames" onClick={goToCreateGame}>CreateGames</button>
+			<button id="dashBoardMyGames" onClick={goToMyGames}>MyGames</button>
+			<button id="dashBoardFindGames" onClick={goToFindGames}>FindGames</button>
+			<button id="dashBoardCompendium" onClick={goToCompendium}>Compendium</button>
+		</div>
     </div>
     )
 }

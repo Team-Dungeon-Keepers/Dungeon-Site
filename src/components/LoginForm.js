@@ -45,7 +45,7 @@ function LoginForm(props) {
             const user = res.data.user;
             localStorage.setItem('token', `"${token}"`);
             localStorage.setItem('userID', `${user.userID}`);
-            
+			document.body.style.background = "white";
             history.push("/dashboard");
           })
           .catch((err) => {
@@ -70,7 +70,6 @@ function LoginForm(props) {
     }
 
     return (
-        <div id="loginFormContainer">
             <div id="form-login" className="form form-login">
 				<div id="loginRow1">
 				<span id="dungeonSite">Dungeon Site</span><br/><br/>
@@ -98,7 +97,6 @@ function LoginForm(props) {
                 	{props.children}
 				</div>
             </div>
-        </div>
     )
 }
 

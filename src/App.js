@@ -8,6 +8,10 @@ import RegisterForm from './components/register';
 import PrivateRoute from './components/PrivateRoute';
 import ProfileEdit from './components/ProfileEdit';
 import ViewAllUsers from './components/ViewAllUsers';
+import CreateGame from './components/CreateGame';
+import MyGames from './components/MyGames';
+import FindGames from './components/FindGames';
+import Compendium from './components/Compendium';
 import { NavBar } from './components/NavBar';
 
 function App() {
@@ -40,6 +44,18 @@ function App() {
               <ViewAllUsers trigger={trigger} setTrigger={setTrigger} />
             </PrivateRoute>
             <Route exact path="/" component={LoginForm} />
+			<PrivateRoute path="/creategame">
+				<CreateGame/>
+			</PrivateRoute>
+			<PrivateRoute path="/mygames">
+				<MyGames/>
+			</PrivateRoute>
+			<PrivateRoute path="/findgames">
+				<FindGames/>
+			</PrivateRoute>
+			<PrivateRoute path="/compendium">
+				<Compendium/>
+			</PrivateRoute>
           </Switch>
       </Router>
     </>
