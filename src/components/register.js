@@ -10,6 +10,9 @@ import { NavBar } from './NavBar'
 
 function RegisterForm(props) {
     const initialValues = {
+		firstName: "",
+		lastName: "",
+		email: "",
         username: "",
         password: "",
         confirmPassword: ""
@@ -68,6 +71,22 @@ function RegisterForm(props) {
             <NavBar />
             <div id="form-register" className="form form-register">
                 <h1>Register Form</h1>
+                <div id="error-firstName" className="error error-firstName" >{shaped.firstName}</div>
+                <label id="label-firstName" htmlFor="firstName">First Name
+                    <input id="firstName" name="firstName" type="text" 
+                        onChange={handleChange} value={form.firstName}/>
+                </label>
+                <div id="error-lastName" className="error error-lastName" >{shaped.lastName}</div>
+                <label id="label-lastName" htmlFor="lastName">Last Name
+                    <input id="lastName" name="lastName" type="text" 
+                        onChange={handleChange} value={form.lastName}/>
+                </label>
+                <div id="error-email" className="error error-email" >{shaped.email}</div>
+                <label id="label-email" htmlFor="email">Email
+                    <input id="email" name="email" type="text" 
+                        onChange={handleChange} value={form.email}/>
+                </label>
+// -------------------------------------------------------------------------------------------------
                 <div id="error-register" className="error error-register" ></div>
                 <div id="error-username" className="error error-username" >{shaped.username}</div>
                 <label id="label-username" htmlFor="username">Username

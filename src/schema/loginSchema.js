@@ -1,13 +1,22 @@
 import * as yup from 'yup'
 
 const schema = yup.object().shape({
+	firstName: yup.string()
+		.required('First name is required'),
+	lastName: yup.string()
+		.required('Last name is required'),
     username: yup.string()
         .required('username is required')
-        .min(3, 'username must be at least three characters'),
+        .min(3, 'username must be at least three characters')
+		.max(10, 'UserName must be less than 10 characters'),
     password: yup.string()
-        .required('password is required'),
+        .required('password is required')
+		.max(10, 'UserName must be less than 10 characters'),
     confirmPassword: yup.string()
-        .required('password confirmation is required')
+        .required('password confirmation is required'),
+	email: yup.string()
+		.required('Email is required')
+		.max(30, 'Email must be less than 30 characters'),
 })
 
 const loginSchema = yup.object().shape({
