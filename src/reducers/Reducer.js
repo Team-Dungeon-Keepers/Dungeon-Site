@@ -7,7 +7,8 @@ import {
   FETCH_FAIL, 
   DELETE_CLASS,
   ADD_CLASS,
-  ADD_USER } from '../actions/Actions';
+  ADD_USER,
+  ADD_LANG } from '../actions/Actions';
   
   const initialState = {
     user: {
@@ -61,6 +62,11 @@ import {
         return({
           ...state,
           user: action.payload
+        })
+      case(ADD_LANG):
+        return({
+          ...state,
+          language: action.payload
         })
 
       default:
