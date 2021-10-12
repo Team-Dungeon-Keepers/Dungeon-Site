@@ -19,7 +19,11 @@ import {
     },
     classes: [],
     isFetching: false,
-    error: ''
+    error: '',
+    language: {
+      id:0,
+      language:''
+    }
   };
   
   export const reducer = (state = initialState, action) => {
