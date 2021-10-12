@@ -9,7 +9,6 @@ export const EDIT_CLASS = 'EDIT_CLASS';
 export const DELETE_CLASS = "DELETE_CLASS";
 export const ADD_CLASS = "ADD_CLASS";
 export const ADD_USER = "ADD_USER";
-export const ADD_LANG = "ADD_LANG";
 
 export const fetchClasses = () => {
   return (dispatch => {
@@ -64,8 +63,4 @@ export const postNewClass = (item) => {
 
   export const createUser = user => {
     return {type: ADD_USER, payload: user}
-  }
-
-  export const createLang = language => {
-    return {type: ADD_LANG, payload: language}
   }
