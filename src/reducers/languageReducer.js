@@ -4,23 +4,20 @@ import {
     EDIT_CLASS, 
     FETCH_START, 
     FETCH_SUCCESS, 
-    FETCH_FAIL, 
+    FETCH_FAIL,
+    ADD_LANG, 
      } from '../actions/Actions';
+import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions';
     
     const initialState = {
-      user: {
-        username:'',
-        password:'',
-        role:'',
-        skip: false
-      },
-      classes: [],
-      isFetching: false,
-      error: '',
-      language: {
-        id:0,
-        language:''
-      }
+        language: {
+            languageid:0,
+            language:''
+          },
+        languages: [],
+        isFetching: false,
+        error: ''
+      
     };
     
     export const reducer = (state = initialState, action) => {
@@ -42,34 +39,33 @@ import {
             error: action.payload,
             isFetching: false
           })
-        case(EDIT_CLASS):
-          const editClass = state.item.find((c) => c.id === action.payload);
+        case(UPDATE_LANG):
+            return({
+            ...state,
+            language: action.payload
+        })
+        case(EDIT_LANG):
+          const editLang = state.item.find((c) => c.id === action.payload);
           return({
             ...state,
-            classes: editClass,
+            language: editLang,
           })
-        case(DELETE_CLASS):
-          const deleteClass = state.classes.filter(c=>(action.payload !== c.id))
+        case(DELETE_LANG):
+          const deleteLang = state.classes.filter(c=>(action.payload !== c.id))
           return({
             ...state,
             classes: deleteClass
           })
-        case(ADD_CLASS):
+        case(ADD_LANG):
           return({
             ...state,
             classes: [...state.classes, action.payload]
           })
-        case(ADD_USER):
+        case(CREATE_LANG):
           return({
             ...state,
             user: action.payload
           })
-        case(ADD_LANG):
-          return({
-            ...state,
-            language: action.payload
-          })
-  
         default:
           return state;
       }
