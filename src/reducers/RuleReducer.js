@@ -10,7 +10,7 @@ import {
   ADD_RULES,
   ADD_SINGLE_RULE,
   EDIT_RULE
-} from '../actions/RulesActions';
+} from '../actions/RuleActions';
   
   const initialState = {
     rule: {
