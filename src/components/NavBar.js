@@ -8,6 +8,7 @@ const NavBar = function ()  {
         window.localStorage.removeItem('token');
         window.localStorage.removeItem('userID');
         window.localStorage.removeItem('userRole');
+		document.body.style.background = "linear-gradient(to bottom, #5db5fd, #2176ff)";
       };
     
         return (
