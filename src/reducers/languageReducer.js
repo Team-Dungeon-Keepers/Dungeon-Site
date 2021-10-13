@@ -30,7 +30,7 @@ import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions'
         case(FETCH_SUCCESS):
           return({
             ...state,
-            classes: action.payload,
+            languages: action.payload,
             isFetching: false
           })
         case(FETCH_FAIL):
@@ -42,16 +42,16 @@ import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions'
         case(UPDATE_LANG):
             return({
             ...state,
-            language: action.payload
+            languages: action.payload
         })
         case(EDIT_LANG):
-          const editLang = state.item.find((l) => l.id === action.payload);
+          const editLang = state.item.find((c) => c.languageid === action.payload);
           return({
             ...state,
             languages: editLang,
           })
         case(DELETE_LANG):
-          const deleteLang = state.language.filter(l=>(action.payload !== l.id))
+          const deleteLang = state.language.filter(c=>(action.payload !== c.languageid))
           return({
             ...state,
             languages: deleteLang,
@@ -59,12 +59,12 @@ import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions'
         case(ADD_LANG):
           return({
             ...state,
-            language: [...state.language, action.payload]
+            languages: [...state.language, action.payload]
           })
         case(CREATE_LANG):
           return({
             ...state,
-            language: action.payload
+            languages: action.payload
           })
         default:
           return state;
