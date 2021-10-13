@@ -1,10 +1,6 @@
 // filler file to help Github confirm file structures
 
-import { 
-    FETCH_START, 
-    FETCH_SUCCESS, 
-    FETCH_FAIL
-     } from '../actions/Actions';
+import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL } from '../actions/Actions';
 import { ADD_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME } from '../actions/GameAction';
 
     
