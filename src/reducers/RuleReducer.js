@@ -5,15 +5,19 @@ import {
   FETCH_SUCCESS, 
   FETCH_FAIL, 
   } from '../actions/Actions';
+
+import {
+  ADD_RULES,
+  ADD_SINGLE_RULE,
+  EDIT_RULE
+} from '../actions/RulesActions';
   
   const initialState = {
-    user: {
-      username:'',
-      password:'',
-      role:'',
-      skip: false
+    rule: {
+      rulesid: 0,
+      rulesname: ''
     },
-    classes: [],
+    rules: [],
     isFetching: false,
     error: ''
   };
@@ -25,11 +29,16 @@ import {
           ...state,
           isFetching: true
         })
-      case(FETCH_SUCCESS):
+      case(ADD_RULES):
         return({
           ...state,
-          classes: action.payload,
+          rules: action.payload,
           isFetching: false
+        })
+      case(ADD_SINGLE_RULE):
+        return ({
+          ...state,
+          rules: [...rules, action.payload]
         })
       case(FETCH_FAIL):
         return({
@@ -37,29 +46,19 @@ import {
           error: action.payload,
           isFetching: false
         })
-      case(EDIT_CLASS):
-        const editClass = state.item.find((c) => c.id === action.payload);
+      case(EDIT_RULE):
+        const editRule = state.rules.find((c) => c.rulesid === action.payload);
         return({
           ...state,
-          classes: editClass,
+          rule: editRule,
         })
-      case(DELETE_CLASS):
-        const deleteClass = state.classes.filter(c=>(action.payload !== c.id))
+      case(DELETE_RULE):
+        const deleteRule = state.classes.filter(c=>(action.payload !== c.rulesid))
         return({
           ...state,
-          classes: deleteClass
+          rules: deleteRule
         })
-      case(ADD_CLASS):
-        return({
-          ...state,
-          classes: [...state.classes, action.payload]
-        })
-      case(ADD_USER):
-        return({
-          ...state,
-          user: action.payload
-        })
-
+      
       default:
         return state;
     }
