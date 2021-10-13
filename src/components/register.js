@@ -5,7 +5,6 @@ import * as yup from 'yup'
 import { schema } from '../schema/loginSchema'
 import axios from 'axios'
 import { connect } from 'react-redux';
-import { createUser } from '../actions/Actions';
 import { NavBar } from './NavBar'
 
 function RegisterForm(props) {
