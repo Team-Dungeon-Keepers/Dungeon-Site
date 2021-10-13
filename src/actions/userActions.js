@@ -33,7 +33,7 @@ export const getUserByID = (userid) => {
     dispatch(fetchStart());
     axiosWithAuth().get(`/users/${userid}`)
     .then(res=> {
-      dispatch({type: DELETE_USER, payload: rulesid});
+      dispatch({type: DELETE_USER, payload: userid});
       dispatch({type: ADD_SINGLE_USER, payload:res.data});
     })
     .catch(err=>{
@@ -77,19 +77,18 @@ export const createUser = (item) => {
       });
     })
   };
+  export const addUser = (user) => {
+    return ({type: ADD_SINGLE_USER, payload: user})
+  };
   
-  export const addRule = c => {
-    return ({type: ADD_SINGLE_RULE, payload:c})
-  }
-  
-  export const deleteUser = (rulesid) => {
+  export const deleteUser = (userid) => {
     return (dispatch => {
       dispatch(fetchStart());
 
       axios
-      .delete('https://dungeon-site-api/api/users/', rulesid)
+      .delete('https://dungeon-site-api/api/users/', userid)
       .then((res) => {
-        dispatch({type: DELETE_RULE, payload: rulesid});
+        dispatch({type: DELETE_USER, payload: userid});
       })
       .catch((err) => {
         dispatch({type: FETCH_FAIL, payload:err});

@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
-import '../styles/register.css'
-import * as yup from 'yup'
-import { schema } from '../schema/loginSchema'
-import axios from 'axios'
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import '../styles/register.css';
+import * as yup from 'yup';
+import { schema } from '../schema/loginSchema';
+import axios from 'axios';
 import { connect } from 'react-redux';
-import { NavBar } from './NavBar'
+import { NavBar } from './NavBar';
+import { createUser } from '../actions/userActions';
 
 function RegisterForm(props) {
     const initialValues = {
