@@ -45,26 +45,26 @@ import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions'
             language: action.payload
         })
         case(EDIT_LANG):
-          const editLang = state.item.find((c) => c.id === action.payload);
+          const editLang = state.item.find((l) => l.id === action.payload);
           return({
             ...state,
-            language: editLang,
+            languages: editLang,
           })
         case(DELETE_LANG):
-          const deleteLang = state.classes.filter(c=>(action.payload !== c.id))
+          const deleteLang = state.language.filter(l=>(action.payload !== l.id))
           return({
             ...state,
-            classes: deleteClass
+            languages: deleteLang,
           })
         case(ADD_LANG):
           return({
             ...state,
-            classes: [...state.classes, action.payload]
+            language: [...state.language, action.payload]
           })
         case(CREATE_LANG):
           return({
             ...state,
-            user: action.payload
+            language: action.payload
           })
         default:
           return state;
