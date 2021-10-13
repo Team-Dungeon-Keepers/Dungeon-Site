@@ -1,7 +1,7 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
-import {FETCH_START, FETCH_FAIL} from 'Actions';
-import fetchStart from 'Actions';
+import {FETCH_START, FETCH_FAIL, fetchStart} from 'Actions';
+//import fetchStart from 'Actions';
 export const EDIT_ADDRESS = 'EDIT_ADDRESS';
 export const DELETE_ADDRESS = "DELETE_ADDRESS";
 export const ADD_ADDRESS = "ADD_ADDRESS";
@@ -95,7 +95,3 @@ export const createAddress = (item) => {
   export const addAddress = a => {
     return ({type:ADD_ADDRESS, payload:a})
   }
-
-  export const editAddress = (editedAddress) => {
-    return {type:EDIT_ADDRESS, payload: editedAddress};
-  };

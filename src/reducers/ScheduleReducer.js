@@ -7,21 +7,21 @@ import {
   } from '../actions/Actions';
 
 import {
-  ADD_ADDRESSES,
-  ADD_SINGLE_ADDRESS,
-  EDIT_ADDRESS
-} from '../actions/AddressActions';
+  ADD_SCHEDULES,
+  ADD_SINGLE_SCHEDULE,
+  EDIT_SCHEDULE
+} from '../actions/ScheduleActions';
   
   const initialState = {
-    address: {
-      addressesid: 0,
-      addressesstreet: '',
-      addressesapartment: '',
-      addressescity: '',
-      addressesstate: '',
-      addresseszip: 0
+    schedule: {
+      schedulesid: 0,
+      schedulesstarttime: '',
+      schedulesendtime: '',
+      schedulesstartdate: '',
+      schedulesenddate: '',
+      schedulessetting: 0
     },
-    addresses: [],
+    schedules: [],
     isFetching: false,
     error: ''
   };
@@ -33,16 +33,16 @@ import {
           ...state,
           isFetching: true
         })
-      case(ADD_ADDRESSES):
+      case(ADD_SCHEDULES):
         return({
           ...state,
-          addresses: action.payload,
+          schedules: action.payload,
           isFetching: false
         })
-      case(ADD_SINGLE_ADDRESS):
+      case(ADD_SINGLE_SCHEDULE):
         return ({
           ...state,
-          addresses: [...addresses, action.payload]
+          schedules: [...schedules, action.payload]
         })
       case(FETCH_FAIL):
         return({
@@ -50,17 +50,17 @@ import {
           error: action.payload,
           isFetching: false
         })
-      case(EDIT_ADDRESS):
-        const editAddress = state.addresses.find((c) => c.addressesid === action.payload);
+      case(EDIT_SCHEDULE):
+        const editSchedule = state.schedules.find((c) => c.schedulesid === action.payload);
         return({
           ...state,
-          address: editAddress,
+          schedule: editSchedule,
         })
-      case(DELETE_ADDRESS):
-        const deleteAddress = state.classes.filter(c=>(action.payload !== c.addressesid))
+      case(DELETE_SCHEDULE):
+        const deleteSchedule = state.classes.filter(c=>(action.payload !== c.schedulesid))
         return({
           ...state,
-          addresses: deleteAddress
+          schedules: deleteSchedule
         })
       
       default:
