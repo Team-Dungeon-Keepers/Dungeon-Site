@@ -7,8 +7,7 @@ import {
   FETCH_FAIL, 
   DELETE_CLASS,
   ADD_CLASS,
-  ADD_USER,
-  ADD_LANG } from '../actions/Actions';
+  ADD_USER } from '../actions/Actions';
   
   const initialState = {
     user: {
@@ -19,11 +18,7 @@ import {
     },
     classes: [],
     isFetching: false,
-    error: '',
-    language: {
-      id:0,
-      language:''
-    }
+    error: ''
   };
   
   export const reducer = (state = initialState, action) => {
@@ -66,11 +61,6 @@ import {
         return({
           ...state,
           user: action.payload
-        })
-      case(ADD_LANG):
-        return({
-          ...state,
-          language: action.payload
         })
 
       default:
