@@ -2,18 +2,18 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
 import { FETCH_FAIL, FETCH_START, FETCH_SUCCESS } from './Actions';
 
-export const ADD_LANG = "ADD_LANG";
-export const DELETE_LANG = "DELETE_LANG";
-export const CREATE_LANG = "CREATE_LANG";
-export const UPDATE_LANG = "UPDATE_LANG";
-export const EDIT_LANG = "EDIT_LANG";
+export const ADD_GAME = "ADD_GAME";
+export const DELETE_GAME = "DELETE_GAME";
+export const CREATE_GAME = "CREATE_GAME";
+export const UPDATE_GAME = "UPDATE_GAME";
+export const EDIT_GAME = "EDIT_GAME";
 
 export const fetchClasses = () => {
   return (dispatch => {
     dispatch({type: FETCH_START});
     
     dispatch(fetchStart());
-    axiosWithAuth().get('/languages')
+    axiosWithAuth().get('/game')
     .then(res=> {
       //console.log('classes', res.data);
       dispatch({type: FETCH_SUCCESS, payload:res.data});
@@ -31,7 +31,7 @@ export const postNewClass = (item) => {
   
       dispatch(fetchStart());
       axios
-      .post('https://dungeon-site-api/api/languages/', item)
+      .post('https://dungeon-site-api/api/game/', item)
       .then((res) => {
         dispatch({type: FETCH_SUCCESS, payload:res.data})
         //console.log(res);
@@ -43,18 +43,18 @@ export const postNewClass = (item) => {
     })
   }
 
-export const createlang = language => {
-return {type: CREATE_LANG , payload: language}
+export const createGame = game => {
+return {type: CREATE_GAME , payload: game}
 }
-export const addLang = language => {
-return {type: ADD_LANG, payload: language}
+export const addGame = game => {
+return {type: ADD_GAME, payload: game}
 }
-export const editLang = language => {
-return {type: EDIT_LANG, payload: language}
+export const editGame = game => {
+return {type: EDIT_GAME, payload: game}
 }
-export const updateLang = language => {
-return {type: UPDATE_LANG, payload: language}
+export const updateGame = game => {
+return {type: UPDATE_GAME, payload: game}
 }
-export const deleteLang = language => {
-return {type: DELETE_LANG, payload: language}
+export const deleteGame = game => {
+return {type: DELETE_GAME, payload: game}
 }

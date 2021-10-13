@@ -5,14 +5,19 @@ import {
     FETCH_SUCCESS, 
     FETCH_FAIL
      } from '../actions/Actions';
-import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions';
+import { ADD_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME } from '../actions/GameAction';
+
     
     const initialState = {
-        language: {
-            languageid:0,
-            language:''
+        game: {
+            gameid:0,
+            rulesid:0,
+            gamename:'',
+            gamepassword:'',
+            gamemasterid:0,
+            description:''
           },
-        languages: [],
+        games: [],
         isFetching: false,
         error: ''
       
@@ -28,7 +33,7 @@ import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions'
         case(FETCH_SUCCESS):
           return({
             ...state,
-            languages: action.payload,
+            games: action.payload,
             isFetching: false
           })
         case(FETCH_FAIL):
@@ -37,32 +42,32 @@ import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions'
             error: action.payload,
             isFetching: false
           })
-        case(UPDATE_LANG):
+        case(UPDATE_GAME):
             return({
             ...state,
-            languages: action.payload
+            games: action.payload
         })
-        case(EDIT_LANG):
-          const editLang = state.item.find((c) => c.languageid === action.payload);
+        case(EDIT_GAME):
+          const editGame = state.item.find((c) => c.gameid === action.payload);
           return({
             ...state,
-            languages: editLang,
+            games: editGame,
           })
-        case(DELETE_LANG):
-          const deleteLang = state.language.filter(c=>(action.payload !== c.languageid))
+        case(DELETE_GAME):
+          const deleteGame = state.game.filter(c=>(action.payload !== c.gameid))
           return({
             ...state,
-            languages: deleteLang,
+            games: deleteGame,
           })
-        case(ADD_LANG):
+        case(ADD_GAME):
           return({
             ...state,
-            languages: [...state.language, action.payload]
+            games: [...state.game, action.payload]
           })
-        case(CREATE_LANG):
+        case(CREATE_GAME):
           return({
             ...state,
-            languages: action.payload
+            games: action.payload
           })
         default:
           return state;
