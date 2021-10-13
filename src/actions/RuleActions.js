@@ -69,7 +69,7 @@ export const createRule = (item) => {
       axios
       .put('https://dungeon-site-api/api/rules/', editedRule)
       .then((res) => {
-        dispatch({type: DELETE_RULE, payload: rulesid});
+        dispatch({type: DELETE_RULE, payload: editedRule.rulesid});
         dispatch({type: ADD_SINGLE_RULE, payload:res.data});
       })
       .catch((err) => {
