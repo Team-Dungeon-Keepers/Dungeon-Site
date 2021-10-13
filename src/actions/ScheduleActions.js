@@ -1,6 +1,6 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
-import {FETCH_START, FETCH_FAIL, fetchStart} from 'Actions';
+import {FETCH_FAIL, fetchStart} from './Actions';
 //import fetchStart from 'Actions';
 export const EDIT_SCHEDULE = 'EDIT_SCHEDULE';
 export const DELETE_SCHEDULE = "DELETE_SCHEDULE";
@@ -15,7 +15,7 @@ export const getSchedules = () => {
     dispatch(fetchStart());
     axiosWithAuth().get('/schedules')
     .then(res=> {
-      dispatch({type: ADD_SCHEDULES, payload:res.data});
+      dispatch({type: ADD_SCHEDULE, payload:res.data});
     })
     .catch(err=>{
       dispatch({type: FETCH_FAIL, payload:err});
@@ -30,7 +30,7 @@ export const getScheduleByID = (schedulesid) => {
     dispatch(fetchStart());
     axiosWithAuth().get(`/schedules/${schedulesid}`)
     .then(res=> {
-      dispatch({type: DELETE_SCHEDULE, payload: Schedulesid});
+      dispatch({type: DELETE_SCHEDULE, payload: schedulesid});
       dispatch({type: ADD_SINGLE_SCHEDULE, payload:res.data});
     })
     .catch(err=>{
@@ -65,7 +65,7 @@ export const createSchedule = (item) => {
       axios
       .put('https://dungeon-site-api/api/schedules/', editedSchedule)
       .then((res) => {
-        dispatch({type: DELETE_SCHEDULE, payload: schedulesid});
+        dispatch({type: DELETE_SCHEDULE, payload: editedSchedule.schedulesid});
         dispatch({type: ADD_SINGLE_SCHEDULE, payload:res.data});
       })
       .catch((err) => {

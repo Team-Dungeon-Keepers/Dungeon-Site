@@ -5,11 +5,11 @@ import App from './App';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
-import { userReducer } from './reducers/UserReducer';
+import { primeReducer } from './reducers/primeReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(userReducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(primeReducer, composeEnhancers(applyMiddleware(thunk)));
 
 ReactDOM.render(
   <React.StrictMode>

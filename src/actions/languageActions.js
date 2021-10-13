@@ -58,3 +58,7 @@ return {type: UPDATE_LANG, payload: language}
 export const deleteLang = language => {
 return {type: DELETE_LANG, payload: language}
 }
+
+export const fetchStart = () =>  {
+  return ({type:FETCH_START})
+}

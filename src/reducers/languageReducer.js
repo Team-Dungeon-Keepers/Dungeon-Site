@@ -5,7 +5,12 @@ import {
     FETCH_SUCCESS, 
     FETCH_FAIL
      } from '../actions/Actions';
-import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions';
+
+import { ADD_LANG, 
+  CREATE_LANG, 
+  DELETE_LANG, 
+  EDIT_LANG,
+  UPDATE_LANG } from '../actions/languageActions';
     
     const initialState = {
         language: {
@@ -18,7 +23,7 @@ import { CREATE_LANG, DELETE_LANG, EDIT_LANG } from '../actions/LanguageActions'
       
     };
     
-    export const reducer = (state = initialState, action) => {
+    export const LanguageReducer = (state = initialState, action) => {
       switch (action.type) {
         case(FETCH_START):
           return({
