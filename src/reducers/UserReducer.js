@@ -6,11 +6,11 @@ import {
   } from '../actions/Actions';
 
 import {
-  ADD_USER,
+  ADD_USERS,
   ADD_SINGLE_USER,
   DELETE_USER,
   EDIT_USER
-} from '../actions/RuleActions';
+} from '../actions/userActions';
   
   const initialState = {
     user: {
@@ -33,7 +33,7 @@ import {
           ...state,
           isFetching: true
         })
-      case(ADD_USER):
+      case(ADD_USERS):
         return({
           ...state,
           users: action.payload,
@@ -42,7 +42,7 @@ import {
       case(ADD_SINGLE_USER):
         return ({
           ...state,
-          rules: [...rules, action.payload]
+          users: [...state.users, action.payload]
         })
       case(FETCH_FAIL):
         return({
