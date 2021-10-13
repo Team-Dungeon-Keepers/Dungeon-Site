@@ -58,3 +58,7 @@ return {type: UPDATE_PHONE, payload: phone}
 export const deletePhone = phone => {
 return {type: DELETE_PHONE, payload: phone}
 }
+
+export const fetchStart = () =>  {
+  return ({type:FETCH_START})
+}

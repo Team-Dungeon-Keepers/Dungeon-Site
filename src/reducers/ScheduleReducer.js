@@ -2,13 +2,13 @@
 
 import { 
   FETCH_START, 
-  FETCH_SUCCESS, 
   FETCH_FAIL, 
   } from '../actions/Actions';
 
 import {
-  ADD_SCHEDULES,
+  ADD_SCHEDULE,
   ADD_SINGLE_SCHEDULE,
+  DELETE_SCHEDULE,
   EDIT_SCHEDULE
 } from '../actions/ScheduleActions';
   
@@ -26,14 +26,14 @@ import {
     error: ''
   };
   
-  export const reducer = (state = initialState, action) => {
+  export const ScheduleReducer = (state = initialState, action) => {
     switch (action.type) {
       case(FETCH_START):
         return({
           ...state,
           isFetching: true
         })
-      case(ADD_SCHEDULES):
+      case(ADD_SCHEDULE):
         return({
           ...state,
           schedules: action.payload,
@@ -42,7 +42,7 @@ import {
       case(ADD_SINGLE_SCHEDULE):
         return ({
           ...state,
-          schedules: [...schedules, action.payload]
+          schedules: [...state.schedules, action.payload]
         })
       case(FETCH_FAIL):
         return({

@@ -5,7 +5,11 @@ import {
     FETCH_SUCCESS, 
     FETCH_FAIL
      } from '../actions/Actions';
-import { CREATE_PHONE, DELETE_PHONE, EDIT_PHONE } from '../actions/phoneActions';
+import { ADD_PHONE, 
+  CREATE_PHONE, 
+  DELETE_PHONE, 
+  EDIT_PHONE,
+  UPDATE_PHONE } from '../actions/phoneActions';
     
     const initialState = {
         phone: {
@@ -18,7 +22,7 @@ import { CREATE_PHONE, DELETE_PHONE, EDIT_PHONE } from '../actions/phoneActions'
       
     };
     
-    export const reducer = (state = initialState, action) => {
+    export const PhoneReducer = (state = initialState, action) => {
       switch (action.type) {
         case(FETCH_START):
           return({

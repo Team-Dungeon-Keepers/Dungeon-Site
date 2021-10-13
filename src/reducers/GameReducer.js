@@ -5,6 +5,7 @@ import {
     FETCH_SUCCESS, 
     FETCH_FAIL
      } from '../actions/Actions';
+     
 import { ADD_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME } from '../actions/GameAction';
 
     
@@ -23,7 +24,7 @@ import { ADD_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME } from '../a
       
     };
     
-    export const reducer = (state = initialState, action) => {
+    export const GameReducer = (state = initialState, action) => {
       switch (action.type) {
         case(FETCH_START):
           return({

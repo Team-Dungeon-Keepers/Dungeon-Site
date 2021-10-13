@@ -2,13 +2,13 @@
 
 import { 
   FETCH_START, 
-  FETCH_SUCCESS, 
   FETCH_FAIL, 
   } from '../actions/Actions';
 
 import {
-  ADD_ADDRESSES,
+  ADD_ADDRESS,
   ADD_SINGLE_ADDRESS,
+  DELETE_ADDRESS,
   EDIT_ADDRESS
 } from '../actions/AddressActions';
   
@@ -26,14 +26,14 @@ import {
     error: ''
   };
   
-  export const reducer = (state = initialState, action) => {
+  export const AddressReducer = (state = initialState, action) => {
     switch (action.type) {
       case(FETCH_START):
         return({
           ...state,
           isFetching: true
         })
-      case(ADD_ADDRESSES):
+      case(ADD_ADDRESS):
         return({
           ...state,
           addresses: action.payload,
@@ -42,7 +42,7 @@ import {
       case(ADD_SINGLE_ADDRESS):
         return ({
           ...state,
-          addresses: [...addresses, action.payload]
+          addresses: [...state.addresses, action.payload]
         })
       case(FETCH_FAIL):
         return({

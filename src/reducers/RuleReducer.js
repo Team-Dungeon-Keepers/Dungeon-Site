@@ -2,13 +2,13 @@
 
 import { 
   FETCH_START, 
-  FETCH_SUCCESS, 
   FETCH_FAIL, 
   } from '../actions/Actions';
 
 import {
   ADD_RULES,
   ADD_SINGLE_RULE,
+  DELETE_RULE,
   EDIT_RULE
 } from '../actions/RuleActions';
   
@@ -22,7 +22,7 @@ import {
     error: ''
   };
   
-  export const reducer = (state = initialState, action) => {
+  export const RuleReducer = (state = initialState, action) => {
     switch (action.type) {
       case(FETCH_START):
         return({
@@ -38,7 +38,7 @@ import {
       case(ADD_SINGLE_RULE):
         return ({
           ...state,
-          rules: [...rules, action.payload]
+          rules: [...state.rules, action.payload]
         })
       case(FETCH_FAIL):
         return({

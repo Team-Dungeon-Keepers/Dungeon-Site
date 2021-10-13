@@ -1,6 +1,6 @@
 import { axiosWithAuth } from '../utils/axiosWithAuth';
 import axios from 'axios';
-import {FETCH_START, FETCH_FAIL, fetchStart} from 'Actions';
+import {FETCH_START, FETCH_FAIL, fetchStart} from './Actions';
 //import fetchStart from 'Actions';
 export const EDIT_ADDRESS = 'EDIT_ADDRESS';
 export const DELETE_ADDRESS = "DELETE_ADDRESS";
@@ -15,7 +15,7 @@ export const getAddresses = () => {
     dispatch(fetchStart());
     axiosWithAuth().get('/addresses')
     .then(res=> {
-      dispatch({type: ADD_ADDRESSES, payload:res.data});
+      dispatch({type: ADD_ADDRESS, payload:res.data});
     })
     .catch(err=>{
       dispatch({type: FETCH_FAIL, payload:err});
@@ -30,7 +30,7 @@ export const getAddressByID = (addressesid) => {
     dispatch(fetchStart());
     axiosWithAuth().get(`/addresses/${addressesid}`)
     .then(res=> {
-      dispatch({type: DELETE_ADDRESS, payload: Addressesid});
+      dispatch({type: DELETE_ADDRESS, payload: addressesid});
       dispatch({type: ADD_SINGLE_ADDRESS, payload:res.data});
     })
     .catch(err=>{
@@ -65,7 +65,7 @@ export const createAddress = (item) => {
       axios
       .put('https://dungeon-site-api/api/addresses/', editedAddress)
       .then((res) => {
-        dispatch({type: DELETE_ADDRESS, payload: addressesid});
+        dispatch({type: DELETE_ADDRESS, payload: editedAddress.addressesid});
         dispatch({type: ADD_SINGLE_ADDRESS, payload:res.data});
       })
       .catch((err) => {

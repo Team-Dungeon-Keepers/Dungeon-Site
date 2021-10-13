@@ -58,3 +58,7 @@ return {type: UPDATE_GAME, payload: game}
 export const deleteGame = game => {
 return {type: DELETE_GAME, payload: game}
 }
+
+export const fetchStart = () =>  {
+  return ({type:FETCH_START})
+}
