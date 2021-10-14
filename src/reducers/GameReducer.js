@@ -6,7 +6,7 @@ import {
     FETCH_FAIL
      } from '../actions/Actions';
      
-import { ADD_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME } from '../actions/GameAction';
+import { ADD_GAMES, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME, ADD_SINGLE_GAME } from '../actions/GameAction';
 
     
     const initialState = {
@@ -79,4 +79,4 @@ import { ADD_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME } from '../a
           return state;
       }
     };
-    export default gameReducer;
+    export default GameReducer;

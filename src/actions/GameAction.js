@@ -90,7 +90,3 @@ export const deleteGame = (gameid) => {
     });
   })
 }
-
-export const fetchStart = () =>  {
-  return ({type:FETCH_START})
-}
