@@ -1,7 +1,16 @@
 // filler file to help Github confirm file structures
 
-import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL } from '../actions/Actions';
-import { ADD_LANGS, ADD_SINGLE_LANG, CREATE_LANG, DELETE_LANG, EDIT_LANG, UPDATE_LANG } from '../actions/LanguageActions';
+import { 
+    FETCH_START, 
+    FETCH_SUCCESS, 
+    FETCH_FAIL
+     } from '../actions/Actions';
+
+import { ADD_LANG, 
+  CREATE_LANG, 
+  DELETE_LANG, 
+  EDIT_LANG,
+  UPDATE_LANG } from '../actions/languageActions';
     
     const initialState = {
         language: {
@@ -14,7 +23,7 @@ import { ADD_LANGS, ADD_SINGLE_LANG, CREATE_LANG, DELETE_LANG, EDIT_LANG, UPDATE
       
     };
     
-    export const languageReducer = (state = initialState, action) => {
+    export const LanguageReducer = (state = initialState, action) => {
       switch (action.type) {
         case(FETCH_START):
           return({

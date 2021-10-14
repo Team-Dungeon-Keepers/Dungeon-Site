@@ -1,7 +1,12 @@
 // filler file to help Github confirm file structures
 
-import { FETCH_START, FETCH_SUCCESS, FETCH_FAIL } from '../actions/Actions';
-import { ADD_GAMES, ADD_SINGLE_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME } from '../actions/GameAction';
+import { 
+    FETCH_START, 
+    FETCH_SUCCESS, 
+    FETCH_FAIL
+     } from '../actions/Actions';
+     
+import { ADD_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE_GAME } from '../actions/GameAction';
 
     
     const initialState = {
@@ -19,7 +24,7 @@ import { ADD_GAMES, ADD_SINGLE_GAME, CREATE_GAME, DELETE_GAME, EDIT_GAME, UPDATE
       
     };
     
-    export const gameReducer = (state = initialState, action) => {
+    export const GameReducer = (state = initialState, action) => {
       switch (action.type) {
         case(FETCH_START):
           return({

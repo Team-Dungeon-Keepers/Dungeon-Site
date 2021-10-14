@@ -6,39 +6,43 @@ import {
   } from '../actions/Actions';
 
 import {
-  ADD_RULES,
-  ADD_SINGLE_RULE,
-  DELETE_RULE,
-  EDIT_RULE
-} from '../actions/RuleActions';
+  ADD_USERS,
+  ADD_SINGLE_USER,
+  DELETE_USER,
+  EDIT_USER
+} from '../actions/userActions';
   
   const initialState = {
-    rule: {
-      rulesid: 0,
-      rulesname: ''
+    user: {
+      userid: 0,
+      username: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      email: ''
     },
-    rules: [],
+    users: [],
     isFetching: false,
     error: ''
   };
   
-  export const RuleReducer = (state = initialState, action) => {
+  export const userReducer = (state = initialState, action) => {
     switch (action.type) {
       case(FETCH_START):
         return({
           ...state,
           isFetching: true
         })
-      case(ADD_RULES):
+      case(ADD_USERS):
         return({
           ...state,
-          rules: action.payload,
+          users: action.payload,
           isFetching: false
         })
-      case(ADD_SINGLE_RULE):
+      case(ADD_SINGLE_USER):
         return ({
           ...state,
-          rules: [...state.rules, action.payload]
+          users: [...state.users, action.payload]
         })
       case(FETCH_FAIL):
         return({
@@ -46,21 +50,20 @@ import {
           error: action.payload,
           isFetching: false
         })
-      case(EDIT_RULE):
-        const editRule = state.rules.find((c) => c.rulesid === action.payload);
+      case(EDIT_USER):
+        const editUser = state.users.find((c) => c.userid === action.payload);
         return({
           ...state,
-          rule: editRule,
+          user: editUser
         })
-      case(DELETE_RULE):
-        const deleteRule = state.classes.filter(c=>(action.payload !== c.rulesid))
+      case(DELETE_USER):
+        const deleteUser = state.users.filter(c=>(action.payload !== c.userid))
         return({
           ...state,
-          rules: deleteRule
+          users: deleteUser
         })
       
       default:
         return state;
     }
   };
-  export default ruleReducer;

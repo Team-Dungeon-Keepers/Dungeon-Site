@@ -101,3 +101,7 @@ export const deleteLang = (languageid) => {
     });
   })
 }
+
+export const fetchStart = () =>  {
+  return ({type:FETCH_START})
+}

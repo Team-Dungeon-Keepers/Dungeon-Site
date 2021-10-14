@@ -1,12 +1,18 @@
 import { combineReducers } from 'redux';
-import { ruleReducer } from "./RuleReducer";
-import languageReducer from "./LanguageReducer";
-import gameReducer from "./GameReducer";
+import { AddressReducer } from './AddressReducer'
+import { GameReducer } from './GameReducer'
+import { LanguageReducer } from './languageReducer'
+import { PhoneReducer } from './phoneReducer'
+import { RuleReducer } from './RuleReducer'
+import { ScheduleReducer } from './ScheduleReducer'
+import { userReducer } from './UserReducer'
 
-const primeReducer = combineReducers({
-    rules: ruleReducer,
-    languages: languageReducer,
-    games: gameReducer
+export const primeReducer = combineReducers({
+    address: AddressReducer,
+    game: GameReducer,
+    lang: LanguageReducer,
+    phone: PhoneReducer,
+    rule: RuleReducer,
+    schedule: ScheduleReducer,
+    user: userReducer
 })
-
-export default primeReducer
