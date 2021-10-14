@@ -22,7 +22,7 @@ export const getLang = () => {
     dispatch(fetchStart());
     axiosWithAuth().get('/languages')
     .then(res=> {
-      dispatch({type: ADD_LANG, payload:res.data});
+      dispatch({type: ADD_LANGS, payload:res.data});
     })
     .catch(err=>{
       dispatch({type: FETCH_FAIL, payload:err});
@@ -62,10 +62,10 @@ export const createlang = (item) => {
 }
 
 export const addLang = (language) => {
-  return {type: ADD_LANG, payload: language}
+  return {type: ADD_LANGS, payload: language}
 }
 
-export const editLang = (languageid) => {
+export const editLang = (editedLang, languageid) => {
   return (dispatch => {
     dispatch(fetchStart());
 
@@ -73,7 +73,7 @@ export const editLang = (languageid) => {
     .put('https://dungeon-site-api/api/languages/', editedLang)
     .then((res) => {
       dispatch({type: DELETE_LANG, payload: languageid});
-      dispatch({type: ADD_SINGLE_LANGUAGE, payload:res.data});
+      dispatch({type: ADD_SINGLE_LANG, payload:res.data});
     })
     .catch((err) => {
       dispatch({type: FETCH_FAIL, payload:err});

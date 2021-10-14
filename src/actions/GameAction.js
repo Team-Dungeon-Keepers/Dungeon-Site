@@ -54,11 +54,11 @@ export const addGames = game => {
   return {type: ADD_GAMES, payload: game}
 }
 
-export const editGame = (gameid) => {
+export const editGame = (editedGame, gameid) => {
   return (dispatch => {
     dispatch(fetchStart());
 
-    axiosS
+    axios
     .put('https://dungeon-site-api/api/games/', editedGame)
     .then((res) => {
       dispatch({type: DELETE_GAME, payload: gameid});

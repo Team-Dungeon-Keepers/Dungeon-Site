@@ -62,7 +62,7 @@ export const createRule = (item) => {
     return({type: FETCH_START});
   }
 
-  export const editRule = (editedRule) => {
+  export const editRule = (editedRule, rulesid) => {
     return (dispatch => {
       dispatch(fetchStart());
 

@@ -65,6 +65,10 @@ function RegisterForm(props) {
         postNewUser(form)
     }
 
+    const createUser = () => {
+
+    }
+
     return (
         <div id="registerContainer">
             <NavBar />
@@ -125,5 +129,5 @@ function RegisterForm(props) {
         </div>
     )
 }
-
-export default connect(null, { createUser })(RegisterForm);
+export default RegisterForm;
+//export default connect(null, { createUser })(RegisterForm);
