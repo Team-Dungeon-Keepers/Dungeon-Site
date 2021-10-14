@@ -9,7 +9,7 @@ export const ADD_SINGLE_RULE = "ADD_SINGLE_RULE";
 export const CREATE_RULE = "CREATE_RULE";
 export const DELETE_RULE = "DELETE_RULE";
 export const EDIT_RULE = "EDIT_RULE";
-export const GET_RULES = "GET RULES";
+export const GET_RULES = "GET_RULES";
 export const GET_RULE_BY_ID = "GET_RULE_BY_ID";
 
 export const getRules = () => {

@@ -8,7 +8,7 @@ export const DELETE_LANG = "DELETE_LANG";
 export const CREATE_LANG = "CREATE_LANG";
 export const UPDATE_LANG = "UPDATE_LANG";
 export const EDIT_LANG = "EDIT_LANG";
-export const GET_LANGS = "GET LANG";
+export const GET_LANGS = "GET_LANG";
 export const GET_LANG_BY_ID = "GET_LANG_BY_ID";
 
 export const fetchStart = ()=> {
@@ -46,7 +46,7 @@ export const getLangByID = (languageid) => {
   });
 }
 
-export const createlang = language => {
+export const createlang = (item) => {
   return (dispatch => {
     dispatch(fetchStart());
     axios
@@ -61,11 +61,11 @@ export const createlang = language => {
   })
 }
 
-export const addLang = language => {
+export const addLang = (language) => {
   return {type: ADD_LANG, payload: language}
 }
 
-export const editLang = language => {
+export const editLang = (languageid) => {
   return (dispatch => {
     dispatch(fetchStart());
 
@@ -82,11 +82,11 @@ export const editLang = language => {
   })
 }
 
-export const updateLang = language => {
+export const updateLang = (language) => {
   return {type: UPDATE_LANG, payload: language}
 }
 
-export const deleteLang = language => {
+export const deleteLang = (languageid) => {
   return (dispatch => {
     dispatch(fetchStart());
 
