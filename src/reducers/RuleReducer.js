@@ -63,3 +63,4 @@ import {
         return state;
     }
   };
+  export default RuleReducer;

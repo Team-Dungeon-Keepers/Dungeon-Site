@@ -16,3 +16,4 @@ export const primeReducer = combineReducers({
     schedule: ScheduleReducer,
     user: userReducer
 })
+export default primeReducer;

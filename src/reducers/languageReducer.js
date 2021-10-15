@@ -6,11 +6,11 @@ import {
     FETCH_FAIL
      } from '../actions/Actions';
 
-import { ADD_LANG, 
+import { ADD_LANGS, 
   CREATE_LANG, 
   DELETE_LANG, 
   EDIT_LANG,
-  UPDATE_LANG } from '../actions/languageActions';
+  UPDATE_LANG, ADD_SINGLE_LANG } from '../actions/languageActions';
     
     const initialState = {
         language: {
@@ -59,10 +59,15 @@ import { ADD_LANG,
             ...state,
             languages: deleteLang,
           })
-        case(ADD_LANG):
+        case(ADD_LANGS):
           return({
             ...state,
             languages: [...state.language, action.payload]
+          })
+          case(ADD_SINGLE_LANG):
+          return ({
+            ...state,
+            languages: [...state.languages, action.payload]
           })
         case(CREATE_LANG):
           return({
@@ -73,3 +78,4 @@ import { ADD_LANG,
           return state;
       }
     };
+    export default LanguageReducer;
