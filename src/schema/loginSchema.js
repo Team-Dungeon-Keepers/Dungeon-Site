@@ -1,4 +1,5 @@
 import * as yup from 'yup'
+import { number } from 'yup/lib/locale'
 
 const schema = yup.object().shape({
 	firstName: yup.string()
@@ -17,6 +18,15 @@ const schema = yup.object().shape({
 	email: yup.string()
 		.required('Email is required')
 		.max(30, 'Email must be less than 30 characters'),
+    street: yup.string()
+        .notRequired(),
+    apartment: yup.string()
+        .notRequired(),
+    state: yup.string()
+        .notRequired(),
+    zip: yup.string()
+        .notRequired()
+        //.isType(number)
 })
 
 const loginSchema = yup.object().shape({
