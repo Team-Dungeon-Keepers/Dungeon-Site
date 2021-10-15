@@ -21,12 +21,12 @@ const NavBar = function ()  {
         let homeList = document.getElementById("navBarHomeIconDropDown");
         let userIcon = document.getElementById("navBarUserIcon");
         let userList = document.getElementById("navBarUserIconDropDown");
-        if (event.target != homeIcon) {
+        if (event.target !== homeIcon) {
             if (homeList.style.display === 'block') {
                 homeList.style.display = 'none';
             }
         } 
-        if (event.target != userIcon) {
+        if (event.target !== userIcon) {
             if (userList.style.display === 'block') {
                 userList.style.display = 'none';
             }
