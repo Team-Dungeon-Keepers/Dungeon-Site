@@ -6,7 +6,8 @@ import Dashboard from './components/Dashboard';
 import LoginForm from './components/LoginForm';
 import RegisterForm from './components/register';
 import PrivateRoute from './components/PrivateRoute';
-import ProfileEdit from './components/ProfileEdit';
+import EditProfile from './components/EditProfile';
+import Profile from './components/Profile';
 import ViewAllUsers from './components/ViewAllUsers';
 import CreateGame from './components/CreateGame';
 import MyGames from './components/MyGames';
@@ -32,13 +33,13 @@ function App() {
             </Route>
             <Route path="/register" component={RegisterForm}/>
             <PrivateRoute path="/userview/:userID" >
-              <ProfileEdit trigger={trigger} setTrigger={setTrigger} />
+              <EditProfile trigger={trigger} setTrigger={setTrigger} />
             </PrivateRoute>
-            <PrivateRoute path="/profile/:userID">
-              <ProfileEdit trigger={trigger} setTrigger={setTrigger} />
+            <PrivateRoute path="/editprofile/:userID">
+              <EditProfile trigger={trigger} setTrigger={setTrigger} />
             </PrivateRoute>
-            <PrivateRoute path="/profile">
-            <ProfileEdit trigger={trigger} setTrigger={setTrigger} />
+            <PrivateRoute path="/editprofile">
+            <EditProfile trigger={trigger} setTrigger={setTrigger} />
             </PrivateRoute>
             <PrivateRoute path="/userview" >
               <ViewAllUsers trigger={trigger} setTrigger={setTrigger} />
@@ -55,6 +56,9 @@ function App() {
 			</PrivateRoute>
 			<PrivateRoute path="/compendium">
 				<Compendium/>
+			</PrivateRoute>
+			<PrivateRoute path="/profile">
+				<Profile/>
 			</PrivateRoute>
           </Switch>
       </Router>
