@@ -122,7 +122,7 @@ function RegisterForm(props) {
 				</div>
 				<div id="registerThirdRow">
                 <button id="button-nav-register" className="btn nav-btn nav-login"
-                    onClick={gotoLogin} >Submit</button>
+                    onClick={handleSubmit} >Submit</button>
                 {props.children}
 				</div>
             </div>
