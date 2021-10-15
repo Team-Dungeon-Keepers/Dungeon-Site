@@ -51,6 +51,11 @@ const NavBar = function ()  {
                             Logout
                         </button>
                     </Link>
+                    <Link to="/editprofile">
+                        <button type="Button" >
+                            Edit User
+                        </button>
+                    </Link>
                     <Link to="/profile">
                         <button type="Button" >
                             Profile

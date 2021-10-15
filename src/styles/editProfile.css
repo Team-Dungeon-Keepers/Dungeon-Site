@@ -1,0 +1,33 @@
+#form-profile {
+    display: grid;
+    grid-template-columns: 2fr 6fr;
+    min-height: 90vh;
+}
+#editProfileColumn1 {
+    grid-column: 1;
+    margin: auto;
+}
+#editProfileColumn2 {
+    grid-column: 2;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+#editProfileCol2Row1 {
+    grid-row: 1;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}
+#editProfileCol2Row2 {
+    grid-row: 2;
+    border-color: yellow;
+    border-width: 2px;
+    border-style: solid;
+    align-items: center;
+}
+#editProfileCol2Row3 {
+    grid-row: 3;
+    border-color: green;
+    border-width: 2px;
+    border-style: solid;
+}

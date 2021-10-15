@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useHistory, useParams } from 'react-router-dom'
-import '../styles/login.css'
+import '../styles/editProfile.css'
 import * as yup from 'yup'
 import axios from 'axios';
 import { updateSchema } from '../schema/loginSchema'
@@ -94,39 +94,43 @@ function ProfileEdit(props) {
         <div>
             <NavBar />
             <div id="form-profile" className="form form-profile">
-                <h1>Edit Profile</h1>
-                <div id="error-register" className="error error-register" ></div>
-                <div id="error-username" className="error error-username" >{shaped.username}</div>
-                <label id="label-username" htmlFor="username">Username
-                    <input id="username" name="username" type="text" 
-                        onChange={handleChange} value={form.ERS_USERNAME}/>
-                </label>
-                <div id="error-password" className="error error-password" >
-                    {shaped.password}</div>
-                <label id="label-password" htmlFor="password">Password
-                    <input id="password" name="password" type="password"
-                        onChange={handleChange} />
-                </label>
-                <div id="error-confirm-password" className="error error-confirm-password" >{shaped.confirmPassword}</div>
-                <label id="label-confirm-password" htmlFor="confirmPassword">Confirm Password
-                    <input id="confirmPassword" name="confirmPassword" type="password" onChange={handleChange} 
-                    value={form.confirmPassword} />
-                </label>
-                <label id="label-first-name" htmlFor="firstName">First Name
-                    <input id="confirmPassword" name="USER_FIRST_NAME" type="text" onChange={handleChange} 
-                    value={form.USER_FIRST_NAME} />
-                </label>
-                <label id="label-last-name" htmlFor="lastName">Last Name
-                    <input id="confirmPassword" name="USER_LAST_NAME" type="text" onChange={handleChange} 
-                    value={form.USER_LAST_NAME} />
-                </label>
-                <label id="label-email" htmlFor="email">Email
-                    <input id="confirmPassword" name="USER_EMAIL" type="text" onChange={handleChange} 
-                    value={form.USER_EMAIL} />
-                </label>
-                <button id="button-register" className="btn btn-register"
-                    onClick={handleSubmit}>Update</button>
-                {props.children}
+                <div id="editProfileColumn1">
+                    <div id="editProfileCurrentUserName">CurrentUserName</div>
+                    <div id="editProfileCurrentEmail">CurrentEmail</div>
+                </div>
+                    <div id="editProfileColumn2">
+                        <div id="editProfileCol2Row1">
+                            <label id="label-username" htmlFor="username">Username
+                                <input id="username" name="username" type="text" 
+                                    onChange={handleChange} value={form.ERS_USERNAME}/>
+                            </label>
+                            <button id="button-register" className="btn btn-register"
+                                onClick={handleSubmit}>Update</button>
+                                {props.children}
+                        </div>
+                        <div id="editProfileCol2Row2">
+                            <label id="label-email" htmlFor="email">Email
+                                <input id="confirmPassword" name="USER_EMAIL" type="text" onChange={handleChange} 
+                                    value={form.USER_EMAIL} />
+                            </label>
+                            <button id="button-register" className="btn btn-register"
+                                onClick={handleSubmit}>Update</button>
+                                {props.children}
+                        </div>
+                        <div id="editProfileCol2Row3">
+                            <label id="label-password" htmlFor="password">Password
+                                <input id="password" name="password" type="password"
+                                onChange={handleChange} />
+                            </label><br/>
+                            <label id="label-confirm-password" htmlFor="confirmPassword">Confirm Password
+                                <input id="confirmPassword" name="confirmPassword" type="password" onChange={handleChange} 
+                                    value={form.confirmPassword} />
+                            </label>
+                            <button id="button-register" className="btn btn-register"
+                                onClick={handleSubmit}>Update</button>
+                            {props.children}
+                        </div>
+                </div>
             </div>
         </div>
     )
