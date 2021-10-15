@@ -2,7 +2,6 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import { useHistory, useParams } from "react-router-dom";
 import '../styles/dashboard.css'
-
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { loginAsManager } from '../utils/authUtils';
 import { NavBar } from './NavBar';

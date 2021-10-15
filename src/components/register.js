@@ -72,7 +72,6 @@ function RegisterForm(props) {
 
     return (
         <div id="registerContainer">
-            <NavBar />
             <div id="form-register" className="form form-register">
                 <h1>Register Form</h1>
 				<div id="registerSecondRow">
