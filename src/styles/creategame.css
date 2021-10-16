@@ -24,10 +24,6 @@
 #step1Right {
 	grid-column: 2;
 	display: grid;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
-	min-height: 100%;
-	min-width: 100%;
-	text-align: center;
 }
 #step1Right div {
 	margin: auto;
@@ -43,7 +39,13 @@
 }
 #step2Right, #step3Right {
 	display: none;
+}
+#step1Right, #step2Right, #step3Right {
 	grid-column: 2;
 	min-height: 100%;
 	min-width: 100%;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	min-height: 100%;
+	min-width: 100%;
+	text-align: center;
 }
