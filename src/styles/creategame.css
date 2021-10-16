@@ -1,7 +1,49 @@
-#createGameContainer {
-	background-color: orange;
-}
+
 #createGameTestStuff {
-	background-color: blue;
-	color: green;
+	display: grid;
+	grid-template-columns: 2fr 3fr;
+	min-height: 86vh;
+	background-color: white;
+}
+#createGameLeft {
+	grid-column: 1;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+	border: 2px solid black;
+	margin-top: 5%;
+	max-width: 10vw;
+	max-height: 40vh;
+	text-align: center;
+	border-top-right-radius: 30px;
+	border-bottom-right-radius: 30px;
+	background-color: #5db5fd;
+}
+#createGameLeft span {
+	margin: auto;
+}
+#step1Right {
+	grid-column: 2;
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr 1fr;
+	min-height: 100%;
+	min-width: 100%;
+	text-align: center;
+}
+#step1Right div {
+	margin: auto;
+}
+#step1Right input {
+	border-color: #5db5fd;
+}
+#createGameRight {
+	grid-column: 2;
+	border-color: black;
+	border-width: 2px;
+	border-style: solid;
+}
+#step2Right, #step3Right {
+	display: none;
+	grid-column: 2;
+	min-height: 100%;
+	min-width: 100%;
 }
