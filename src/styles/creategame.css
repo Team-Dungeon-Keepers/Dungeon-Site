@@ -37,6 +37,9 @@
 	border-width: 2px;
 	border-style: solid;
 }
+#gameLanguage {
+	grid-row: 1
+}
 #step2Right, #step3Right {
 	display: none;
 }

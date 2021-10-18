@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/creategame.css';
 import axios from 'axios';
+import { LanguageCheckBox } from './LanguageCheckBox'
 
 function CreateGame (){
+    const [langs, setLangs] = useState([]);
+    const [toggle, setToggle] = useState(false);
 
     function test() {
         alert("Submission not completed");
     }
+
     function step1To2() {
         let step1Right = document.getElementById('step1Right');
         let step2Right = document.getElementById('step2Right');
@@ -21,27 +25,22 @@ function CreateGame (){
         axios
           .get('https://dungeon-site-api.herokuapp.com/api/language')
           .then((res) => {
-              console.log(res.data);
-              languageLoop(res.data);
+              console.log("Langs received: "+ res.data);
+              setLangs([...res.data]);
+              console.log("Langs after: " + langs);
+              if(langs.length == 0) {
+                setToggle(!toggle);
+                console.log(toggle)
+              } else {
+                setToggle(true);
+                console.log(toggle)
+              }
           })
           .catch((err) => {
             console.log({err});
             alert(err.response);
           });
     };
-    function languageLoop(res) {
-        let i = 0;
-        var languageDrop = document.getElementById("gameLanguage");
-        while (i < res.length) {
-            console.log(res[i].language+" ----- GOOOOOMMMMBAAAAA");
-            let gameDropOption = document.createElement("option");
-            let gameDropValue = res[i].language;
-            gameDropOption.innerHTML = gameDropValue;
-            gameDropOption.setAttribute("id", gameDropValue);
-            languageDrop.appendChild(gameDropOption);
-            i++;
-        }
-    }
 
     function renderPage3() {
         alert("Test");
@@ -104,6 +103,11 @@ function CreateGame (){
         }
         alert(JSON.stringify(createdGame));
     }
+
+    useEffect(() => {
+        getAllanguages();
+    }, [toggle]);
+
 	 return(
     <div id="createGameContainer">  
         <NavBar /> 
@@ -166,8 +170,15 @@ function CreateGame (){
                 </div>
                 <div id="step3Right">
                     <span>Language:</span>
-                    <select id="gameLanguage" name="gameLanguage">
-                    </select>
+                    <div id="gameLanguage" name="gameLanguage">
+                        {(langs.length == 0) && <p>No Information</p>}
+                        {langs &&                     
+                        langs.map((lang) => {<div>
+                            <p>{lang.languageid} {lang.language}</p> 
+                            <LanguageCheckBox key={lang.language} language={lang} />
+                        </div>}
+                        )}
+                    </div>
                     <span>Tags:</span>
                     <select id="gameTags" name="gameTags">
                         <option value="testTag">TestTag</option>
