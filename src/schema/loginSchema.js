@@ -22,6 +22,8 @@ const schema = yup.object().shape({
         .notRequired(),
     apartment: yup.string()
         .notRequired(),
+    city: yup.string()
+        .notRequired(),
     state: yup.string()
         .notRequired(),
     zip: yup.string()

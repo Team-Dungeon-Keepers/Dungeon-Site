@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../dungeon site logo.png';
+import userIcon from '../user icon.png';
 
 import '../styles/navbar.css'
 
@@ -36,6 +38,7 @@ const NavBar = function ()  {
         return (
         <div id="nav-bar">
             <div id="navBarHomeIcon" onClick={showHomeDropDown}>
+                <img id="logo" src={logo} alt="Logo"/>
                 <div id="navBarHomeIconDropDown">
                     <Link to="/dashboard">
                         <button type="button">
@@ -45,6 +48,7 @@ const NavBar = function ()  {
                 </div>
             </div>
             <div id="navBarUserIcon" onClick={showUserDropDown}>
+                <img id="userIcon" src={userIcon} alt="User"/>
                 <div id="navBarUserIconDropDown">
                     <Link to="/">
                         <button type="Button" onClick={logout} >
