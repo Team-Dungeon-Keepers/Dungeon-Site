@@ -5,11 +5,12 @@ import '../styles/dashboard.css'
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { loginAsManager } from '../utils/authUtils';
 import { NavBar } from './NavBar';
+import { LanguageCheckBox } from './LanguageCheckBox';
 
 function Dashboard(props) { 
-    const [reimb, setReimb] = useState(null);
     const {trigger, setTrigger} = props;
     const history = useHistory();
+    const testLang = {languageid: 1, language: "English"};
 
 	const goToCreateGame = () => {
         history.push("/creategame");
@@ -29,19 +30,13 @@ function Dashboard(props) {
     useEffect(()=> {
         if ((userID == null) || (!loginAsManager())) 
             userID = localStorage.getItem('userID');
-       
-        axiosWithAuth()
-            .get(`https://dungeon-site-api.herokuapp.com/api/reimb/user/${userID}`)
-            .then(res => 
-                setReimb(res.data)
-            )
         
     }, [trigger])
 
     return(
     <div id="dashBoardContainer">  
             <NavBar /> 
-		    <div id="dashBoardBody">
+            <div id="dashBoardBody">
                 <img id="dashBoardBackground" useMap="#dashBoard"></img>
                     <map name="dashBoard">
                         <area shape="rect" coords="324,68,521,263" onClick={goToCreateGame}></area>
