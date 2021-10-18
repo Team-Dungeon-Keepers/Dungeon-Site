@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { NavBar } from './NavBar';
-import '../styles/creategame.css'
+import '../styles/creategame.css';
+import axios from 'axios';
 
 function CreateGame (){
 
@@ -12,20 +13,36 @@ function CreateGame (){
         let step2Right = document.getElementById('step2Right');
         step1Right.style.display = "none";
         step2Right.style.display = "grid";
-        renderRequiredValues("page2");
-    }
-    function renderRequiredValues(page) {
-        switch (page) {
-            case "page2": renderPage2();
-            break;
-            case "page3": renderPage3();
-            break;
-            default : alert("Error");
-        }
     }
     function renderPage2() {
-        alert("test");
+        getAllanguages();
     }
+    const getAllanguages = () => {
+        axios
+          .get('https://dungeon-site-api.herokuapp.com/api/language')
+          .then((res) => {
+              console.log(res.data);
+              languageLoop(res.data);
+          })
+          .catch((err) => {
+            console.log({err});
+            alert(err.response);
+          });
+    };
+    function languageLoop(res) {
+        let i = 0;
+        var languageDrop = document.getElementById("gameLanguage");
+        while (i < res.length) {
+            console.log(res[i].language+" ----- GOOOOOMMMMBAAAAA");
+            let gameDropOption = document.createElement("option");
+            let gameDropValue = res[i].language;
+            gameDropOption.innerHTML = gameDropValue;
+            gameDropOption.setAttribute("id", gameDropValue);
+            languageDrop.appendChild(gameDropOption);
+            i++;
+        }
+    }
+
     function renderPage3() {
         alert("Test");
     }
@@ -46,6 +63,7 @@ function CreateGame (){
         let step2Right = document.getElementById('step2Right');
         step2Right.style.display = "none";
         step3Right.style.display = "grid";
+        getAllanguages();
     }
     function step3To1() {
         let step1Right = document.getElementById('step1Right');
@@ -69,7 +87,7 @@ function CreateGame (){
         let gameDesc = gID("createGameDescription").value;
         let gamePrivacy= gID("createGamePrivacy").value;
         let createGameJoinPolicy = gID("createGameJoinPolicy").value;
-        let createGameRules = gID("createGameRules").value;
+        let gameLanguage = gID("gameLanguage").value;
         let createGameMeetType = gID("createGameMeetType").value;
         let gameTags = gID("gameTags").value;
         let createGameAttachedLink = gID("createGameAttachedLink").value;
@@ -79,7 +97,7 @@ function CreateGame (){
             gameDesc:gameDesc,
             gamePrivacy:gamePrivacy,
             createGameJoinPolicy:createGameJoinPolicy,
-            createGameRules:createGameRules,
+            gameLanguage:gameLanguage,
             createGameMeetType:createGameMeetType,
             gameTags:gameTags,
             createGameAttachedLink:createGameAttachedLink
@@ -148,10 +166,7 @@ function CreateGame (){
                 </div>
                 <div id="step3Right">
                     <span>Language:</span>
-                    <select id="gameType" name="gameType">
-                        <option value="english">English</option>
-                        <option value="french">French</option>
-                        <option value="spanish">Spanish</option>
+                    <select id="gameLanguage" name="gameLanguage">
                     </select>
                     <span>Tags:</span>
                     <select id="gameTags" name="gameTags">
