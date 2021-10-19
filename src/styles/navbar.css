@@ -7,24 +7,18 @@
 }
 #navBarHomeIcon {
     grid-column: 1;
-    width: 0;
-    height: 0;
-    border-left: 35px solid transparent;
-    border-right: 35px solid transparent;
-    border-top: 50px solid skyblue;
-    cursor: pointer;
-    margin-top: 1%;
-    margin-left: 6%;
+}
+#logo {
+    max-width: 20%;
 }
 #navBarUserIcon {
     grid-column: 2;
     cursor: pointer;
     margin-left: 80%;
-    border-radius: 50% / 100% 100% 0 0;
-    width: 80px;
-    height: 50px;
-    background-color: white;
-    margin-top: 1%;
+    margin-top: 50px;
+}
+#userIcon {
+    max-width: 50%;
 }
 #navBarHomeIconDropDown, #navBarUserIconDropDown {
     display: none;

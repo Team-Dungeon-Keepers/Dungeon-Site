@@ -183,7 +183,7 @@ function RegisterForm(props) {
                     <div id="registerThirdRight">
                         <div id="error-register" className="error error-register" ></div>
                         <div id="error-city" className="error error-city" >{shaped.city}</div>
-                        <label id="label-city" htmlFor="city">Apartment/Unit #
+                        <label id="label-city" htmlFor="city">City
                             <input id="city" name="city" type="text" 
                                 onChange={handleChange} value={form.city}/>
                         </label>
