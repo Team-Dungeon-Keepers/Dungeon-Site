@@ -1,0 +1,20 @@
+#myGamesBody {
+    grid-row: 2;
+    min-height: 86vh;
+    background-color: white;
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+}
+#myGamesTable {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    margin: auto;
+}
+td, th, tr {
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+}
+
