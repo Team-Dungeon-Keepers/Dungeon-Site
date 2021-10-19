@@ -15,7 +15,7 @@
     grid-column: 2;
     cursor: pointer;
     margin-left: 80%;
-    margin-top: 50px;
+    padding-top: 50px;
 }
 #userIcon {
     max-width: 50%;
