@@ -47,39 +47,19 @@ function RegisterForm(props) {
             address: neoAddress
         }
         registerUserAddressAxiosCall(userAddress);
-
-        /*userAxiosCall(neoUser);
-        addressAxiosCall(neoAddress);*/
     };
 
     const registerUserAddressAxiosCall = (userAddress) => {
         axios
         .post('https://dungeon-site-api.herokuapp.com/api/auth/registeruseraddress', userAddress)
-        .then(console.log("completed user DB call"))
-        .catch((err) => {
-          console.log({err});
-        });
-    }
-/*
-    const userAxiosCall = (neoUser) => {
-        axios
-        .post('https://dungeon-site-api.herokuapp.com/api/address', neoUser)
-        .catch((err) => {
-          console.log({err});
-        });
-    }
-
-    const addressAxiosCall = (neoAddress) => {
-        axios
-        .post('https://dungeon-site-api.herokuapp.com/api/address', neoAddress)
         .then((res) => {
             history.push('/login');
+            console.log("user and address in DB");
           })
         .catch((err) => {
           console.log({err});
         });
     }
-*/
     const checkSchema = (name, value) => {
         yup.reach(schema, name).validate(value)
             .then(() => {
