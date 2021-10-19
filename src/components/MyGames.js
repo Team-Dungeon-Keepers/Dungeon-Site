@@ -25,39 +25,57 @@ function MyGames (){
       while (i < gameStuff.length) {
         let myGamesRow = document.createElement("tr");
         let myGamesName = document.createElement("td");
+        let myGamesNameInput = document.createElement("input");
         let myGamesMaster = document.createElement("td");
+        let myGamesMasterInput = document.createElement("input");
         let myGamesDesc = document.createElement("td");
-        let myGameEditButton = document.createElement("button");
-        myGameEditButton.innerHTML = "EDIT";
-        myGameEditButton.addEventListener("click", testStuff)
-        myGamesName.innerHTML = gameStuff[i].gameName;
-        myGamesMaster.innerHTML = gameStuff[i].gamemasterid;
-        myGamesDesc.innerHTML = gameStuff[i].description;
+        let myGamesDescInput = document.createElement("input");
+        let myGameSaveButton = document.createElement("button");
+        let myGameRemoveButton = document.createElement("button");
+        myGamesRow.setAttribute("id", `tr${i}`);
+        myGameSaveButton.innerHTML = "SAVE";
+        myGameRemoveButton.innerHTML = "REMOVE";
+        myGameSaveButton.addEventListener("click", saveGameChanges);
+        myGameSaveButton.setAttribute("value", i);
+        myGameRemoveButton.addEventListener("click", removeGameFromList);
+        myGameRemoveButton.setAttribute("value", i);
+        myGamesNameInput.value = gameStuff[i].gameName;
+        myGamesMasterInput.value = gameStuff[i].gamemasterid;
+        myGamesDescInput.value = gameStuff[i].description;
         myGamesRow.innerHTML = i;
+        myGamesName.appendChild(myGamesNameInput);
+        myGamesMaster.appendChild(myGamesMasterInput);
+        myGamesDesc.appendChild(myGamesDescInput);
         myGamesRow.appendChild(myGamesName);
         myGamesRow.appendChild(myGamesMaster);
         myGamesRow.appendChild(myGamesDesc);
-        myGamesRow.appendChild(myGameEditButton);
+        myGamesRow.appendChild(myGameSaveButton);
+        myGamesRow.appendChild(myGameRemoveButton);
         myGamesBody.appendChild(myGamesRow);
         i++;
       }
     }
-    const testStuff = (gamestuff) => {
-      gamestuff.preventDefault();
-      alert(gamestuff.target.value);
+    const saveGameChanges = () => {
+      alert("Need function to call out update on backend");
+    }
+    const removeGameFromList = (gameToRemove) => {
+      let rowToRemove = document.getElementById(`tr${gameToRemove.target.value}`);
+      rowToRemove.remove();
     }
 	 return(
     <div id="myGameContainer">  
         <NavBar /> 
         <div id="myGamesBody">
           <table id="myGamesTable">
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>GameMaster</th>
-              <th>Description</th>
-              <th>Buttons</th>
-            </tr>
+            <thead id="myGamesTableHead">
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>GameMaster</th>
+                <th>Description</th>
+                <th>Buttons</th>
+              </tr>
+            </thead>
           </table>
         </div>
     </div>
