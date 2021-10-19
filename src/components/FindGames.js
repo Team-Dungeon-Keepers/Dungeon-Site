@@ -19,7 +19,7 @@ function FindGames (){
 	const getGamesByName = () =>{
 		var name = document.getElementById("findGameByName").value;
 		axios
-			.get("https://dungeon-site-api.herokuapp.com/api/games/"+name)
+			.get("https://dungeon-site-api.herokuapp.com/api/games/name/"+name)
 			.then((res) => {
 				console.log(res.data);
 			})
