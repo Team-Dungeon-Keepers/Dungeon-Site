@@ -1,17 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { NavBar } from './NavBar';
 import '../styles/creategame.css';
 import axios from 'axios';
-import { LanguageCheckBox } from './LanguageCheckBox'
 
 function CreateGame (){
-    const [langs, setLangs] = useState([]);
-    const [toggle, setToggle] = useState(false);
 
     function test() {
         alert("Submission not completed");
     }
-
     function step1To2() {
         let step1Right = document.getElementById('step1Right');
         let step2Right = document.getElementById('step2Right');
@@ -25,22 +21,27 @@ function CreateGame (){
         axios
           .get('https://dungeon-site-api.herokuapp.com/api/language')
           .then((res) => {
-              console.log("Langs received: "+ res.data);
-              setLangs([...res.data]);
-              console.log("Langs after: " + langs);
-              if(langs.length == 0) {
-                setToggle(!toggle);
-                console.log(toggle)
-              } else {
-                setToggle(true);
-                console.log(toggle)
-              }
+            languageLoop(res.data);
           })
           .catch((err) => {
             console.log({err});
             alert(err.response);
           });
     };
+    function languageLoop(res) {
+        let i = 0;
+        var languageDrop = document.getElementById("gameLanguage");
+        while (i < res.length) {
+            console.log(res[i].language+" ----- GOOOOOMMMMBAAAAA");
+            let gameDropOption = document.createElement("option");
+            let gameDropValue = res[i].language;
+            gameDropOption.innerHTML = gameDropValue;
+            gameDropOption.setAttribute("id", gameDropValue);
+            gameDropOption.setAttribute("value", gameDropValue);
+            languageDrop.appendChild(gameDropOption);
+            i++;
+        }
+    }
 
     function renderPage3() {
         alert("Test");
@@ -86,7 +87,7 @@ function CreateGame (){
         let gameDesc = gID("createGameDescription").value;
         let gamePrivacy= gID("createGamePrivacy").value;
         let createGameJoinPolicy = gID("createGameJoinPolicy").value;
-        let gameLanguage = gID("gameLanguage").value;
+        let gameLanguage = gID("createGameAddedLanguages").innerHTML;
         let createGameMeetType = gID("createGameMeetType").value;
         let gameTags = gID("gameTags").value;
         let createGameAttachedLink = gID("createGameAttachedLink").value;
@@ -103,11 +104,21 @@ function CreateGame (){
         }
         alert(JSON.stringify(createdGame));
     }
-
-    useEffect(() => {
-        getAllanguages();
-    }, [toggle]);
-
+    function addLanguageToGame() {
+        let languageToAdd = document.getElementById("gameLanguage").value;
+        let languageBox = document.getElementById("createGameAddedLanguages");
+        if (languageBox.innerHTML.indexOf(languageToAdd) == -1) {
+            languageBox.innerHTML += ("; "+languageToAdd);
+        }
+    }
+    function removeLanguageFromGame() {
+        let languageToAdd = document.getElementById("gameLanguage").value;
+        let languageBox = document.getElementById("createGameAddedLanguages");
+        if (languageBox.innerHTML.indexOf(languageToAdd) !== -1) {
+            languageBox.innerHTML = languageBox.innerHTML.replace(`; ${languageToAdd}`, " ");
+            console.log(languageBox.innerHTML);
+        }
+    }
 	 return(
     <div id="createGameContainer">  
         <NavBar /> 
@@ -142,6 +153,8 @@ function CreateGame (){
                             <option value="createGameInPerson">In Person</option>
                             <option value="createGameOnline">Online</option>
                         </select><br/>
+                    </div>
+                    <div id="step1RightRow5">
                         <button onClick={step1To2}>Next &#8594;</button>
                     </div>
                 </div>
@@ -164,29 +177,37 @@ function CreateGame (){
                     <div id="step2RightRow4">
                         <span>Game Description</span>
                         <input id="createGameDescription"></input>
-                    <button onClick={step2To1}>&#8592; Previous</button>
-                    <button onClick={step2To3}>Next &#8594;</button>
+                    </div>
+                    <div id="step2RightRow5">
+                        <button onClick={step2To1}>&#8592; Previous</button><br/>
+                        <button onClick={step2To3}>Next &#8594;</button>
                     </div>
                 </div>
                 <div id="step3Right">
-                    <span>Language:</span>
-                    <div id="gameLanguage" name="gameLanguage">
-                        {(langs.length == 0) && <p>No Information</p>}
-                        {langs &&                     
-                        langs.map((lang) => {<div>
-                            <p>{lang.languageid} {lang.language}</p> 
-                            <LanguageCheckBox key={lang.language} language={lang} />
-                        </div>}
-                        )}
+                    <div id="step3RightRow1">
+                        <span>Language:</span>
                     </div>
-                    <span>Tags:</span>
-                    <select id="gameTags" name="gameTags">
-                        <option value="testTag">TestTag</option>
-                    </select>
-                    <span>Attached Links</span>
-                    <input id="createGameAttachedLink" placeholder="https://additionalGameLinks.com"></input>
-                    <button onClick={step3To2}>&#8592; Previous</button>
-                    <button onClick={test}>Create</button>
+                    <div id="step3RightRow2">
+                        <select id="gameLanguage" name="gameLanguage">
+                        </select>
+                        <button id="createGameAddLanguage" onClick={addLanguageToGame}>ADD</button>
+                        <button id="createGameRemoveLanguage" onClick={removeLanguageFromGame}>REMOVE</button>
+                        <span id="createGameAddedLanguages">English</span>
+                    </div>
+                    <div id="step3RightRow3">
+                        <span>Tags:</span>
+                        <select id="gameTags" name="gameTags">
+                            <option value="testTag">TestTag</option>
+                        </select>
+                    </div>
+                    <div id="step3RightRow4">
+                        <span>Attached Links</span>
+                        <input id="createGameAttachedLink" placeholder="https://additionalGameLinks.com"></input>
+                    </div>
+                    <div id="step3RightRow5">
+                        <button onClick={step3To2}>&#8592; Previous</button><br/>
+                        <button onClick={test}>Create</button>
+                    </div>
                 </div>
             </div>
         </div>
