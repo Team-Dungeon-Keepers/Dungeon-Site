@@ -5,12 +5,10 @@ import '../styles/dashboard.css'
 import axiosWithAuth from '../utils/axiosWithAuth';
 import { loginAsManager } from '../utils/authUtils';
 import { NavBar } from './NavBar';
-import { LanguageCheckBox } from './LanguageCheckBox';
 
 function Dashboard(props) { 
     const {trigger, setTrigger} = props;
     const history = useHistory();
-    const testLang = {languageid: 1, language: "English"};
 
 	const goToCreateGame = () => {
         history.push("/creategame");
