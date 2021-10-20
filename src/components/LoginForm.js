@@ -45,6 +45,7 @@ function LoginForm(props) {
             const user = res.data.user;
             localStorage.setItem('token', `"${token}"`);
             localStorage.setItem('userID', `${user.userID}`);
+            localStorage.setItem('user', `${user}`);
 			document.body.style.background = "white";
             history.push("/dashboard");
           })
