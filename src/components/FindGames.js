@@ -11,7 +11,9 @@ function FindGames (){
 			.get("https://dungeon-site-api.herokuapp.com/api/games/"+id)
 			.then((res) => {
 				console.log(res.data);
-				printGames([res.data]);
+				let data = [[res.data]];
+				console.log(data);
+				printGames(data);
 			})
 			.catch((err) => {
 				console.log({err});
@@ -23,7 +25,9 @@ function FindGames (){
 			.get("https://dungeon-site-api.herokuapp.com/api/games/name/"+name)
 			.then((res) => {
 				console.log(res.data);
-				printGames(res.data);
+				let data = [[res.data]];
+				console.log(data);
+				printGames(data);
 			})
 			.catch((err) => {
 				console.log({err});
@@ -32,18 +36,10 @@ function FindGames (){
 	const getGamesByGM = () =>{
 		var username = document.getElementById("findGameByGM").value;
 		axios
-			.get("https://dungeon-site-api.herokuapp.com/api/users/"+username)
+			.get("https://dungeon-site-api.herokuapp.com/api/games/mastername/"+username)
 			.then((res) => {
 				console.log(res.data);
-				var gmID = res.data.userID;
-				axios
-					.get("https://dungeon-site-api.herokuapp.com/api/games/"+gmID)
-					.then((res) => {
-						console.log(res.data);
-					})
-					.catch((err) => {
-						console.log({err});
-					});
+				printGames([res.data]);
 			})
 			.catch((err) => {
 				console.log({err});
@@ -51,7 +47,7 @@ function FindGames (){
 	}
 	function printGames(data){
 		let i = 1;
-		console.log(data[i-1].gameName);
+		console.log(data[i].length);
 		while (i <= data.length){
 			console.log("entered loop");
 			var body = document.getElementById("gamesDisplay");
@@ -66,8 +62,8 @@ function FindGames (){
 			//var playersCell = row.insertCell(2);
 			var viewCell = row.insertCell(2);
 
-			titleCell.innerHTML = data[i-1].gameName;
-			descriptionCell.innerHTML = data[i-1].description;
+			titleCell.innerHTML = data[i-1][i-1].gameName;
+			descriptionCell.innerHTML = data[i-1][i-1].description;
 			//playersCell.innerHTML
 			viewCell.innerHTML = `<button id='viewBtn' class="" value="" onclick=''>View</button>`;
 
