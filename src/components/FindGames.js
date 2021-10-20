@@ -47,7 +47,7 @@ function FindGames (){
 	}
 	function printGames(data){
 		let i = 1;
-		console.log(data[i].length);
+		console.log(data.length);
 		while (i <= data.length){
 			console.log("entered loop");
 			var body = document.getElementById("gamesDisplay");
