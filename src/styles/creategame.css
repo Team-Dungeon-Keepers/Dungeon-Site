@@ -30,9 +30,7 @@
 }
 #createGameRight {
 	grid-column: 2;
-	border-color: black;
-	border-width: 2px;
-	border-style: solid;
+	margin-right: 10vw;
 }
 #step2Right, #step3Right {
 	display: none;
@@ -50,18 +48,17 @@
 	border-width: 2px;
 	border-style: solid;
 }
-#createGameAddedLanguages {
+#step1Right div * {
+	margin-left: 40%;
+}
+#createGameAddedLanguages, #createGameAddedBehaviors, #createGameAddedRules, #createGameAddedTypes {
 	min-width: 100%;
 	min-height: 20%;
 	background-color: grey;
 }
-#step3RightRow2 {
+#step3RightRow2, #step2RightRow2, #step2RightRow3, #step2RightRow1, #step2RightRow4 {
 	display: grid;
 	grid-template-rows: 1fr 1fr 1fr 1fr;
-}
-#step1RightRow5 button {
-	min-width: 100%;
-	min-height: 100%;
 }
 #step2RightRow5 button, #step3RightRow5 button {
 	min-width: 100%;
