@@ -166,23 +166,23 @@ function CreateGame (){
         return elementFound
     }
     function test() {
-        let gameType = gID("gameType").value;
+        let gameType = gID("createGameAddedTypes").value;
         let gameTitle = gID("createGameTitle").value;
         let gameDesc = gID("createGameDescription").value;
-        let gamePrivacy= gID("createGamePrivacy").value;
-        let createGameJoinPolicy = gID("createGameJoinPolicy").value;
+        let gamePassword= gID("createGamePassword").value;
+        let createGameRules = gID("createGameAddedRules").value;
         let gameLanguage = gID("createGameAddedLanguages").innerHTML;
-        let createGameMeetType = gID("createGameMeetType").value;
+        let createGameBehavior = gID("createGameAddedBehaviors").value;
         let gameTags = gID("gameTags").value;
         let createGameAttachedLink = gID("createGameAttachedLink").value;
         let createdGame = {
             gameType:gameType,
             gameTitle:gameTitle,
             gameDesc:gameDesc,
-            gamePrivacy:gamePrivacy,
-            createGameJoinPolicy:createGameJoinPolicy,
+            gamePassword:gamePassword,
+            createGameRules:createGameRules,
             gameLanguage:gameLanguage,
-            createGameMeetType:createGameMeetType,
+            createGameBehavior:createGameBehavior,
             gameTags:gameTags,
             createGameAttachedLink:createGameAttachedLink
         }
@@ -200,8 +200,53 @@ function CreateGame (){
         let languageBox = document.getElementById("createGameAddedLanguages");
         if (languageBox.innerHTML.indexOf(languageToAdd) !== -1) {
             languageBox.innerHTML = languageBox.innerHTML.replace(`; ${languageToAdd}`, " ");
-            console.log(languageBox.innerHTML);
         }
+    }
+    function addBehaviorToGame() {
+        let behaviorToAdd = document.getElementById("gameBehavior").value;
+        let behaviorBox = document.getElementById("createGameAddedBehaviors");
+        if (behaviorBox.innerHTML.indexOf(behaviorToAdd) == -1) {
+            behaviorBox.innerHTML += ("; "+behaviorToAdd);
+        }
+    }
+    function removeBehaviorFromGame() {
+        let behaviorToAdd = document.getElementById("gameBehavior").value;
+        let behaviorBox = document.getElementById("createGameAddedBehaviors");
+        if (behaviorBox.innerHTML.indexOf(behaviorToAdd) !== -1) {
+            behaviorBox.innerHTML = behaviorBox.innerHTML.replace(`; ${behaviorToAdd}`, " ");
+        }
+    }
+    function addRuleToGame() {
+        let ruleToAdd = document.getElementById("gameRules").value;
+        let ruleBox = document.getElementById("createGameAddedRules");
+        if (ruleBox.innerHTML.indexOf(ruleToAdd) == -1) {
+            ruleBox.innerHTML += ("; "+ruleToAdd);
+        }
+    }
+    function removeRuleFromGame() {
+        let ruleToAdd = document.getElementById("gameRules").value;
+        let ruleBox = document.getElementById("createGameAddedRules");
+        if (ruleBox.innerHTML.indexOf(ruleToAdd) !== -1) {
+            ruleBox.innerHTML = ruleBox.innerHTML.replace(`; ${ruleToAdd}`, " ");
+        }
+    }
+    function addTypeToGame() {
+        let typeToAdd = document.getElementById("gameType").value;
+        let typeBox = document.getElementById("createGameAddedTypes");
+        if (typeBox.innerHTML.indexOf(typeToAdd) == -1) {
+            typeBox.innerHTML += ("; "+typeToAdd);
+        }
+    }
+    function removeTypeFromGame() {
+        let typeToAdd = document.getElementById("gameType").value;
+        let typeBox = document.getElementById("createGameAddedTypes");
+        if (typeBox.innerHTML.indexOf(typeToAdd) !== -1) {
+            typeBox.innerHTML = typeBox.innerHTML.replace(`; ${typeToAdd}`, " ");
+        }
+    }
+    function dateTest() {
+        let dateData = document.getElementById("createGameDateStart").value;
+        console.log(dateData);
     }
 	 return(
     <div id="createGameContainer">  
@@ -241,16 +286,25 @@ function CreateGame (){
                         <span>Game Type:</span>
                         <select id="gameType" name="gameType">
                         </select>
+                        <button id="createGameAddType" onClick={addTypeToGame}>ADD</button>
+                        <button id="createGameRemoveType" onClick={removeTypeFromGame}>REMOVE</button>
+                        <span id="createGameAddedTypes">Video Game</span>
                     </div>
                     <div id="step2RightRow3">
                         <span>Game Rules:</span>
                         <select id="gameRules" name="gameRules">
                         </select>
+                        <button id="createGameAddRule" onClick={addRuleToGame}>ADD</button>
+                        <button id="createGameRemoveRule" onClick={removeRuleFromGame}>REMOVE</button>
+                        <span id="createGameAddedRules">Pathfinder</span>
                     </div>
                     <div id="step2RightRow4">
                         <span>Game Behavior:</span>
                         <select id="gameBehavior" name="gameBehavior">
                         </select>
+                        <button id="createGameAddBehavior" onClick={addBehaviorToGame}>ADD</button>
+                        <button id="createGameRemoveBehavior" onClick={removeBehaviorFromGame}>REMOVE</button>
+                        <span id="createGameAddedBehaviors">Be on time</span>
                     </div>
                     <div id="step2RightRow5">
                         <button onClick={step2To1}>&#8592; Previous</button><br/>
@@ -269,14 +323,78 @@ function CreateGame (){
                         <span id="createGameAddedLanguages">English</span>
                     </div>
                     <div id="step3RightRow3">
-                        <span>Tags:</span>
-                        <select id="gameTags" name="gameTags">
-                            <option value="testTag">TestTag</option>
+                        <span>Address:</span><br/>
+                        <span>Street</span>
+                        <input placeholder="7234 Example Lane" id="createGameStreetAddress"></input>
+                        <span>APT/Unit</span>
+                        <input placeholder="32A"id="createGameAptAddress"></input>
+                        <span>City</span>
+                        <input placeholder="Virginia City"id="createGameCityAddress"></input>
+                        <span>State</span>
+                        <select placeholder="VA"id="createGameStateAddress">
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
                         </select>
+                        <span>Zip Code</span>
+                        <input placeholder="89440" type="number"id="createGameZipAddress"></input>
                     </div>
                     <div id="step3RightRow4">
                         <span>Attached Links</span>
-                        <input id="createGameAttachedLink" placeholder="https://additionalGameLinks.com"></input>
+                        <input id="createGameAttachedLink" placeholder="https://additionalGameLinks.com"></input><br/>
+                        <span>Game Start</span>
+                        <input id="createGameDateStart" type="datetime-local"></input><br/>
+                        <span>Game End</span>
+                        <input id="createGameDateEnd" type="datetime-local"></input>
+                        <button onClick={dateTest}>Date</button>
                     </div>
                     <div id="step3RightRow5">
                         <button onClick={step3To2}>&#8592; Previous</button><br/>
