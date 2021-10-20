@@ -92,7 +92,6 @@ function MyGames (){
           rulesID: ruleID,
           description: gameDesc
       };
-      alert(gameUpdate);
       updateGame(gameUpdate);
     }
     const updateGame = (gameUpdate) => {
