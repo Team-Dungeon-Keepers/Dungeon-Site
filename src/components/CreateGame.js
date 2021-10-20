@@ -166,23 +166,23 @@ function CreateGame (){
         return elementFound
     }
     function test() {
-        let gameType = gID("gameType").value;
+        let gameType = gID("createGameAddedTypes").value;
         let gameTitle = gID("createGameTitle").value;
         let gameDesc = gID("createGameDescription").value;
-        let gamePrivacy= gID("createGamePrivacy").value;
-        let createGameJoinPolicy = gID("createGameJoinPolicy").value;
+        let gamePassword= gID("createGamePassword").value;
+        let createGameRules = gID("createGameAddedRules").value;
         let gameLanguage = gID("createGameAddedLanguages").innerHTML;
-        let createGameMeetType = gID("createGameMeetType").value;
+        let createGameBehavior = gID("createGameAddedBehaviors").value;
         let gameTags = gID("gameTags").value;
         let createGameAttachedLink = gID("createGameAttachedLink").value;
         let createdGame = {
             gameType:gameType,
             gameTitle:gameTitle,
             gameDesc:gameDesc,
-            gamePrivacy:gamePrivacy,
-            createGameJoinPolicy:createGameJoinPolicy,
+            gamePassword:gamePassword,
+            createGameRules:createGameRules,
             gameLanguage:gameLanguage,
-            createGameMeetType:createGameMeetType,
+            createGameBehavior:createGameBehavior,
             gameTags:gameTags,
             createGameAttachedLink:createGameAttachedLink
         }
@@ -243,6 +243,10 @@ function CreateGame (){
         if (typeBox.innerHTML.indexOf(typeToAdd) !== -1) {
             typeBox.innerHTML = typeBox.innerHTML.replace(`; ${typeToAdd}`, " ");
         }
+    }
+    function dateTest() {
+        let dateData = document.getElementById("createGameDateStart").value;
+        console.log(dateData);
     }
 	 return(
     <div id="createGameContainer">  
@@ -321,13 +325,13 @@ function CreateGame (){
                     <div id="step3RightRow3">
                         <span>Address:</span><br/>
                         <span>Street</span>
-                        <input placeholder="7234 Example Lane"></input>
+                        <input placeholder="7234 Example Lane" id="createGameStreetAddress"></input>
                         <span>APT/Unit</span>
-                        <input placeholder="32A"></input>
+                        <input placeholder="32A"id="createGameAptAddress"></input>
                         <span>City</span>
-                        <input placeholder="Virginia City"></input>
+                        <input placeholder="Virginia City"id="createGameCityAddress"></input>
                         <span>State</span>
-                        <select placeholder="VA">
+                        <select placeholder="VA"id="createGameStateAddress">
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
                             <option value="AZ">Arizona</option>
@@ -381,11 +385,16 @@ function CreateGame (){
                             <option value="WY">Wyoming</option>
                         </select>
                         <span>Zip Code</span>
-                        <input placeholder="89440" type="number"></input>
+                        <input placeholder="89440" type="number"id="createGameZipAddress"></input>
                     </div>
                     <div id="step3RightRow4">
                         <span>Attached Links</span>
-                        <input id="createGameAttachedLink" placeholder="https://additionalGameLinks.com"></input>
+                        <input id="createGameAttachedLink" placeholder="https://additionalGameLinks.com"></input><br/>
+                        <span>Game Start</span>
+                        <input id="createGameDateStart" type="datetime-local"></input><br/>
+                        <span>Game End</span>
+                        <input id="createGameDateEnd" type="datetime-local"></input>
+                        <button onClick={dateTest}>Date</button>
                     </div>
                     <div id="step3RightRow5">
                         <button onClick={step3To2}>&#8592; Previous</button><br/>
