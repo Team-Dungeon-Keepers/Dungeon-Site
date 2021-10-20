@@ -13,9 +13,9 @@ function CreateGame (){
         let step2Right = document.getElementById('step2Right');
         step1Right.style.display = "none";
         step2Right.style.display = "grid";
-    }
-    function renderPage2() {
-        getAllanguages();
+        getAllRules();
+        getAllCategories();
+        getAllBehaviors();
     }
     const getAllanguages = () => {
         axios
@@ -31,8 +31,12 @@ function CreateGame (){
     function languageLoop(res) {
         let i = 0;
         var languageDrop = document.getElementById("gameLanguage");
+        if (languageDrop.hasChildNodes) {
+            while (languageDrop.children.length > 0) {
+                languageDrop.lastChild.remove();
+            }
+        }
         while (i < res.length) {
-            console.log(res[i].language+" ----- GOOOOOMMMMBAAAAA");
             let gameDropOption = document.createElement("option");
             let gameDropValue = res[i].language;
             gameDropOption.innerHTML = gameDropValue;
@@ -42,9 +46,92 @@ function CreateGame (){
             i++;
         }
     }
-
-    function renderPage3() {
-        alert("Test");
+    const getAllRules = () => {
+        axios
+          .get('https://dungeon-site-api.herokuapp.com/api/rules')
+          .then((res) => {
+            ruleLoop(res.data);
+          })
+          .catch((err) => {
+            console.log({err});
+            alert(err.response);
+          });
+    };
+    function ruleLoop(res) {
+        let i = 0;
+        var ruleDrop = document.getElementById("gameRules");
+        if (ruleDrop.hasChildNodes) {
+            while (ruleDrop.children.length > 0) {
+                ruleDrop.lastChild.remove();
+            }
+        }
+        while (i < res.length) {
+            let gameDropOption = document.createElement("option");
+            let gameDropValue = res[i].rulesName;
+            gameDropOption.innerHTML = gameDropValue;
+            gameDropOption.setAttribute("id", gameDropValue);
+            gameDropOption.setAttribute("value", gameDropValue);
+            ruleDrop.appendChild(gameDropOption);
+            i++;
+        }
+    }
+    const getAllCategories = () => {
+        axios
+          .get('https://dungeon-site-api.herokuapp.com/api/category')
+          .then((res) => {
+            categoryLoop(res.data);
+          })
+          .catch((err) => {
+            console.log({err});
+            alert(err.response);
+          });
+    };
+    function categoryLoop(res) {
+        let i = 0;
+        let categoryDrop = document.getElementById("gameType");
+        if (categoryDrop.hasChildNodes) {
+            while (categoryDrop.children.length > 0) {
+                categoryDrop.lastChild.remove();
+            }
+        }
+        while (i < res.length) {
+            let gameDropOption = document.createElement("option");
+            let gameDropValue = res[i].name;
+            gameDropOption.innerHTML = gameDropValue;
+            gameDropOption.setAttribute("id", gameDropValue);
+            gameDropOption.setAttribute("value", gameDropValue);
+            categoryDrop.appendChild(gameDropOption);
+            i++;
+        }
+    }
+    const getAllBehaviors = () => {
+        axios
+          .get('https://dungeon-site-api.herokuapp.com/api/behavior')
+          .then((res) => {
+            behaviorLoop(res.data);
+          })
+          .catch((err) => {
+            console.log({err});
+            alert(err.response);
+          });
+    };
+    function behaviorLoop(res) {
+        let i = 0;
+        let behaviorDrop = document.getElementById("gameBehavior");
+        if (behaviorDrop.hasChildNodes) {
+            while (behaviorDrop.children.length > 0) {
+                behaviorDrop.lastChild.remove();
+            }
+        }
+        while (i < res.length) {
+            let gameDropOption = document.createElement("option");
+            let gameDropValue = res[i].behavior;
+            gameDropOption.innerHTML = gameDropValue;
+            gameDropOption.setAttribute("id", gameDropValue);
+            gameDropOption.setAttribute("value", gameDropValue);
+            behaviorDrop.appendChild(gameDropOption);
+            i++;
+        }
     }
     function step1To3() {
         let step1Right = document.getElementById('step1Right');
@@ -65,17 +152,14 @@ function CreateGame (){
         step3Right.style.display = "grid";
         getAllanguages();
     }
-    function step3To1() {
-        let step1Right = document.getElementById('step1Right');
-        let step3Right = document.getElementById('step3Right');
-        step3Right.style.display = "none";
-        step1Right.style.display = "grid";
-    }
     function step3To2() {
         let step3Right = document.getElementById('step3Right');
         let step2Right = document.getElementById('step2Right');
         step3Right.style.display = "none";
         step2Right.style.display = "grid";
+        getAllRules();
+        getAllCategories();
+        getAllBehaviors();
     }
     function gID(elementId) {
         let elementFound = document.getElementById(elementId);
@@ -134,25 +218,16 @@ function CreateGame (){
                         <span>GAME CREATION</span>
                     </div>
                     <div id="step1RightRow2">
-                        <span>Public or Private?</span>
-                        <select id="createGamePrivacy">
-                            <option value="createPublicGame">Public</option>
-                            <option value="createPrivateGame">Private</option>
-                        </select>
+                        <span>Game Title</span>
+                        <input id="createGameTitle"></input>
                     </div>
                     <div id="step1RightRow3">
-                        <span>Who Can Join?</span>
-                        <select id="createGameJoinPolicy">
-                            <option value="createFriendsGame">Friends</option>
-                            <option value="createEveryoneGame">Everyone</option>
-                        </select>
+                        <span>Game Password</span>
+                        <input id="createGamePassword"></input>
                     </div>
                     <div id="step1RightRow4">
-                        <span>Meeting Type</span>
-                        <select id="createGameMeetType">
-                            <option value="createGameInPerson">In Person</option>
-                            <option value="createGameOnline">Online</option>
-                        </select><br/>
+                        <span>Game Description</span>
+                        <input id="createGameDescription"></input>
                     </div>
                     <div id="step1RightRow5">
                         <button onClick={step1To2}>Next &#8594;</button>
@@ -165,18 +240,17 @@ function CreateGame (){
                     <div id="step2RightRow2">
                         <span>Game Type:</span>
                         <select id="gameType" name="gameType">
-                            <option value="action">Action</option>
-                            <option value="rpg">RPG</option>
-                            <option value="adventure">Adventure</option>
                         </select>
                     </div>
                     <div id="step2RightRow3">
-                        <span>Game Title</span>
-                        <input id="createGameTitle"></input>
+                        <span>Game Rules:</span>
+                        <select id="gameRules" name="gameRules">
+                        </select>
                     </div>
                     <div id="step2RightRow4">
-                        <span>Game Description</span>
-                        <input id="createGameDescription"></input>
+                        <span>Game Behavior:</span>
+                        <select id="gameBehavior" name="gameBehavior">
+                        </select>
                     </div>
                     <div id="step2RightRow5">
                         <button onClick={step2To1}>&#8592; Previous</button><br/>
