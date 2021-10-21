@@ -28,7 +28,7 @@ export const getAddressByID = (addressesid) => {
     //dispatch({type: FETCH_START});
     
     dispatch(fetchStart());
-    axiosWithAuth().get(`/addresses/${addressesid}`)
+    axiosWithAuth().get(`/address/${addressesid}`)
     .then(res=> {
       dispatch({type: DELETE_ADDRESS, payload: addressesid});
       dispatch({type: ADD_SINGLE_ADDRESS, payload:res.data});
@@ -43,7 +43,7 @@ export const createAddress = (item) => {
     return (dispatch => {
       dispatch(fetchStart());
       axios
-      .post('https://dungeon-site-api/api/addresses/', item)
+      .post('https://dungeon-site-api/api/address/', item)
       .then((res) => {
         dispatch(addAddress(res.data))
       })
@@ -63,7 +63,7 @@ export const createAddress = (item) => {
       dispatch(fetchStart());
 
       axios
-      .put('https://dungeon-site-api/api/addresses/', editedAddress)
+      .put('https://dungeon-site-api/api/address/', editedAddress)
       .then((res) => {
         dispatch({type: DELETE_ADDRESS, payload: editedAddress.addressesid});
         dispatch({type: ADD_SINGLE_ADDRESS, payload:res.data});
@@ -81,7 +81,7 @@ export const createAddress = (item) => {
       dispatch(fetchStart());
 
       axios
-      .delete('https://dungeon-site-api/api/addresses/', addressesid)
+      .delete('https://dungeon-site-api/api/address/', addressesid)
       .then((res) => {
         dispatch({type: DELETE_ADDRESS, payload: addressesid});
       })
