@@ -23,7 +23,7 @@ function FindGames (){
 			.get("https://dungeon-site-api.herokuapp.com/api/games/name/"+name)
 			.then((res) => {
 				console.log([res.data]);
-				printGames(data);
+				printGames(res.data);
 			})
 			.catch((err) => {
 				console.log({err});
@@ -60,8 +60,8 @@ function FindGames (){
 
 			titleCell.innerHTML = data[i-1].gameName;
 			descriptionCell.innerHTML = data[i-1].description;
-			//playersCell.innerHTML
-			viewCell.innerHTML = `<button id='viewBtn' class="" value="" onclick=''>View</button>`;
+			let id = data[i-1].gameID;
+			viewCell.innerHTML = `<button id='viewBtn' class="" value="${id}" onclick=''>View</button>`;
 
 			i++;
 		}
