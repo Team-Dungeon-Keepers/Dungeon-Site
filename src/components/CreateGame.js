@@ -173,8 +173,16 @@ function CreateGame (){
         let createGameRules = gID("createGameAddedRules").value;
         let gameLanguage = gID("createGameAddedLanguages").innerHTML;
         let createGameBehavior = gID("createGameAddedBehaviors").value;
-        let gameTags = gID("gameTags").value;
+        let gameStreetAddress = gID("createGameStreetAddress").value;
+        let gameAptAddress = gID("createGameAptAddress").value;
+        let gameCityAddress = gID("createGameCityAddress").value;
+        let gameStateAddress = gID("createGameStateAddress").value;
+        let gameZipAddress = gID("createGameZipAddress").value;
         let createGameAttachedLink = gID("createGameAttachedLink").value;
+        let createGameDateStart = gID("createGameDateStart").value;
+        let createGameTimeStart = gID("createGameTimeStart").value;
+        let createGameDateEnd = gID("createGameDateEnd").value;
+        let createGameTimeEnd = gID("createGameTimeEnd").value;
         let createdGame = {
             gameType:gameType,
             gameTitle:gameTitle,
@@ -183,8 +191,16 @@ function CreateGame (){
             createGameRules:createGameRules,
             gameLanguage:gameLanguage,
             createGameBehavior:createGameBehavior,
-            gameTags:gameTags,
-            createGameAttachedLink:createGameAttachedLink
+            gameStreetAddress: gameStreetAddress,
+            gameAptAddress: gameAptAddress,
+            gameCityAddress: gameCityAddress,
+            gameStateAddress: gameStateAddress,
+            gameZipAddress: gameZipAddress,
+            createGameAttachedLink:createGameAttachedLink,
+            createGameDateStart: createGameDateStart,
+            createGameTimeStart: createGameTimeStart,
+            createGameDateEnd: createGameDateEnd,
+            createGameTimeEnd: createGameTimeEnd,
         }
         alert(JSON.stringify(createdGame));
     }
@@ -390,10 +406,14 @@ function CreateGame (){
                     <div id="step3RightRow4">
                         <span>Attached Links</span>
                         <input id="createGameAttachedLink" placeholder="https://additionalGameLinks.com"></input><br/>
-                        <span>Game Start</span>
-                        <input id="createGameDateStart" type="datetime-local"></input><br/>
-                        <span>Game End</span>
-                        <input id="createGameDateEnd" type="datetime-local"></input>
+                        <span>Game Start Date</span>
+                        <input id="createGameDateStart" type="date"></input>
+                        <span>Game Start Time</span>
+                        <input id="createGameTimeStart" type="time"></input><br/>
+                        <span>Game End Date</span>
+                        <input id="createGameDateEnd" type="date"></input>
+                        <span>Game End Time</span>
+                        <input id="createGameTimeEnd" type="time"></input>
                         <button onClick={dateTest}>Date</button>
                     </div>
                     <div id="step3RightRow5">
