@@ -1,8 +1,7 @@
 /*body container*/
 #gameViewContainer {
 	display: grid;
-	grid-template-columns: 1fr 7fr;
-	grid-template-columns: 1fr 3fr 1fr;
+	grid-template-columns: 1fr 7fr 1fr;
 }
 #gameViewBody {
 	grid-row: 2;
@@ -10,4 +9,87 @@
 	display: grid;
 	grid-template-rows: 1fr 7fr;
 	text-align: center;
+    align-items: center;
+}
+#viewSecondRow {
+	grid-row: 2;
+	display: grid;
+    grid-template-columns: 1fr 3fr;
+    text-align: justify;
+}
+#viewFirstRow {
+    grid-row: 1;
+}
+#gameViewBodyRight {
+    background-color: white;
+    border: 2px solid #31393c;
+    border-radius: 20px;
+    grid-column: 2;
+    margin: 20px;
+    padding: 40px;
+}
+/*host and players grid*/
+#gameViewBodyLeft {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: .5fr 5fr;
+    background-color: white;
+    border: 2px solid #31393c;
+    border-radius: 20px;
+    grid-column: 1;
+    grid-row: 1;
+    margin: 20px;
+    padding: 40px;
+}
+/*scheduling grid start*/
+#schedule-div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+#times-h{
+    grid-column: 1;
+    grid-row: 1;
+}
+#starts-h {
+    grid-column: 2;
+    grid-row: 1;
+}
+#ends-h{
+    grid-column: 3;
+    grid-row: 1;
+}
+#times-p{
+    grid-column: 1;
+    grid-row: 2;
+}
+#starts-p{
+    grid-column: 2;
+    grid-row: 2;
+}
+#ends-p{
+    grid-column: 3;
+    grid-row: 2;
+}
+/*scheduling grid end*/
+h1 {
+    color: white;
+}
+h4{
+    text-decoration: underline;
+}
+#gameMaster {
+    text-align: center;
+}
+li {
+    list-style:circle;
+    padding: 5px;
+}
+#join-btn {
+    background-image: linear-gradient(to bottom, #fdca40, #f79824);
+	font-size: 30px;
+    margin: 50px;
+	padding: 5px 20px;
+	border-radius: 20px;
+	border: none;
 }
