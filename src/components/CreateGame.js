@@ -126,9 +126,10 @@ function CreateGame (){
         while (i < res.length) {
             let gameDropOption = document.createElement("option");
             let gameDropValue = res[i].behavior;
-            gameDropOption.innerHTML = gameDropValue;
+            let gameDropID = res[i].behaviorID;
+            gameDropOption.innerHTML = `[${gameDropID}]${gameDropValue}`;
             gameDropOption.setAttribute("id", gameDropValue);
-            gameDropOption.setAttribute("value", gameDropValue);
+            gameDropOption.setAttribute("value", `[${gameDropID}]${gameDropValue}`);
             behaviorDrop.appendChild(gameDropOption);
             i++;
         }
@@ -183,26 +184,55 @@ function CreateGame (){
         let createGameTimeStart = gID("createGameTimeStart").value;
         let createGameDateEnd = gID("createGameDateEnd").value;
         let createGameTimeEnd = gID("createGameTimeEnd").value;
+        /*
         let createdGame = {
-            gameType:gameType,
-            gameTitle:gameTitle,
-            gameDesc:gameDesc,
-            gamePassword:gamePassword,
-            createGameRules:createGameRules,
-            gameLanguage:gameLanguage,
-            createGameBehavior:createGameBehavior,
-            gameStreetAddress: gameStreetAddress,
-            gameAptAddress: gameAptAddress,
-            gameCityAddress: gameCityAddress,
-            gameStateAddress: gameStateAddress,
-            gameZipAddress: gameZipAddress,
-            createGameAttachedLink:createGameAttachedLink,
-            createGameDateStart: createGameDateStart,
-            createGameTimeStart: createGameTimeStart,
-            createGameDateEnd: createGameDateEnd,
-            createGameTimeEnd: createGameTimeEnd,
-        }
-        alert(JSON.stringify(createdGame));
+            game: {
+                gameType:gameType,
+                gameTitle:gameTitle,
+                gameDesc:gameDesc,
+                gamePassword:gamePassword,
+                createGameRules:createGameRules
+            },
+            addresses: [
+                {
+                    addressID:addressID,
+                    street: gameStreetAddress,
+                    apartment: gameAptAddress,
+                    city: gameCityAddress,
+                    state: gameStateAddress,
+                    zip: gameZipAddress
+                }
+            ],
+            behaviors: [
+                {
+                    behaviorID: behaviorID,
+                    behavior: createGameBehavior
+                }
+            ],
+            languages: [
+                {
+                    languageid: languageid,
+                    language: gameLanguage
+                }
+            ],
+            links: [
+                {
+                    linkid: linkid,
+                    url: createGameAttachedLink,
+                    description: createGameLinkDescription
+                }
+            ],
+            Schedules: [
+                {
+                    scheduleID: scheduleID,
+                    startTime: createGameTimeStart,
+                    endTime: createGameTimeEnd,
+                    startDate: createGameDateStart,
+                    endDate: createGameDateEnd
+                }
+            ]
+        }*/
+        console.log(JSON.stringify("Boom"));
     }
     function addLanguageToGame() {
         let languageToAdd = document.getElementById("gameLanguage").value;
@@ -221,9 +251,14 @@ function CreateGame (){
     function addBehaviorToGame() {
         let behaviorToAdd = document.getElementById("gameBehavior").value;
         let behaviorBox = document.getElementById("createGameAddedBehaviors");
+        let behaviorBoxValue = document.getElementById("createGameAddedBehaviors").value;
+        console.log(behaviorBoxValue);
         if (behaviorBox.innerHTML.indexOf(behaviorToAdd) == -1) {
             behaviorBox.innerHTML += ("; "+behaviorToAdd);
-        }
+        }/*
+        if (behaviorBoxValue.indexOf(behaviorToAdd) == -1) {
+            behaviorBoxValue += (behaviorToAdd);
+        }*/
     }
     function removeBehaviorFromGame() {
         let behaviorToAdd = document.getElementById("gameBehavior").value;
