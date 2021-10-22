@@ -1,25 +1,26 @@
 #nav-bar {
 	grid-row: 1;
     background-color: grey;
-    min-height: 10vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 50% 50%;
 }
 #navBarHomeIcon {
     grid-column: 1;
-}
-#logo {
-    max-width: 20%;
+    background-image: url('../dungeon site logo.png');
 }
 #navBarUserIcon {
     grid-column: 2;
-    cursor: pointer;
-    margin-left: 80%;
-    padding-top: 50px;
+    background-image: url('../user icon.png');
+    background-position: right;
 }
-#userIcon {
-    max-width: 50%;
+#navBarHomeIcon, #navBarUserIcon {
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
 #navBarHomeIconDropDown, #navBarUserIconDropDown {
     display: none;
+}
+#navBarHomeIconDropDown {
+    float: right;
 }

@@ -35,13 +35,10 @@ function Dashboard(props) {
     <div id="dashBoardContainer">  
             <NavBar /> 
             <div id="dashBoardBody">
-                <img id="dashBoardBackground" useMap="#dashBoard"></img>
-                    <map name="dashBoard">
-                        <area shape="rect" coords="324,68,521,263" onClick={goToCreateGame}></area>
-                        <area shape="rect" coords="541,68,740,263" onClick={goToMyGames}></area>
-                        <area shape="rect" coords="758,68,956,263" onClick={goToFindGames}></area>
-                        <area shape="rect" coords="325,283,956,382" onClick={goToCompendium}></area>
-                    </map>
+                <button id="dashBoardCreateGames" onClick={goToCreateGame}>CreateGames</button>
+                <button id="dashBoardMyGames" onClick={goToMyGames}>MyGames</button>
+                <button id="dashBoardFindGames" onClick={goToFindGames}>FindGames</button>
+                <button id="dashBoardCompendium" onClick={goToCompendium}>Compendium</button>
 		    </div>
     </div>
     )
