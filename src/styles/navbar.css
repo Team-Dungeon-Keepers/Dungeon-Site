@@ -1,6 +1,6 @@
 #nav-bar {
 	grid-row: 1;
-    background-color: grey;
+    background-color: slategray;
     display: grid;
     grid-template-columns: 50% 50%;
 }

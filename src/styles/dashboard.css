@@ -1,9 +1,11 @@
 #dashBoardContainer {
+	grid-row: 2;
 	display: grid;
 	grid-template-rows: 15% 85%;
 	grid-template-columns: 1fr 2fr 1fr;
 	min-height: 96vh;
 	min-width: 96vw;
+	background-color: white;
 }
 #dashBoardBody {
 	grid-row: 2;

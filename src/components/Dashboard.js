@@ -33,13 +33,13 @@ function Dashboard(props) {
 
     return(
     <div id="dashBoardContainer">  
-            <NavBar /> 
-            <div id="dashBoardBody">
-                <button id="dashBoardCreateGames" onClick={goToCreateGame}>CreateGames</button>
-                <button id="dashBoardMyGames" onClick={goToMyGames}>MyGames</button>
-                <button id="dashBoardFindGames" onClick={goToFindGames}>FindGames</button>
-                <button id="dashBoardCompendium" onClick={goToCompendium}>Compendium</button>
-		    </div>
+        <NavBar /> 
+        <div id="dashBoardBody">
+            <button id="dashBoardCreateGames" onClick={goToCreateGame}>CreateGames</button>
+            <button id="dashBoardMyGames" onClick={goToMyGames}>MyGames</button>
+            <button id="dashBoardFindGames" onClick={goToFindGames}>FindGames</button>
+            <button id="dashBoardCompendium" onClick={goToCompendium}>Compendium</button>
+	    </div>
     </div>
     )
 }

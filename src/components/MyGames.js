@@ -8,7 +8,7 @@ function MyGames (){
     useEffect(() => {
       let userName = localStorage.getItem('userID');
         getAllGames(userName);
-      });
+    });
     const getAllGames = (userName) => {
         axios
           .get(`https://dungeon-site-api.herokuapp.com/api/games/master/${userName}`)
