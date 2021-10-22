@@ -40,3 +40,6 @@
 #error-login, #error-password {
 	color: red;
 }
+#loginRow3 span {
+	cursor: pointer;
+}
