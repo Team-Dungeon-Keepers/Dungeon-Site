@@ -8,15 +8,6 @@ function CreateGame (){
     function test() {
         alert("Submission not completed");
     }
-    function step1To2() {
-        let step1Right = document.getElementById('step1Right');
-        let step2Right = document.getElementById('step2Right');
-        step1Right.style.display = "none";
-        step2Right.style.display = "grid";
-        getAllRules();
-        getAllCategories();
-        getAllBehaviors();
-    }
     const getAllanguages = () => {
         axios
           .get('https://dungeon-site-api.herokuapp.com/api/language')
@@ -126,19 +117,21 @@ function CreateGame (){
         while (i < res.length) {
             let gameDropOption = document.createElement("option");
             let gameDropValue = res[i].behavior;
-            let gameDropID = res[i].behaviorID;
-            gameDropOption.innerHTML = `[${gameDropID}]${gameDropValue}`;
+            gameDropOption.innerHTML = gameDropValue;
             gameDropOption.setAttribute("id", gameDropValue);
-            gameDropOption.setAttribute("value", `[${gameDropID}]${gameDropValue}`);
+            gameDropOption.setAttribute("value", gameDropValue);
             behaviorDrop.appendChild(gameDropOption);
             i++;
         }
     }
-    function step1To3() {
+    function step1To2() {
         let step1Right = document.getElementById('step1Right');
-        let step3Right = document.getElementById('step3Right');
+        let step2Right = document.getElementById('step2Right');
         step1Right.style.display = "none";
-        step3Right.style.display = "grid";
+        step2Right.style.display = "grid";
+        getAllRules();
+        getAllCategories();
+        getAllBehaviors();
     }
     function step2To1() {
         let step1Right = document.getElementById('step1Right');
@@ -167,24 +160,30 @@ function CreateGame (){
         return elementFound
     }
     function test() {
-        let gameType = gID("createGameAddedTypes").value;
+        let gameType = gID("createGameAddedTypes").innerHTML;
         let gameTitle = gID("createGameTitle").value;
         let gameDesc = gID("createGameDescription").value;
         let gamePassword= gID("createGamePassword").value;
-        let createGameRules = gID("createGameAddedRules").value;
+        let createGameRules = gID("createGameAddedRules").innerHTML;
         let gameLanguage = gID("createGameAddedLanguages").innerHTML;
-        let createGameBehavior = gID("createGameAddedBehaviors").value;
+        let createGameBehavior = gID("createGameAddedBehaviors").innerHTML;
+        let gameBehaviorList = createGameBehavior.split('; ');
+        /*
+        let i = 0
+        while (i < gameBehaviorList.length) {
+        }*/
         let gameStreetAddress = gID("createGameStreetAddress").value;
         let gameAptAddress = gID("createGameAptAddress").value;
         let gameCityAddress = gID("createGameCityAddress").value;
         let gameStateAddress = gID("createGameStateAddress").value;
         let gameZipAddress = gID("createGameZipAddress").value;
         let createGameAttachedLink = gID("createGameAttachedLink").value;
+        let createGameLinkDescription = gID("createGameLinkDescription").value;
         let createGameDateStart = gID("createGameDateStart").value;
         let createGameTimeStart = gID("createGameTimeStart").value;
         let createGameDateEnd = gID("createGameDateEnd").value;
         let createGameTimeEnd = gID("createGameTimeEnd").value;
-        /*
+
         let createdGame = {
             game: {
                 gameType:gameType,
@@ -195,7 +194,6 @@ function CreateGame (){
             },
             addresses: [
                 {
-                    addressID:addressID,
                     street: gameStreetAddress,
                     apartment: gameAptAddress,
                     city: gameCityAddress,
@@ -205,35 +203,48 @@ function CreateGame (){
             ],
             behaviors: [
                 {
-                    behaviorID: behaviorID,
+                    behaviorID: 0,
                     behavior: createGameBehavior
                 }
             ],
             languages: [
                 {
-                    languageid: languageid,
+                    languageid: 0,
                     language: gameLanguage
                 }
             ],
             links: [
                 {
-                    linkid: linkid,
+                    linkid: 0,
                     url: createGameAttachedLink,
                     description: createGameLinkDescription
                 }
             ],
             Schedules: [
                 {
-                    scheduleID: scheduleID,
+                    scheduleID: 0,
                     startTime: createGameTimeStart,
                     endTime: createGameTimeEnd,
                     startDate: createGameDateStart,
                     endDate: createGameDateEnd
                 }
             ]
-        }*/
-        console.log(JSON.stringify("Boom"));
-    }
+        }
+        console.log(JSON.stringify(createdGame));
+        // sendCreateGameData(createdGame);
+    }/*
+    function sendCreateGameData(createdGame) {
+        axios
+        .post('https://dungeon-site-api.herokuapp.com/api/games/full', createdGame)
+        .then((res) => {
+            console.log("res===================="+res);
+            console.log("res.data===================="+res.data);
+        })
+        .catch((err) => {
+          console.log({err});
+          alert(err.response);
+        });
+    }*/
     function addLanguageToGame() {
         let languageToAdd = document.getElementById("gameLanguage").value;
         let languageBox = document.getElementById("createGameAddedLanguages");
@@ -251,14 +262,9 @@ function CreateGame (){
     function addBehaviorToGame() {
         let behaviorToAdd = document.getElementById("gameBehavior").value;
         let behaviorBox = document.getElementById("createGameAddedBehaviors");
-        let behaviorBoxValue = document.getElementById("createGameAddedBehaviors").value;
-        console.log(behaviorBoxValue);
         if (behaviorBox.innerHTML.indexOf(behaviorToAdd) == -1) {
             behaviorBox.innerHTML += ("; "+behaviorToAdd);
-        }/*
-        if (behaviorBoxValue.indexOf(behaviorToAdd) == -1) {
-            behaviorBoxValue += (behaviorToAdd);
-        }*/
+        }
     }
     function removeBehaviorFromGame() {
         let behaviorToAdd = document.getElementById("gameBehavior").value;
@@ -441,6 +447,8 @@ function CreateGame (){
                     <div id="step3RightRow4">
                         <span>Attached Links</span>
                         <input id="createGameAttachedLink" placeholder="https://additionalGameLinks.com"></input><br/>
+                        <span>Link Description</span>
+                        <input id="createGameLinkDescription" placeholder="Write a small description about the provided link"></input><br/>
                         <span>Game Start Date</span>
                         <input id="createGameDateStart" type="date"></input>
                         <span>Game Start Time</span>
