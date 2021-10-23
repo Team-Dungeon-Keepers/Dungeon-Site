@@ -1,13 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/creategame.css';
 import axios from 'axios';
 
 function CreateGame (){
+    let [form, setForm] = useState({});
+    let [rules, setRules] = useState([]);
 
-    function test() {
-        alert("Submission not completed");
+    function findRulesID(string) {
+        let ruleFound = rules.filter((item) => {
+            return item.rulesName == string;
+        })
+
+        return ruleFound[0].rulesid;
     }
+
     const getAllanguages = () => {
         axios
           .get('https://dungeon-site-api.herokuapp.com/api/language')
@@ -19,6 +26,7 @@ function CreateGame (){
             alert(err.response);
           });
     };
+
     function languageLoop(res) {
         let i = 0;
         var languageDrop = document.getElementById("gameLanguage");
@@ -37,10 +45,12 @@ function CreateGame (){
             i++;
         }
     }
+
     const getAllRules = () => {
         axios
           .get('https://dungeon-site-api.herokuapp.com/api/rules')
           .then((res) => {
+            setRules(res.data);
             ruleLoop(res.data);
           })
           .catch((err) => {
@@ -48,6 +58,7 @@ function CreateGame (){
             alert(err.response);
           });
     };
+
     function ruleLoop(res) {
         let i = 0;
         var ruleDrop = document.getElementById("gameRules");
@@ -66,6 +77,7 @@ function CreateGame (){
             i++;
         }
     }
+
     const getAllCategories = () => {
         axios
           .get('https://dungeon-site-api.herokuapp.com/api/category')
@@ -77,6 +89,7 @@ function CreateGame (){
             alert(err.response);
           });
     };
+
     function categoryLoop(res) {
         let i = 0;
         let categoryDrop = document.getElementById("gameType");
@@ -95,6 +108,7 @@ function CreateGame (){
             i++;
         }
     }
+
     const getAllBehaviors = () => {
         axios
           .get('https://dungeon-site-api.herokuapp.com/api/behavior')
@@ -106,6 +120,7 @@ function CreateGame (){
             alert(err.response);
           });
     };
+
     function behaviorLoop(res) {
         let i = 0;
         let behaviorDrop = document.getElementById("gameBehavior");
@@ -124,54 +139,51 @@ function CreateGame (){
             i++;
         }
     }
-    function step1To2() {
+    
+    function stepTo1() {
         let step1Right = document.getElementById('step1Right');
         let step2Right = document.getElementById('step2Right');
-        step1Right.style.display = "none";
-        step2Right.style.display = "grid";
-        getAllRules();
-        getAllCategories();
-        getAllBehaviors();
-    }
-    function step2To1() {
-        let step1Right = document.getElementById('step1Right');
-        let step2Right = document.getElementById('step2Right');
+        let step3Right = document.getElementById('step3Right');
+        step3Right.style.display = "none";
         step2Right.style.display = "none";
         step1Right.style.display = "grid";
     }
-    function step2To3() {
+    function stepTo3() {
         let step3Right = document.getElementById('step3Right');
         let step2Right = document.getElementById('step2Right');
+        let step1Right = document.getElementById('step1Right');
+        step1Right.style.display = "none";
         step2Right.style.display = "none";
         step3Right.style.display = "grid";
         getAllanguages();
     }
-    function step3To2() {
+    function stepTo2() {
         let step3Right = document.getElementById('step3Right');
         let step2Right = document.getElementById('step2Right');
+        let step1Right = document.getElementById('step1Right');
+        step1Right.style.display = "none";
         step3Right.style.display = "none";
         step2Right.style.display = "grid";
         getAllRules();
         getAllCategories();
         getAllBehaviors();
     }
+
     function gID(elementId) {
         let elementFound = document.getElementById(elementId);
         return elementFound
     }
-    function test() {
+
+    function makeGameFull() {
         let gameType = gID("createGameAddedTypes").innerHTML;
-        let gameTitle = gID("createGameTitle").value;
+        let gameName = gID("createGameTitle").value;
         let gameDesc = gID("createGameDescription").value;
         let gamePassword= gID("createGamePassword").value;
-        let createGameRules = gID("createGameAddedRules").innerHTML;
+        let createGameRulesString = gID("createGameAddedRules").innerHTML;
         let gameLanguage = gID("createGameAddedLanguages").innerHTML;
+        let languageStrings = gameLanguage.split('; ');
         let createGameBehavior = gID("createGameAddedBehaviors").innerHTML;
-        let gameBehaviorList = createGameBehavior.split('; ');
-        /*
-        let i = 0
-        while (i < gameBehaviorList.length) {
-        }*/
+        let gameBehaviorStrings = createGameBehavior.split('; ');
         let gameStreetAddress = gID("createGameStreetAddress").value;
         let gameAptAddress = gID("createGameAptAddress").value;
         let gameCityAddress = gID("createGameCityAddress").value;
@@ -183,56 +195,71 @@ function CreateGame (){
         let createGameTimeStart = gID("createGameTimeStart").value;
         let createGameDateEnd = gID("createGameDateEnd").value;
         let createGameTimeEnd = gID("createGameTimeEnd").value;
+        let gmID = localStorage.getItem("userID");
+
+        let gameBehaviorList = [
+            {
+                behaviorid: 0,
+                behavior: gameBehaviorStrings[0]
+            }
+        ]
+
+        let languageList = [{
+            languageid: 0,
+            language: languageStrings[0]
+        }]
+        
+        let createGameRules = findRulesID(createGameRulesString);
 
         let createdGame = {
-            game: {
-                gameType:gameType,
-                gameTitle:gameTitle,
-                gameDesc:gameDesc,
-                gamePassword:gamePassword,
-                createGameRules:createGameRules
+            "game": {
+                "gameID": 0,
+                "gameMasterID": gmID,
+                "gameName": gameName,
+                "gamePassword": gamePassword,
+                "rulesID": createGameRules,
+                "description": gameDesc
             },
-            addresses: [
+            "addresses": [
                 {
-                    street: gameStreetAddress,
-                    apartment: gameAptAddress,
-                    city: gameCityAddress,
-                    state: gameStateAddress,
-                    zip: gameZipAddress
+                    "addressID": 0,
+                    "street": gameStreetAddress,
+                    "apartment": gameAptAddress,
+                    "city": gameCityAddress,
+                    "state": gameStateAddress,
+                    "zip": gameZipAddress
                 }
             ],
-            behaviors: [
+            "behaviors": gameBehaviorList,
+            "languages": languageList,
+            "links": [
                 {
-                    behaviorID: 0,
-                    behavior: createGameBehavior
-                }
-            ],
-            languages: [
-                {
-                    languageid: 0,
-                    language: gameLanguage
-                }
-            ],
-            links: [
-                {
-                    linkid: 0,
+                    linkID: 0,
                     url: createGameAttachedLink,
                     description: createGameLinkDescription
                 }
             ],
-            Schedules: [
+            "schedules": [
                 {
-                    scheduleID: 0,
-                    startTime: createGameTimeStart,
-                    endTime: createGameTimeEnd,
-                    startDate: createGameDateStart,
-                    endDate: createGameDateEnd
+                    "scheduleID": 0,
+                    "startTime": createGameTimeStart,
+                    "endTime": createGameTimeEnd,
+                    "startDate": createGameDateStart,
+                    "endDate": createGameDateEnd
                 }
             ]
         }
         console.log(JSON.stringify(createdGame));
-        // sendCreateGameData(createdGame);
-    }/*
+        sendCreateGameData(createdGame);
+    }
+
+    const handleChange = (event) => {
+        const { name, type, value, checked } = event.target;
+        const updateData = (type === 'checkbox')?checked:value;
+        setForm({...form, [name]: updateData});
+        //checkSchema(name, updateData);
+    }
+ 
     function sendCreateGameData(createdGame) {
         axios
         .post('https://dungeon-site-api.herokuapp.com/api/games/full', createdGame)
@@ -242,9 +269,10 @@ function CreateGame (){
         })
         .catch((err) => {
           console.log({err});
-          alert(err.response);
+          alert(JSON.stringify(err.response));
         });
-    }*/
+    }
+
     function addLanguageToGame() {
         let languageToAdd = document.getElementById("gameLanguage").value;
         let languageBox = document.getElementById("createGameAddedLanguages");
@@ -257,6 +285,8 @@ function CreateGame (){
         let languageBox = document.getElementById("createGameAddedLanguages");
         if (languageBox.innerHTML.indexOf(languageToAdd) !== -1) {
             languageBox.innerHTML = languageBox.innerHTML.replace(`; ${languageToAdd}`, " ");
+            languageBox.innerHTML = languageBox.innerHTML.replace(`${languageToAdd}; `, "");
+            languageBox.innerHTML = languageBox.innerHTML.replace(`${languageToAdd}`, "");
         }
     }
     function addBehaviorToGame() {
@@ -271,27 +301,26 @@ function CreateGame (){
         let behaviorBox = document.getElementById("createGameAddedBehaviors");
         if (behaviorBox.innerHTML.indexOf(behaviorToAdd) !== -1) {
             behaviorBox.innerHTML = behaviorBox.innerHTML.replace(`; ${behaviorToAdd}`, " ");
+            behaviorBox.innerHTML = behaviorBox.innerHTML.replace(`${behaviorToAdd}; `, "");
+            behaviorBox.innerHTML = behaviorBox.innerHTML.replace(`${behaviorToAdd}`, "");
         }
     }
     function addRuleToGame() {
         let ruleToAdd = document.getElementById("gameRules").value;
         let ruleBox = document.getElementById("createGameAddedRules");
         if (ruleBox.innerHTML.indexOf(ruleToAdd) == -1) {
-            ruleBox.innerHTML += ("; "+ruleToAdd);
+            ruleBox.innerHTML = (ruleToAdd);
         }
     }
-    function removeRuleFromGame() {
-        let ruleToAdd = document.getElementById("gameRules").value;
-        let ruleBox = document.getElementById("createGameAddedRules");
-        if (ruleBox.innerHTML.indexOf(ruleToAdd) !== -1) {
-            ruleBox.innerHTML = ruleBox.innerHTML.replace(`; ${ruleToAdd}`, " ");
-        }
-    }
+    
     function addTypeToGame() {
         let typeToAdd = document.getElementById("gameType").value;
         let typeBox = document.getElementById("createGameAddedTypes");
         if (typeBox.innerHTML.indexOf(typeToAdd) == -1) {
-            typeBox.innerHTML += ("; "+typeToAdd);
+            if (typeBox.innerHTML != "") {
+                typeBox.innerHTML += "; ";
+            }
+            typeBox.innerHTML += (typeToAdd);
         }
     }
     function removeTypeFromGame() {
@@ -299,12 +328,15 @@ function CreateGame (){
         let typeBox = document.getElementById("createGameAddedTypes");
         if (typeBox.innerHTML.indexOf(typeToAdd) !== -1) {
             typeBox.innerHTML = typeBox.innerHTML.replace(`; ${typeToAdd}`, " ");
+            typeBox.innerHTML = typeBox.innerHTML.replace(`${typeToAdd}; `, "");
+            typeBox.innerHTML = typeBox.innerHTML.replace(`${typeToAdd}`, "");
         }
     }
     function dateTest() {
         let dateData = document.getElementById("createGameDateStart").value;
         console.log(dateData);
     }
+
 	 return(
     <div id="createGameContainer">  
         <NavBar /> 
@@ -332,7 +364,7 @@ function CreateGame (){
                         <input id="createGameDescription"></input>
                     </div>
                     <div id="step1RightRow5">
-                        <button onClick={step1To2}>Next &#8594;</button>
+                        <button onClick={stepTo2}>Next &#8594;</button>
                     </div>
                 </div>
                 <div id="step2Right">
@@ -352,7 +384,6 @@ function CreateGame (){
                         <select id="gameRules" name="gameRules">
                         </select>
                         <button id="createGameAddRule" onClick={addRuleToGame}>ADD</button>
-                        <button id="createGameRemoveRule" onClick={removeRuleFromGame}>REMOVE</button>
                         <span id="createGameAddedRules">Pathfinder</span>
                     </div>
                     <div id="step2RightRow4">
@@ -364,8 +395,8 @@ function CreateGame (){
                         <span id="createGameAddedBehaviors">Be on time</span>
                     </div>
                     <div id="step2RightRow5">
-                        <button onClick={step2To1}>&#8592; Previous</button><br/>
-                        <button onClick={step2To3}>Next &#8594;</button>
+                        <button onClick={stepTo1}>&#8592; Previous</button><br/>
+                        <button onClick={stepTo3}>Next &#8594;</button>
                     </div>
                 </div>
                 <div id="step3Right">
@@ -460,8 +491,8 @@ function CreateGame (){
                         <button onClick={dateTest}>Date</button>
                     </div>
                     <div id="step3RightRow5">
-                        <button onClick={step3To2}>&#8592; Previous</button><br/>
-                        <button onClick={test}>Create</button>
+                        <button onClick={stepTo2}>&#8592; Previous</button><br/>
+                        <button onClick={makeGameFull}>Create</button>
                     </div>
                 </div>
             </div>
@@ -469,4 +500,5 @@ function CreateGame (){
     </div>
     )
 }
+
 export default CreateGame;
