@@ -1,4 +1,4 @@
-import React, { createElement } from 'react';
+import React, { createElement, useState } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/findgames.css';
 import axios from 'axios';
@@ -6,6 +6,8 @@ import { useHistory } from 'react-router-dom';
 
 function FindGames (){
 
+	const [stateID, setStateID] = useState(0); 
+	
 	const getGamesByID = () =>{
 		var id = document.getElementById("findGameByID").value;
 		axios
@@ -49,9 +51,6 @@ function FindGames (){
 			console.log("entered loop");
 			var body = document.getElementById("gamesDisplay");
 			
-			var viewBtn = createElement("View");
-			//viewBtn.type = 'button';
-			
 			var row = body.insertRow(i-1);
 			
 			var titleCell = row.insertCell(0);
@@ -63,16 +62,26 @@ function FindGames (){
 			descriptionCell.innerHTML = data[i-1].description;
 			let id = data[i-1].gameID;
 			console.log("----------game id is: "+id)
-			viewCell.innerHTML = `<button id='viewBtn' class="" onclick='${PushToGameView(id)}'>View</button>`;
+			let viewBtn = document.createElement('button');
+			viewBtn.innerHTML="view";
+			viewBtn.addEventListener('click', PushToGameView);
+			viewBtn.setAttribute('id', i);
+			viewBtn.setAttribute('value', id);
+			viewCell.appendChild(viewBtn);
+			//viewCell.innerHTML = `<button id='viewBtn' class="" onclick='${PushToGameView(id)}'>View</button>`;
 
 			i++;
 		}
 	}
-	function PushToGameView(id) {
+	let history = useHistory();
+	function PushToGameView(targetBtn) {
+		let gameView = document.getElementById(targetBtn.target.id)
+		setStateID(stateID+targetBtn.target.value);
+		console.log("gameView obj: "+gameView);
 		console.log("----------here in push function")
-		console.log("----------game id is: "+id);
-//		let history = useHistory();
-//		history.pushState(id, "", "/gameview");
+		console.log("----------game id is: "+stateID);
+		
+		history.push({pathname:"/gameview", state:stateID});
 	}
 	
 	 return(

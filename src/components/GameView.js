@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/gameView.css';
 import axios from 'axios';
 
 function GameView(){
 
+    const { state } = this.props.location;
+
     useEffect(() => {
+        console.log(state);
         getGame()
     })
 
