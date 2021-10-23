@@ -2,6 +2,7 @@ import React, { createElement } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/findgames.css';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function FindGames (){
 
@@ -61,10 +62,17 @@ function FindGames (){
 			titleCell.innerHTML = data[i-1].gameName;
 			descriptionCell.innerHTML = data[i-1].description;
 			let id = data[i-1].gameID;
-			viewCell.innerHTML = `<button id='viewBtn' class="" value="${id}" onclick=''>View</button>`;
+			console.log("----------game id is: "+id)
+			viewCell.innerHTML = `<button id='viewBtn' class="" onclick='${PushToGameView(id)}'>View</button>`;
 
 			i++;
 		}
+	}
+	function PushToGameView(id) {
+		console.log("----------here in push function")
+		console.log("----------game id is: "+id);
+//		let history = useHistory();
+//		history.pushState(id, "", "/gameview");
 	}
 	
 	 return(

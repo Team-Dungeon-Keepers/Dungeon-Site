@@ -1,9 +1,13 @@
-import React, { createElement } from 'react';
+import React, { useEffect } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/gameView.css';
 import axios from 'axios';
 
 function GameView(){
+
+    useEffect(() => {
+        getGame()
+    })
 
     function getGame() {
 		//var id = document.getElementById("findGameByID").value;
@@ -79,7 +83,7 @@ function GameView(){
     }
 
     return (
-        <div onLoad={getGame()}>
+        <div>
             <NavBar/>
             <div id="gameViewContainer">
             
