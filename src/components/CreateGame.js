@@ -312,6 +312,15 @@ function CreateGame (){
             ruleBox.innerHTML = (ruleToAdd);
         }
     }
+    function removeRuleFromGame() {
+        let ruleToAdd = document.getElementById("gameRules").value;
+        let ruleBox = document.getElementById("createGameAddedRules");
+        if (ruleBox.innerHTML.indexOf(ruleToAdd) !== -1) {
+            ruleBox.innerHTML = ruleBox.innerHTML.replace(`; ${ruleToAdd}`, " ");
+            ruleBox.innerHTML = ruleBox.innerHTML.replace(`${ruleToAdd}; `, "");
+            ruleBox.innerHTML = ruleBox.innerHTML.replace(`${ruleToAdd}`, "");
+        }
+    }
     
     function addTypeToGame() {
         let typeToAdd = document.getElementById("gameType").value;
@@ -375,23 +384,24 @@ function CreateGame (){
                         <span>Game Type:</span>
                         <select id="gameType" name="gameType">
                         </select>
-                        <button id="createGameAddType" onClick={addTypeToGame}>ADD</button>
-                        <button id="createGameRemoveType" onClick={removeTypeFromGame}>REMOVE</button>
+                        <button id="createGameAddType" onClick={addTypeToGame}>+</button>
+                        <button id="createGameRemoveType" onClick={removeTypeFromGame}>_</button>
                         <span id="createGameAddedTypes">Video Game</span>
                     </div>
                     <div id="step2RightRow3">
                         <span>Game Rules:</span>
                         <select id="gameRules" name="gameRules">
                         </select>
-                        <button id="createGameAddRule" onClick={addRuleToGame}>ADD</button>
+                        <button id="createGameAddRule" onClick={addRuleToGame}>+</button>
+                        <button id="createGameAddRule" onClick={removeRuleFromGame}>_</button>
                         <span id="createGameAddedRules">Pathfinder</span>
                     </div>
                     <div id="step2RightRow4">
                         <span>Game Behavior:</span>
                         <select id="gameBehavior" name="gameBehavior">
                         </select>
-                        <button id="createGameAddBehavior" onClick={addBehaviorToGame}>ADD</button>
-                        <button id="createGameRemoveBehavior" onClick={removeBehaviorFromGame}>REMOVE</button>
+                        <button id="createGameAddBehavior" onClick={addBehaviorToGame}>+</button>
+                        <button id="createGameRemoveBehavior" onClick={removeBehaviorFromGame}>-</button>
                         <span id="createGameAddedBehaviors">Be on time</span>
                     </div>
                     <div id="step2RightRow5">
@@ -401,13 +411,14 @@ function CreateGame (){
                 </div>
                 <div id="step3Right">
                     <div id="step3RightRow1">
-                        <span>Language:</span>
+                        <span>GAME CREATION</span>
                     </div>
                     <div id="step3RightRow2">
+                        <span>Language:</span>
                         <select id="gameLanguage" name="gameLanguage">
                         </select>
-                        <button id="createGameAddLanguage" onClick={addLanguageToGame}>ADD</button>
-                        <button id="createGameRemoveLanguage" onClick={removeLanguageFromGame}>REMOVE</button>
+                        <button id="createGameAddLanguage" onClick={addLanguageToGame}>+</button>
+                        <button id="createGameRemoveLanguage" onClick={removeLanguageFromGame}>-</button>
                         <span id="createGameAddedLanguages">English</span>
                     </div>
                     <div id="step3RightRow3">
