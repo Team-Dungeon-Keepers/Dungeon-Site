@@ -24,11 +24,11 @@ function GameView(){
     //console.log(id);
     //const id = 5//sessionStorage.getItem('gameID')
 
-    
+    const render = 1;
     useEffect(() => {
         //console.log();
         getGame()
-    }, [])
+    }, [render])
 
     const getGame = async () => {
         try{
@@ -55,14 +55,14 @@ function GameView(){
         setGM(data.gmname);
         setPlayers(data.users)
 
-        //console.log(hRules[0]);
+        console.log("set id for gameView: "+id);
 
     }
 
     return (
-        <div >
+        <div>
+            <NavBar/>
             <div id="gameViewContainer">
-            
             <div id="gameViewBody">
                 <div id="viewFirstRow">
                     <h1 id="name">{name}</h1>

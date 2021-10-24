@@ -22,13 +22,17 @@ const NavBar = function ()  {
         let userIcon = document.getElementById("navBarUserIcon");
         let userList = document.getElementById("navBarUserIconDropDown");
         if (event.target !== homeIcon) {
-            if (homeList.style.display === 'block') {
-                homeList.style.display = 'none';
+            if(homeList!=null){
+                if (homeList.style.display === 'block') {
+                    homeList.style.display = 'none';
+                }
             }
         } 
         if (event.target !== userIcon) {
-            if (userList.style.display === 'block') {
-                userList.style.display = 'none';
+            if(userList!=null){
+                if (userList.style.display === 'block') {
+                    userList.style.display = 'none';
+                }
             }
         }
     }
