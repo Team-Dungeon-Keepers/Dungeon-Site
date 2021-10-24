@@ -1,9 +1,11 @@
 import React, { Component, useEffect } from 'react';
+import { useHistory } from 'react-router';
 import { NavBar } from './NavBar';
 import '../styles/mygame.css';
 import axios from 'axios';
 
 function MyGames (){
+  let history = useHistory();
 
     useEffect(() => {
       let userName = localStorage.getItem('userID');
@@ -25,6 +27,10 @@ function MyGames (){
             alert(err.response);
           });
     };
+    function moveToEditGames(gameID) {
+      localStorage.setItem("gameID", gameID);
+      history.push("/editgames");
+    }
     const renderAllGames = (gameStuff, craigFactor) => {
       if (craigFactor === 0) {
         var myGamesBody = document.getElementById("myGMGamesTable");
@@ -53,9 +59,9 @@ function MyGames (){
         let gameMasterID = gameStuff[i].gameMasterID;
         myGamesRow.setAttribute("id", `tr${i}`);
         myGamesRow.setAttribute("value", gameID);
-        myGameSaveButton.innerHTML = "SAVE";
+        myGameSaveButton.innerHTML = "EDIT";
         myGameRemoveButton.innerHTML = "LEAVE";
-        myGameSaveButton.addEventListener("click", saveGameChanges);
+        myGameSaveButton.addEventListener("click", moveToEditGames(gameID));
         myGameSaveButton.setAttribute("value", i);
         myGamesID.setAttribute("value", gameID);
         myGamesID.setAttribute("id", `td${gameID}`);
@@ -112,6 +118,7 @@ function MyGames (){
             console.log({err});
             alert(err.response);
           });
+          moveToEditGames();
     };
     const removeGameFromList = (gameToRemove) => {
       let rowToRemove = document.getElementById(`tr${gameToRemove.target.value}`);
