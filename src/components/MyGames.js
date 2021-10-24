@@ -14,6 +14,7 @@ function MyGames (){
     });
     const getGMGames = (userName, gmOrNah) => {
         var aPIAddress;
+        console.log(userName);
         if (gmOrNah == 0) { aPIAddress = `https://dungeon-site-api.herokuapp.com/api/games/master/${userName}` }
         else if (gmOrNah == 1) { aPIAddress = `https://dungeon-site-api.herokuapp.com/api/games/user/${userName}` }
         else {alert("error"); }
@@ -24,10 +25,11 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert(err.response);
+            alert("Line2: " + JSON.stringify(err.response));
           });
     };
-    function moveToEditGames(gameID) {
+    function moveToEditGames(e, gameID) {
+      e.preventDefault();
       localStorage.setItem("gameID", gameID);
       history.push("/editgames");
     }
@@ -61,7 +63,7 @@ function MyGames (){
         myGamesRow.setAttribute("value", gameID);
         myGameSaveButton.innerHTML = "EDIT";
         myGameRemoveButton.innerHTML = "LEAVE";
-        myGameSaveButton.addEventListener("click", moveToEditGames(gameID));
+        myGameSaveButton.addEventListener("click", moveToEditGames(this, gameID));
         myGameSaveButton.setAttribute("value", i);
         myGamesID.setAttribute("value", gameID);
         myGamesID.setAttribute("id", `td${gameID}`);
@@ -116,7 +118,7 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert(err.response);
+            alert("Line3: " + err.response);
           });
           moveToEditGames();
     };
@@ -134,7 +136,7 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert(err.response);
+            alert("Line4: " +err.response);
           });
     };
 	 return(
