@@ -7,21 +7,28 @@ function MyGames (){
 
     useEffect(() => {
       let userName = localStorage.getItem('userID');
-        getAllGames(userName);
+        getGMGames(userName, 0);
+        getGMGames(userName, 1);
     });
-    const getAllGames = (userName) => {
+    const getGMGames = (userName, gmOrNah) => {
+        var aPIAddress;
+        if (gmOrNah == 0) { aPIAddress = `https://dungeon-site-api.herokuapp.com/api/games/master/${userName}` }
+        else if (gmOrNah == 1) { aPIAddress = `https://dungeon-site-api.herokuapp.com/api/games/user/${userName}` }
+        else {alert("error"); }
         axios
-          .get(`https://dungeon-site-api.herokuapp.com/api/games/master/${userName}`)
+          .get(aPIAddress)
           .then((res) => {
-            renderAllGames(res.data);
+            renderAllGames(res.data, gmOrNah);
           })
           .catch((err) => {
             console.log({err});
             alert(err.response);
           });
     };
-    const renderAllGames = (gameStuff) => {
-      let myGamesBody = document.getElementById("myGamesTable");
+    const renderAllGames = (gameStuff, craigFactor) => {
+      if (craigFactor === 0) {
+        var myGamesBody = document.getElementById("myGMGamesTable");
+      } else { var myGamesBody = document.getElementById("myPlayerGamesTable"); }
       if (myGamesBody.children.length > 1) {
         let i = 1;
         while (i < myGamesBody.children.length) {
@@ -32,12 +39,12 @@ function MyGames (){
       while (i < gameStuff.length) {
         let myGamesRow = document.createElement("tr");
         let myGamesName = document.createElement("td");
-        let myGamesNameInput = document.createElement("input");
+        let myGamesNameInput = document.createElement("span");
         let myGamesPassword = document.createElement("td");
-        let myGamesPasswordInput = document.createElement("input");
+        let myGamesPasswordInput = document.createElement("span");
         let myGamesMaster = document.createElement("td");
         let myGamesDesc = document.createElement("td");
-        let myGamesDescInput = document.createElement("input");
+        let myGamesDescInput = document.createElement("span");
         let myGamesID = document.createElement("td");
         let myGamesRulesID = document.createElement("td");
         let myGameSaveButton = document.createElement("button");
@@ -47,17 +54,17 @@ function MyGames (){
         myGamesRow.setAttribute("id", `tr${i}`);
         myGamesRow.setAttribute("value", gameID);
         myGameSaveButton.innerHTML = "SAVE";
-        myGameRemoveButton.innerHTML = "REMOVE";
+        myGameRemoveButton.innerHTML = "LEAVE";
         myGameSaveButton.addEventListener("click", saveGameChanges);
         myGameSaveButton.setAttribute("value", i);
         myGamesID.setAttribute("value", gameID);
         myGamesID.setAttribute("id", `td${gameID}`);
         myGameRemoveButton.addEventListener("click", removeGameFromList);
         myGameRemoveButton.setAttribute("value", i);
-        myGamesNameInput.value = gameStuff[i].gameName;
-        myGamesPasswordInput.value = gameStuff[i].gamePassword;
+        myGamesNameInput.innerHTML = gameStuff[i].gameName;
+        myGamesPasswordInput.innerHTML = gameStuff[i].gamePassword;
         myGamesMaster.innerHTML = gameMasterID;
-        myGamesDescInput.value = gameStuff[i].description;
+        myGamesDescInput.innerHTML = gameStuff[i].description;
         myGamesID.innerHTML = gameID;
         myGamesRulesID.innerHTML = gameStuff[i].rulesID;
         myGamesRow.innerHTML = i;
@@ -99,7 +106,7 @@ function MyGames (){
           .put(`https://dungeon-site-api.herokuapp.com/api/games/${gameUpdate.gameID}`, gameUpdate)
           .then((res) => {
             let userName = localStorage.getItem('userID');
-            getAllGames(userName);
+            getGMGames(userName);
           })
           .catch((err) => {
             console.log({err});
@@ -127,20 +134,40 @@ function MyGames (){
     <div id="myGameContainer">  
         <NavBar /> 
         <div id="myGamesBody">
-          <table id="myGamesTable">
-            <thead id="myGamesTableHead">
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Password</th>
-                <th>GameMaster</th>
-                <th>Description</th>
-                <th>Game ID</th>
-                <th>Rules ID</th>
-                <th>Buttons</th>
-              </tr>
-            </thead>
-          </table>
+          <div id="gameMasterTableContainer">
+            <span>Game Master List</span>
+            <table id="myGMGamesTable">
+              <thead id="myGMGamesTableHead">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Password</th>
+                  <th>GameMaster</th>
+                  <th>Description</th>
+                  <th>Game ID</th>
+                  <th>Rules ID</th>
+                  <th>Buttons</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
+          <div id="playerTableContainer">
+            <span>Game Player List</span>
+            <table id="myPlayerGamesTable">
+              <thead id="myPlayerGamesTableHead">
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Password</th>
+                  <th>GameMaster</th>
+                  <th>Description</th>
+                  <th>Game ID</th>
+                  <th>Rules ID</th>
+                  <th>Buttons</th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
     </div>
     )
