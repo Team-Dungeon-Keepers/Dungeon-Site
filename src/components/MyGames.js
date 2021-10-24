@@ -14,6 +14,7 @@ function MyGames (){
     });
     const getGMGames = (userName, gmOrNah) => {
         var aPIAddress;
+        console.log(userName);
         if (gmOrNah == 0) { aPIAddress = `https://dungeon-site-api.herokuapp.com/api/games/master/${userName}` }
         else if (gmOrNah == 1) { aPIAddress = `https://dungeon-site-api.herokuapp.com/api/games/user/${userName}` }
         else {alert("error"); }
@@ -24,7 +25,7 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert(err.response);
+            alert("Line2: " + JSON.stringify(err.response));
           });
     };
     function moveToEditGames(e, gameID) {
@@ -117,7 +118,7 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert(err.response);
+            alert("Line3: " + err.response);
           });
           moveToEditGames();
     };
@@ -135,7 +136,7 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert(err.response);
+            alert("Line4: " +err.response);
           });
     };
 	 return(
