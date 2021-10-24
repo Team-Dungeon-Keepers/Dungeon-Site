@@ -14,7 +14,6 @@ import MyGames from './components/MyGames';
 import FindGames from './components/FindGames';
 import Compendium from './components/Compendium';
 import GameView from './components/GameView';
-import { NavBar } from './components/NavBar';
 
 function App() {
   let [trigger, setTrigger] = useState(false);

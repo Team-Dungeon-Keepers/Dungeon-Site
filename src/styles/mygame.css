@@ -1,10 +1,16 @@
+#myGameContainer {
+    display: grid;
+    grid-template-rows: 1fr 7fr;
+	min-height: 96vh;
+	max-width: 98vw;
+}
 #myGamesBody {
     grid-row: 2;
-    min-height: 86vh;
     background-color: white;
     border-style: solid;
     border-color: black;
     border-width: 2px;
+	min-width: 98vw;
 }
 #myGamesTable {
     border-color: black;

@@ -1,7 +1,9 @@
 #findGameContainer {
 	display: grid;
-	grid-template-columns: 1fr 7fr;
+	grid-template-rows: 1fr 7fr;
 	grid-template-columns: 1fr 3fr 1fr;
+	min-height: 96vh;
+	max-width: 98vw;
 }
 #findGameBody {
 	grid-row: 2;
