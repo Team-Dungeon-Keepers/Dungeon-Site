@@ -61,10 +61,13 @@
 	min-width: 100%;
 	min-height: 20%;
 	background-color: grey;
+	grid-row: 2;
+	grid-column: 1 / 5;
 }
 #step3RightRow2, #step2RightRow2, #step2RightRow3, #step2RightRow1, #step2RightRow4 {
 	display: grid;
-	grid-template-rows: 1fr 1fr 1fr 1fr;
+	grid-template-rows: 25% 75%;
+	grid-template-columns: 30% 38% 16% 16%;
 }
 #step2RightRow5 button, #step3RightRow5 button {
 	min-width: 100%;
