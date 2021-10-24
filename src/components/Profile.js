@@ -23,10 +23,16 @@ function ProfileEdit() {
     }
     function renderUserInformation(userInformation) {
         let welcomeUser = document.getElementById("profileBodyContainerRightWelcome");
-        let welcomeUserData = document.getElementById("profileBodyContainerRightWelcome").innerHTML;
+        let welcomeUserData = welcomeUser.innerHTML;
+        let firstUser = document.getElementById("profileBodyContainerRightFirst");
+        let firstUserData = firstUser.innerHTML;
+        let lastUser = document.getElementById("profileBodyContainerRightLast");
+        let lastUserData = lastUser.innerHTML;
         console.log(welcomeUser);
         console.log(userInformation.username);
         welcomeUser.innerHTML = welcomeUserData.concat(` ${userInformation.username}`);
+        firstUser.innerHTML = firstUserData.concat(` ${userInformation.firstName}`);
+        lastUser.innerHTML = lastUserData.concat(` ${userInformation.lastName}`);
     }
     return (
         <div id="profileContainer">
@@ -39,10 +45,20 @@ function ProfileEdit() {
                     </div>
                     <div id="profileBodyContainerRight">
                         <div id="profileBodyContainerRight1">
-                            <h1 id="profileBodyContainerRightWelcome">Welcome</h1>
+                            <div id="profileBodyContainerRightWelcomeContainer">
+                                <span id="profileBodyContainerRightWelcome">Welcome</span>
+                                <span id="profileBodyContainerRightFirst">First Name:</span>
+                                <span id="profileBodyContainerRightLast">Last Name:</span>
+                                <span id="profileBodyContainerRightEmail">Email:</span>
+                                <span id="profileBodyContainerRightPassword">Password:</span>
+                            </div>
                         </div>
-                        <div id="profileBodyContainerRight2"></div>
-                        <div id="profileBodyContainerRight3"></div>
+                        <div id="profileBodyContainerRight2">
+                            <span>Games Joined</span>
+                        </div>
+                        <div id="profileBodyContainerRight3">
+                            <span>Game Master Games</span>
+                        </div>
                         <div id="profileBodyContainerRight4"></div>
                     </div>
                 </div>
