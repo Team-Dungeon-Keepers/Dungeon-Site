@@ -131,7 +131,8 @@ function EditGames(props) {
 			headers: {}, 
 			data: oBehavior
 		  }).then((res) => {
-			schedules.splice(i,1);
+			alert("Behavior deleted");
+			behaviors.splice(i,1);
 			printBehaviorData();
 		})
 		.catch((err) => {
@@ -207,6 +208,7 @@ function EditGames(props) {
 			headers: {}, 
 			data: oLanguage
 		  }).then((res) => {
+			alert("Language deleted");
 			languages.splice(i,1);
 			printLanguageData();
 		})
@@ -265,7 +267,7 @@ function EditGames(props) {
 		}
 		//note: change textarea rows/cols if needed, text area is merely for thing looking better, if needed, change to input
 		document.getElementById('linkDataDisplay').innerHTML += 
-			`<div id= link:`+temp+`>
+			`<div id= "link:`+temp+`">
 				<p> Link: `+ temp +`</p>
 				<label for= "url:`+ temp +`"> URL </label>
 				<input type="text" id= "url:`+ temp +`" value = "">
@@ -274,7 +276,38 @@ function EditGames(props) {
 				<br>
 				<button onClick={()=>editLink(`+temp+`)}>Save edits to link</button>
 			</div>`;
-
+	}
+	function deleteLink(ID)
+	{
+		let bool = 0;
+		let i = 0;
+		for(; i<links.length; i++)
+		{
+			if(ID == links[i].linkid)
+			{
+				bool = 1;
+				break;
+			}
+		}
+		if(bool == 0)
+		{
+			alert("Link already removed");
+			return;
+		}
+		axios({
+			method: 'delete',
+			url: "https://dungeon-site-api.herokuapp.com/api/links/"+ID
+		  }).then((res) => {
+			alert("Link:"+ID+" deleted");
+			links.splice(i,1);
+			document.getElementById("link:"+ID).innerHTML = "";
+			return;
+		})
+		.catch((err) => {
+			console.log({ err });
+			alert("deletion failed");
+			return;
+		});
 	}
 	function newSchedule()
 	{
@@ -339,7 +372,7 @@ function EditGames(props) {
 			document.getElementById('scheduleDataDisplay').innerHTML = "";
 		}
 		document.getElementById('scheduleDataDisplay').innerHTML += 
-			`<div id= schedule:`+temp+`>
+			`<div id= "schedule:`+temp+`">
 				<p> Schedule: `+ temp +`</p>
 				<label for= "startDate:`+ temp +`"> Start Date </label>
 				<input type="date" id= "startDate:`+ temp +`" value = "`+ today +`" min = "`+today+`">
@@ -353,6 +386,38 @@ function EditGames(props) {
 				<br>
 				<button onClick={()=>editSchedule(`+temp+`)}>Save edits to schedule</button>
 			</div>`;
+	}
+	function deleteSchedule(ID)
+	{
+		let bool = 0;
+		let i = 0;
+		for(; i<schedules.length; i++)
+		{
+			if(ID == schedules[i].scheduleID)
+			{
+				bool = 1;
+				break;
+			}
+		}
+		if(bool == 0)
+		{
+			alert("Schedule already removed");
+			return;
+		}
+		axios({
+			method: 'delete',
+			url: "https://dungeon-site-api.herokuapp.com/api/schedules/"+ID
+		  }).then((res) => {
+			alert("Schedule:"+ID+" deleted");
+			schedules.splice(i,1);
+			document.getElementById("schedule:"+ID).innerHTML = "";
+			return;
+		})
+		.catch((err) => {
+			console.log({ err });
+			alert("deletion failed");
+			return;
+		});
 	}
 	function newAddress()
 	{
@@ -399,6 +464,38 @@ function EditGames(props) {
 			return;
 		});
 		//getAddresses();
+	}
+	function deleteAddress(ID)
+	{
+		let bool = 0;
+		let i = 0;
+		for(; i<addresses.length; i++)
+		{
+			if(ID == addresses[i].addressID)
+			{
+				bool = 1;
+				break;
+			}
+		}
+		if(bool == 0)
+		{
+			alert("Address already removed");
+			return;
+		}
+		axios({
+			method: 'delete',
+			url: "https://dungeon-site-api.herokuapp.com/api/addresses/"+ID
+		  }).then((res) => {
+			alert("Address:"+ID+" deleted");
+			addresses.splice(i,1);
+			document.getElementById("address:"+ID).innerHTML = "";
+			return;
+		})
+		.catch((err) => {
+			console.log({ err });
+			alert("deletion failed");
+			return;
+		});
 	}
 	function editGame()
 	{
@@ -825,7 +922,6 @@ function EditGames(props) {
 		let bool = 0;
 		let str = "<h3>Player(s)</h3>";
 		//users.length shouldn't be == 0, due to the fact that there should be at least 1 person in the game... right?
-		//todo: when deleting a user-game relationship (including leaving a game) remember to check the length, if length == 0, delete game? 
 		if(game.gameMasterID!=localStorage.getItem('userID'))
 		{
 			for(let i = 0; i<users.length; i++)
@@ -943,7 +1039,7 @@ function EditGames(props) {
 				for(let i = 0; i<schedules.length; i++)
 				{
 					//for each of the things, print their current times, set min to today for dates if possible
-					str += `<div id= schedule:`+schedules[i].scheduleID+`>
+					str += `<div id= "schedule:`+schedules[i].scheduleID+`">
 							<p> Schedule: `+ schedules[i].scheduleID +`</p>
 							<label for= "startDate:`+ schedules[i].scheduleID +`"> Start Date </label>
 							<input type="date" id= "startDate:`+ schedules[i].scheduleID +`" value = "`+ schedules[i].startDate +`" min = "`+today+`">
@@ -956,7 +1052,8 @@ function EditGames(props) {
 							<input type="time" id= "endTime:`+ schedules[i].scheduleID +`" value = "`+ schedules[i].endTime +`">`;
 					//inserted chunk for editing
 					str += `<br>
-							<button onClick={()=>editSchedule(`+schedules[i].scheduleID+`)}>Save edits to schedule</button>`;
+						<button onClick={()=>editSchedule(`+schedules[i].scheduleID+`)}>Save edits to schedule</button>
+						<button onClick={()=>deleteSchedule(`+schedules[i].scheduleID+`)}>Delete schedule</button>`;
 					str += `</div>`;
 				}
 				document.getElementById('addNewScheduleButton').innerHTML = `<button type="button" onClick={()=>newSchedule()}>Add a new schedule</button>`;
@@ -966,7 +1063,7 @@ function EditGames(props) {
 				for(let i = 0; i<schedules.length; i++)
 				{
 					//for each of the things, print their current times, set min to today for dates if possible
-					str += `<div id= schedule:`+schedules[i].scheduleID+`>
+					str += `<div id= "schedule:`+schedules[i].scheduleID+`">
 							<p> Schedule: `+ schedules[i].scheduleID +`</p>
 							<label for= "startDate:`+ schedules[i].scheduleID +`"> Start Date </label>
 							<input type="date" id= "startDate:`+ schedules[i].scheduleID +`" value = "`+ schedules[i].startDate +`" min = "`+today+`" readonly>
@@ -1005,7 +1102,7 @@ function EditGames(props) {
 			{
 				for(let i = 0; i<addresses.length; i++)
 				{
-					str += `<div id= address:`+addresses[i].addressID+`>
+					str += `<div id= "address:`+addresses[i].addressID+`">
 							<p> Address: `+ addresses[i].addressID +`</p>
 							<label for="street:`+addresses[i].addressID+`">
 							<input type="text" id= "street:`+addresses[i].addressID+`" value = "`+addresses[i].street+`">
@@ -1074,7 +1171,8 @@ function EditGames(props) {
 							<label for="zip:`+addresses[i].addressID+`">
 							<input type="text" id= "zip:`+addresses[i].addressID+`" value = "`+addresses[i].zip+`" onBlur={()=>this.value=formatNumeric(this.value)}>
 							<br>
-							<button onClick={()=>editAddress(`+addresses[i].addressID+`)}>Save edits to schedule</button>
+							<button onClick={()=>editAddress(`+addresses[i].addressID+`)}>Save edits to address</button>
+							<button onClick={()=>deleteAddress(`+addresses[i].addressID+`)}>Delete address</button>
 							</div>`;
 				}
 				document.getElementById('addNewAddressButton').innerHTML = `<button onClick={()=>newAddress()}>Add a new Address</button>`;
@@ -1084,7 +1182,7 @@ function EditGames(props) {
 				//state is now set to an text instead of dropdown
 				for(let i = 0; i<addresses.length; i++)
 				{
-					str += `<div id= address:`+addresses[i].addressID+`>
+					str += `<div id= "address:`+addresses[i].addressID+`">
 							<p> Address: `+ addresses[i].addressID +`</p>
 							<label for="street:`+addresses[i].addressID+`">
 							<input type="text" id= "street:`+addresses[i].addressID+`" value = "`+addresses[i].street+`" readonly>
@@ -1120,7 +1218,7 @@ function EditGames(props) {
 			{
 				for(let i = 0; i<links.length; i++)
 				{
-					str += `<div id= link:`+links[i].linkid+`>
+					str += `<div id= "link:`+links[i].linkid+`">
 								<p> Link: `+ links[i].linkid +`</p>
 								<label for= "url:`+ links[i].linkid +`"> URL </label>
 								<input type="text" id= "url:`+ links[i].linkid +`" value = "`+links[i].url+`">
@@ -1137,7 +1235,7 @@ function EditGames(props) {
 			{
 				for(let i = 0; i<links.length; i++)
 				{
-					str += `<div id= link:`+links[i].linkid+`>
+					str += `<div id= "link:`+links[i].linkid+`">
 								<p> Link: `+ links[i].linkid +`</p>
 								<label for= "url:`+ links[i].linkid +`"> URL </label>
 								<input type="text" id= "url:`+ links[i].linkid +`" value = "`+links[i].url+`" readonly>
