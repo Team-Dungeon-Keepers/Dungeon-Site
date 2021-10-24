@@ -1,87 +1,93 @@
-import React, { createElement, useState } from 'react';
+import React, { createElement, useRef, useState } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/findgames.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import GameViewButton from './GameViewButton';
 
 function FindGames (){
 
-	const [stateID, setStateID] = useState(0); 
+	const [gameID, setGameID] = useState()
+	const [gameName, setGameName] = useState();
+	const [gmUser, setGmUser] = useState();
+	const [gameDesc, setGameDesc] = useState();
+	const [games, setGames] = useState([]);
+
+	const display = useRef();
+	//const gamesArr = [];
 	
-	const getGamesByID = () =>{
-		var id = document.getElementById("findGameByID").value;
-		axios
-			.get("https://dungeon-site-api.herokuapp.com/api/games/"+id)
-			.then((res) => {
-				console.log(res.data);
-				printGames([res.data]);
-			})
-			.catch((err) => {
-				console.log({err});
-			});
-	}
-	const getGamesByName = () =>{
-		var name = document.getElementById("findGameByName").value;
-		axios
-			.get("https://dungeon-site-api.herokuapp.com/api/games/name/"+name)
-			.then((res) => {
-				console.log([res.data]);
-				printGames(res.data);
-			})
-			.catch((err) => {
-				console.log({err});
-			});
-	}
-	const getGamesByGM = () =>{
-		var username = document.getElementById("findGameByGM").value;
-		axios
-			.get("https://dungeon-site-api.herokuapp.com/api/games/mastername/"+username)
-			.then((res) => {
-				console.log(res.data);
-				printGames(res.data);
-			})
-			.catch((err) => {
-				console.log({err});
-			});
-	}
-	function printGames(data){
-		let i = 1;
-		console.log("length: "+data.length);
-		while (i <= data.length){
-			console.log("entered loop");
-			var body = document.getElementById("gamesDisplay");
-			
-			var row = body.insertRow(i-1);
-			
-			var titleCell = row.insertCell(0);
-			var descriptionCell = row.insertCell(1);
-			//var playersCell = row.insertCell(2);
-			var viewCell = row.insertCell(2);
 
-			titleCell.innerHTML = data[i-1].gameName;
-			descriptionCell.innerHTML = data[i-1].description;
-			let id = data[i-1].gameID;
-			console.log("----------game id is: "+id)
-			let viewBtn = document.createElement('button');
-			viewBtn.innerHTML="view";
-			viewBtn.addEventListener('click', PushToGameView);
-			viewBtn.setAttribute('id', i);
-			viewBtn.setAttribute('value', id);
-			viewCell.appendChild(viewBtn);
-			//viewCell.innerHTML = `<button id='viewBtn' class="" onclick='${PushToGameView(id)}'>View</button>`;
+	const handleIdChange = (event) => {
+		setGameID(event.target.value)
+	}
 
-			i++;
+	const handleGameNameChange = (event) => {
+		setGameName(event.target.value)
+	}
+
+	const handleGMChange = (event) => {
+		setGmUser(event.target.value)
+	}
+	
+	const getGamesByID = async () => {
+		try{
+			const { data } = await axios.get(`https://dungeon-site-api.herokuapp.com/api/games/${gameID}`)
+			console.log("======"+{gameID});
+			setGames( arr => [...arr, data]);
+			games.map(game => (console.log(game.gameID)));
+
+			//printGames(gamesArr);
+		}
+		catch(error) {
+			console.log(error)
 		}
 	}
+	const getGamesByName = async () =>{
+		try{
+			const { data } = await axios.get(`https://dungeon-site-api.herokuapp.com/api/games/name/${gameName}`)
+			console.log(data);
+			setGames( arr => [...arr, data]);
+			//printGames([data]);
+		}
+		catch(error) {
+			console.log(error)
+		}
+	}
+	const getGamesByGM = async () =>{
+		try{
+			const { data } = await axios.get(`https://dungeon-site-api.herokuapp.com/api/games/mastername/${gmUser}`)
+			console.log(data);
+			setGames(data);
+			//printGames([data]);
+		}
+		catch(error) {
+			console.log(error)
+		}
+	}
+	/*
+	function printGames(data){
+		setGames(data);
+		console.log("======== game: "+games);
+		console.log("======== gameName: "+data[0].gameName);
+		console.log("======== length: "+data.length);
+		gameItems = data.map(game => (
+			<tr>
+				<td>{game.gameName}</td>
+				<td>{game.description}</td>
+			</tr>
+		));
+		console.log("======== items: "+gameItems.length);
+	}
+	*/
 	let history = useHistory();
 	function PushToGameView(targetBtn) {
 		let gameView = document.getElementById(targetBtn.target.id)
-		setStateID(stateID+targetBtn.target.value);
+		setGameID(gameID+targetBtn.target.value);
 		console.log("gameView obj: "+gameView);
 		console.log("----------here in push function")
-		console.log("----------game id is: "+stateID);
+		console.log("----------game id is: "+gameID);
 		
-		history.push({pathname:"/gameview", state:stateID});
+		history.push({pathname:"/gameview", state:gameID});
 	}
 	
 	 return(
@@ -92,21 +98,28 @@ function FindGames (){
 			<div id="findGameBodyBody">
 				<div id="findGamesLeft">
 					<div id="findGameByName-div">
-						<input id="findGameByName" placeholder="By Game Name "/>
-						<button type="button" id="findGameByName-btn" onClick={getGamesByName}>Go</button>
+						<input id="findGameByName" placeholder="By Game Name " onChange={handleGameNameChange}/>
+						<button type="button" id="findGameByName-btn" onClick={() => getGamesByName()}>Go</button>
 					</div>
 					<div id="findGameByID-div">
-						<input id="findGameByID" type="text" placeholder="By Game ID "/>
-						<button type="button" id="findGameByID-btn" onClick={getGamesByID}>Go</button>				
+						<input id="findGameByID" type="text" placeholder="By Game ID " onChange={handleIdChange}/>
+						<button type="button" id="findGameByID-btn" onClick={() => getGamesByID()}>Go</button>				
 					</div>
 					<div id="findGameByGM-div">
-						<input id="findGameByGM" placeholder="By GameMasters Username"/>
-						<button type="button" id="findGameByGM-btn" onClick={getGamesByGM}>Go</button>
+						<input id="findGameByGM" placeholder="By GameMasters Username"onChange={handleGMChange}/>
+						<button type="button" id="findGameByGM-btn" onClick={() => getGamesByGM()}>Go</button>
 					</div>
 				</div>
 				<div id="findGamesRight">
-					<table>
-						<tbody id="gamesDisplay">
+					<table id="gamesDisplay" ref={display}>
+						<tbody>
+							{games.map(game => (
+								<tr>
+									<td>{game.gameName}</td>
+									<td>{game.description}</td>
+									<td><GameViewButton gameID={game.gameID}></GameViewButton></td>
+								</tr>
+								))}
 						</tbody>
 					</table>
 				</div>
