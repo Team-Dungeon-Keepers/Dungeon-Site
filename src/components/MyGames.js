@@ -27,7 +27,8 @@ function MyGames (){
             alert(err.response);
           });
     };
-    function moveToEditGames(gameID) {
+    function moveToEditGames(e, gameID) {
+      e.preventDefault();
       localStorage.setItem("gameID", gameID);
       history.push("/editgames");
     }
@@ -61,7 +62,7 @@ function MyGames (){
         myGamesRow.setAttribute("value", gameID);
         myGameSaveButton.innerHTML = "EDIT";
         myGameRemoveButton.innerHTML = "LEAVE";
-        myGameSaveButton.addEventListener("click", moveToEditGames(gameID));
+        myGameSaveButton.addEventListener("click", moveToEditGames(this, gameID));
         myGameSaveButton.setAttribute("value", i);
         myGamesID.setAttribute("value", gameID);
         myGamesID.setAttribute("id", `td${gameID}`);
