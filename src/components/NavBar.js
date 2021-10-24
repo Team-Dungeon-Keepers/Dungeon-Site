@@ -56,11 +56,6 @@ const NavBar = function ()  {
                             Edit User
                         </button>
                     </Link>
-                    <Link to="/profile">
-                        <button type="Button" >
-                            Profile
-                        </button>
-                    </Link>
                 </div>
             </div>
         </div>
