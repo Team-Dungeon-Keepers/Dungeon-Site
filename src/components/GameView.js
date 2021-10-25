@@ -18,17 +18,17 @@ function GameView(){
      const[lang, setLang] = useState([]);
      const[gm, setGM] = useState();
      const[players, setPlayers] = useState([]);
-     const[id, setID] = useState();
+     const[id, setID] = useState(sessionStorage.getItem('gameID'));
 
-    setID(sessionStorage.getItem('gameID'));
     //console.log(id);
     //const id = 5//sessionStorage.getItem('gameID')
 
-    const render = 1;
+    const testid = 5;
     useEffect(() => {
         //console.log();
+        //setID(sessionStorage.getItem('gameID'));
         getGame()
-    }, [render])
+    }, [])
 
     const getGame = async () => {
         try{
@@ -55,14 +55,75 @@ function GameView(){
         setGM(data.gmname);
         setPlayers(data.users)
 
-        console.log("set id for gameView: "+id);
+        //console.log(hRules[0]);
 
     }
+    // function printView(data){
+    //     console.log(data);
+
+    //     let name = document.getElementById("name");
+    //     let desc = document.getElementById("description");
+    //     let gRules = document.getElementById("gameRules");
+    //     let addressL1 = document.getElementById("addressL1");
+    //     let addressL2 = document.getElementById("addressL2");
+    //     let times = document.getElementById("times-p");
+    //     let starts = document.getElementById("starts-p");
+    //     let ends = document.getElementById("ends-p");
+    //     //include loop for multiple entries
+    //     let hRules = document.getElementById("houseRules");
+    //     //include loop for multiple entries
+    //     let lang = document.getElementById("languages");
+    //     let gm = document.getElementById("gameMaster");
+    //     //include loop for multiple entries
+    //     let players = document.getElementById("players");
+
+    //     name.innerHTML=data.game.gameName;
+        
+    //     desc.innerHTML=data.game.description;
+        
+    //     gRules.innerHTML=data.rulesName;
+        
+    //     var addressString1=`${data.addresses[0].street}, ${data.addresses[0].apartment} `;
+    //     //var state = JSON.stringify(data.addresses[0].state);
+    //     //var stateUpper = state.toUpperCase;
+    //     var addressString2=`${data.addresses[0].city}, ${data.addresses[0].state} `;
+    //     addressL1.innerHTML=addressString1;
+    //     addressL2.innerHTML=addressString2;
+        
+    //     times.innerHTML=`${data.schedules[0].startTime} - ${data.schedules[0].endTime}`;
+    //     starts.innerHTML=data.schedules[0].startDate;
+    //     ends.innerHTML=data.schedules[0].endDate;
+
+        
+    //     for(var i=0;i<data.behaviors.length;i++){
+    //         console.log("-----started loop");
+    //         var li=document.createElement("li");
+    //         li.innerHTML=data.behaviors[i].behavior;
+    //         hRules.appendChild(li);
+    //     }
+    //     for(var i=0;i<data.languages.length;i++){
+    //         console.log("-----started loop");
+    //         var li=document.createElement("li");
+    //         li.innerHTML=data.languages[i].language;
+    //         lang.appendChild(li);
+    //     }
+
+    //     gm.innerHTML=data.gmname;
+
+    //     for(var i=0;i<data.users.length;i++){
+    //         console.log("-----started loop");
+    //         var li=document.createElement("li");
+    //         li.innerHTML=data.users[i].username;
+    //         players.appendChild(li);
+    //     }
+        
+    // }
 
     return (
-        <div>
+        <div >
             <NavBar/>
             <div id="gameViewContainer">
+            
             <div id="gameViewBody">
                 <div id="viewFirstRow">
                     <h1 id="name">{name}</h1>

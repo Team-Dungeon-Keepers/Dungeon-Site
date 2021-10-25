@@ -114,7 +114,7 @@ function FindGames (){
 					<table id="gamesDisplay" ref={display}>
 						<tbody>
 							{games.map(game => (
-								<tr>
+								<tr key={game.gameID.toString()}>
 									<td>{game.gameName}</td>
 									<td>{game.description}</td>
 									<td><GameViewButton gameID={game.gameID}></GameViewButton></td>
