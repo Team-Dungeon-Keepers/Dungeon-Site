@@ -7,7 +7,6 @@ import LoginForm from './components/LoginForm';
 import RegisterForm from './components/register';
 import PrivateRoute from './components/PrivateRoute';
 import EditProfile from './components/EditProfile';
-import Profile from './components/Profile';
 import ViewAllUsers from './components/ViewAllUsers';
 import CreateGame from './components/CreateGame';
 import MyGames from './components/MyGames';
@@ -59,9 +58,6 @@ function App() {
               </PrivateRoute>
               <PrivateRoute path="/compendium">
                 <Compendium/>
-              </PrivateRoute>
-              <PrivateRoute path="/profile">
-                <Profile/>
               </PrivateRoute>
               <PrivateRoute path="/gameview">
 				        <GameView/>
