@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { NavBar } from './NavBar';
+import { useHistory } from 'react-router-dom';
 import '../styles/creategame.css';
 import axios from 'axios';
 
 function CreateGame (){
     let [form, setForm] = useState({});
     let [rules, setRules] = useState([]);
-
+	let history = useHistory(); 
     function findRulesID(string) {
         let ruleFound = rules.filter((item) => {
             return item.rulesName == string;
@@ -174,7 +175,7 @@ function CreateGame (){
         return elementFound
     }
 
-    function makeGameFull() {
+    function MakeGameFull() {
         let gameType = gID("createGameAddedTypes").innerHTML;
         let gameName = gID("createGameTitle").value;
         let gameDesc = gID("createGameDescription").value;
@@ -251,6 +252,7 @@ function CreateGame (){
         }
         console.log(JSON.stringify(createdGame));
         sendCreateGameData(createdGame);
+		history.push("/dashboard");
     }
 
     const handleChange = (event) => {
@@ -266,10 +268,12 @@ function CreateGame (){
         .then((res) => {
             console.log("res===================="+res);
             console.log("res.data===================="+res.data);
+			alert("Game Successfully created");
         })
         .catch((err) => {
           console.log({err});
-          alert(JSON.stringify(err.response));
+          alert("Game creation failed!");
+		  return;
         });
     }
 
@@ -503,7 +507,7 @@ function CreateGame (){
                     </div>
                     <div id="step3RightRow5">
                         <button onClick={stepTo2}>&#8592; Previous</button><br/>
-                        <button onClick={makeGameFull}>Create</button>
+                        <button onClick={MakeGameFull}>Create</button>
                     </div>
                 </div>
             </div>

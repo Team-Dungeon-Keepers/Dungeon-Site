@@ -4,8 +4,8 @@ import { NavBar } from './NavBar';
 import '../styles/creategame.css';
 import axios from 'axios';
 
-function EditGames(props) {
-	var gameID = props.id;
+function EditGames() {
+	var gameID = 1;//localStorage.getItem("gameID");
 	//maybe use states?
     var game;
     var addresses;
@@ -1425,7 +1425,7 @@ function EditGames(props) {
 		//printUserData();
 	});
     return ( 
-		<div id = "editGameContainer" >
+		<div id = "editGameContainer">
         	<NavBar />
 			<div id = "gameDataDisplay">
 			</div>

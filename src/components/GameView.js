@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/gameView.css';
 import axios from 'axios';
-import { withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 
 function GameView(){
-
+  let history = useHistory();
      const[name, setName] = useState();
      const[desc, setDesc] = useState();
      const[gRules, setGRules] = useState();
@@ -23,10 +23,13 @@ function GameView(){
     //console.log(id);
     //const id = 5//sessionStorage.getItem('gameID')
 
-    const testid = 5;
+    let nUserGame = {
+        ID : 0,
+        userID :localStorage.getItem('userID') ,
+        gameID : id
+    };
+
     useEffect(() => {
-        //console.log();
-        //setID(sessionStorage.getItem('gameID'));
         getGame()
     }, [])
 
@@ -34,13 +37,29 @@ function GameView(){
         try{
             const { data } = await axios.get(`https://dungeon-site-api.herokuapp.com/api/games/full/${id}`);
             console.log(data)
-            setStates(data);
-           
+            setStates(data);  
         }
         catch(error) {
             console.log(error)
         }
 	}
+
+    const joinGame = async () => {
+        console.log('*********'+nUserGame.gameID);
+        console.log('*********'+nUserGame.userID);
+        axios({
+            method: 'post',
+            url: "https://dungeon-site-api.herokuapp.com/api/user_game/",
+            headers: {}, 
+            data: nUserGame
+        }).catch((err) => {
+            console.log({ err });
+            alert("Relationship creation failed!");
+            return;
+        });
+        PushToDashboard();
+    }
+
     const setStates = async (data) => {
         setName(data.game.gameName);
         setDesc(data.game.description);
@@ -56,7 +75,11 @@ function GameView(){
         setPlayers(data.users)
 
         //console.log(hRules[0]);
+    }
 
+    function PushToDashboard (){
+        window.sessionStorage.removeItem("gameID", id);
+        history.push("/dashboard");
     }
     // function printView(data){
     //     console.log(data);
@@ -192,7 +215,7 @@ function GameView(){
                     </div>
                 </div>
                 <div id="viewThirdRow">
-                    <button id="join-btn">Join Game!</button>
+                    <button id="join-btn" onClick={()=>joinGame()}>Join Game!</button>
                 </div>
             </div>
             </div>
