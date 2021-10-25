@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavBar } from './NavBar';
 import '../styles/gameView.css';
 import axios from 'axios';
-import { withRouter } from 'react-router';
+import { useHistory } from 'react-router';
 
 function GameView(){
 
@@ -18,29 +18,48 @@ function GameView(){
      const[lang, setLang] = useState([]);
      const[gm, setGM] = useState();
      const[players, setPlayers] = useState([]);
-     const[id, setID] = useState();
+     const[id, setID] = useState(sessionStorage.getItem('gameID'));
 
-    setID(sessionStorage.getItem('gameID'));
     //console.log(id);
     //const id = 5//sessionStorage.getItem('gameID')
 
-    const render = 1;
+    let nUserGame = {
+        ID : 0,
+        userID :localStorage.getItem('userID') ,
+        gameID : id
+    };
+
     useEffect(() => {
-        //console.log();
         getGame()
-    }, [render])
+    }, [])
 
     const getGame = async () => {
         try{
             const { data } = await axios.get(`https://dungeon-site-api.herokuapp.com/api/games/full/${id}`);
             console.log(data)
-            setStates(data);
-           
+            setStates(data);  
         }
         catch(error) {
             console.log(error)
         }
 	}
+
+    const joinGame = async () => {
+        console.log('*********'+nUserGame.gameID);
+        console.log('*********'+nUserGame.userID);
+        axios({
+            method: 'post',
+            url: "https://dungeon-site-api.herokuapp.com/api/user_game/",
+            headers: {}, 
+            data: nUserGame
+        }).catch((err) => {
+            console.log({ err });
+            alert("Relationship creation failed!");
+            return;
+        });
+        PushToDashboard();
+    }
+
     const setStates = async (data) => {
         setName(data.game.gameName);
         setDesc(data.game.description);
@@ -55,14 +74,20 @@ function GameView(){
         setGM(data.gmname);
         setPlayers(data.users)
 
-        console.log("set id for gameView: "+id);
+        //console.log(hRules[0]);
+    }
+    let history = useHistory();
 
+    function PushToDashboard (){
+        window.sessionStorage.removeItem("gameID", id);
+        history.push("/dashboard");
     }
 
     return (
-        <div>
+        <div >
             <NavBar/>
             <div id="gameViewContainer">
+            
             <div id="gameViewBody">
                 <div id="viewFirstRow">
                     <h1 id="name">{name}</h1>
@@ -131,7 +156,7 @@ function GameView(){
                     </div>
                 </div>
                 <div id="viewThirdRow">
-                    <button id="join-btn">Join Game!</button>
+                    <button id="join-btn" onClick={()=>joinGame()}>Join Game!</button>
                 </div>
             </div>
             </div>

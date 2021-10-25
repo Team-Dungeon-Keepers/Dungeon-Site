@@ -14,7 +14,7 @@ import MyGames from './components/MyGames';
 import FindGames from './components/FindGames';
 import Compendium from './components/Compendium';
 import GameView from './components/GameView';
-
+import EditGames from './components/EditGames';
 function App() {
   let [trigger, setTrigger] = useState(false);
 
@@ -50,6 +50,9 @@ function App() {
               </PrivateRoute>
               <PrivateRoute path="/mygames">
                 <MyGames/>
+              </PrivateRoute>
+              <PrivateRoute path="/editgames">
+                <EditGames/>
               </PrivateRoute>
               <PrivateRoute path="/findgames">
                 <FindGames/>

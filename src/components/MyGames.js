@@ -1,11 +1,9 @@
 import React, { Component, useEffect } from 'react';
-import { useHistory } from 'react-router';
 import { NavBar } from './NavBar';
 import '../styles/mygame.css';
 import axios from 'axios';
 
 function MyGames (){
-  let history = useHistory();
 
     useEffect(() => {
       let userName = localStorage.getItem('userID');
@@ -14,7 +12,6 @@ function MyGames (){
     });
     const getGMGames = (userName, gmOrNah) => {
         var aPIAddress;
-        console.log(userName);
         if (gmOrNah == 0) { aPIAddress = `https://dungeon-site-api.herokuapp.com/api/games/master/${userName}` }
         else if (gmOrNah == 1) { aPIAddress = `https://dungeon-site-api.herokuapp.com/api/games/user/${userName}` }
         else {alert("error"); }
@@ -25,14 +22,9 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert("Line2: " + JSON.stringify(err.response));
+            alert(err.response);
           });
     };
-    function moveToEditGames(e, gameID) {
-      e.preventDefault();
-      localStorage.setItem("gameID", gameID);
-      history.push("/editgames");
-    }
     const renderAllGames = (gameStuff, craigFactor) => {
       if (craigFactor === 0) {
         var myGamesBody = document.getElementById("myGMGamesTable");
@@ -61,9 +53,9 @@ function MyGames (){
         let gameMasterID = gameStuff[i].gameMasterID;
         myGamesRow.setAttribute("id", `tr${i}`);
         myGamesRow.setAttribute("value", gameID);
-        myGameSaveButton.innerHTML = "EDIT";
+        myGameSaveButton.innerHTML = "SAVE";
         myGameRemoveButton.innerHTML = "LEAVE";
-        myGameSaveButton.addEventListener("click", moveToEditGames(this, gameID));
+        myGameSaveButton.addEventListener("click", saveGameChanges);
         myGameSaveButton.setAttribute("value", i);
         myGamesID.setAttribute("value", gameID);
         myGamesID.setAttribute("id", `td${gameID}`);
@@ -118,9 +110,8 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert("Line3: " + err.response);
+            alert(err.response);
           });
-          moveToEditGames();
     };
     const removeGameFromList = (gameToRemove) => {
       let rowToRemove = document.getElementById(`tr${gameToRemove.target.value}`);
@@ -136,7 +127,7 @@ function MyGames (){
           })
           .catch((err) => {
             console.log({err});
-            alert("Line4: " +err.response);
+            alert(err.response);
           });
     };
 	 return(

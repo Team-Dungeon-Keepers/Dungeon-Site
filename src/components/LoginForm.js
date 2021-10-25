@@ -51,7 +51,7 @@ function LoginForm(props) {
           })
           .catch((err) => {
             console.log({err});
-            alert(err.response.data.message);
+            alert("Login Failed: Please check your credentials");
           });
       };
 
