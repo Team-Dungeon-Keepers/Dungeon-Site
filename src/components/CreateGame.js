@@ -176,7 +176,6 @@ function CreateGame (){
     }
 
     function MakeGameFull() {
-        let gameType = gID("createGameAddedTypes").innerHTML;
         let gameName = gID("createGameTitle").value;
         let gameDesc = gID("createGameDescription").value;
         let gamePassword= gID("createGamePassword").value;
@@ -259,7 +258,6 @@ function CreateGame (){
         const { name, type, value, checked } = event.target;
         const updateData = (type === 'checkbox')?checked:value;
         setForm({...form, [name]: updateData});
-        //checkSchema(name, updateData);
     }
  
     function sendCreateGameData(createdGame) {
