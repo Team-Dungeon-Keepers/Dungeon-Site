@@ -28,13 +28,21 @@ To-do list:
 * Wow improvement to be done 1
 * Wow improvement to be done 2
 ## Getting Started
-(include git clone command) (include all environment setup steps)
+* Ensure that Node.js is installed.
+* Ensure that git is installed.
+* Open command line (cmd).
+* Clone the project repository by typing ```git clone https://github.com/Team-Dungeon-Keepers/Dungeon-Site.git``` into said cmd.
+* Once the cloning is complete, navigate to the project directory.
+* Type ```npm ci``` into the cmd. This is short-hand for ```npm clean-install```
+* Once the installation is complete type ```npm start``` into the cmd to begin the program.
+* If an internet browser window has not opened automatically, the program can be accessed by doing so and navigating to ```localhost:3000```.
+### Command Line Code
+```
+git clone https://github.com/Team-Dungeon-Keepers/Dungeon-Site.git
+npm ci
+npm start
+```
 
-Be sure to include BOTH Windows and Unix command
-Be sure to mention if the commands only work on a specific platform (eg. AWS, GCP)
-
-* All the `code` required to get started
-* Images of what it should look like
 ## Usage
 Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
 
