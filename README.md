@@ -27,6 +27,7 @@ To-do list:
 
 * Wow improvement to be done 1
 * Wow improvement to be done 2
+
 ** Getting Started
 (include git clone command) (include all environment setup steps)
 
