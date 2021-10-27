@@ -1,12 +1,21 @@
 # Dungeon-Site
 
 ## Project Description
-Here goes your awesome project description!
+During this COVID epidemic, it has become harder to find groups of people to play games with, both in person and remotely. The Dungeon Site application is a social meetup application. Dungeon Site is intended to allow for the creation, detailing, and scheduling of such games. Details provided include addresses, behaviors expected at the table, languages spoken, links to third party resources, and the game schedule.
 
 ## Technologies Used
-* Tech 1 - version 1.0
-* Tech 2 - version 2.0
-* Tech 3 - version 3.0
+* React
+* Java
+* JavaScript
+* HTML/CSS
+* NodeJS
+* Axios
+* Spring 
+* Spring Boot 
+* Spring MVC 
+* Spring Data 
+* PostGres 
+* Heroku
 ## Features
 List of features ready and TODOs for future development
 
