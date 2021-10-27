@@ -13,8 +13,6 @@ export const GET_USER_BY_ID = "GET_USER_BY_ID";
 
 export const getUsers = () => {
   return (dispatch => {
-    //dispatch({type: FETCH_START});
-    
     dispatch(fetchStart());
     axiosWithAuth().get('/users')
     .then(res=> {
