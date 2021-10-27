@@ -17,16 +17,15 @@ During this COVID epidemic, it has become harder to find groups of people to pla
 * PostGres 
 * Heroku
 ## Features
-List of features ready and TODOs for future development
-
-* Awesome feature 1
-* Awesome feature 2
-* Awesome feature 3
-
+* Users can create accounts and login to the dungeon site system
+* Users can create, join and schedule games at self defined locations, times, using various systems.
+* Users can view the games they've created and the ones they have joined with all the information of each game listed.
+* Users can search for games by ID, game master, or game name.
 To-do list:
 
-* Wow improvement to be done 1
-* Wow improvement to be done 2
+* The ability for users to add each other as friends, to then view and invite each other to games.
+* The ability to edit games after they have been created, and kick certain players from the game.
+* The ability for users to communicate with each other in real time via chat messaging.
 ## Getting Started
 * Ensure that Node.js is installed.
 * Ensure that git is installed.
@@ -59,7 +58,7 @@ Taelor McBride
 Tyler Banks
 
 @dylanxu1213
-Xianwiang Xu
+Weixiang Xu
 
 ## License
 This project uses the MIT standard license.
