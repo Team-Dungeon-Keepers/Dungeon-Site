@@ -40,6 +40,7 @@ Here, you instruct other people on how to use your project after they’ve insta
 
 ## Contributors
 Here list the people who have contributed to this project. 
+
 @Michael-Kochis
 Michael Kochis
 
