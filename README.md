@@ -39,7 +39,10 @@ Be sure to mention if the commands only work on a specific platform (eg. AWS, GC
 Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
 
 ## Contributors
-Here list the people who have contributed to this project. (ignore this section, if its a solo project)
+Micheal Kochis -Project Lead
+Weixiang Dylan Yu
+Tyler Wilbanks
+Taelor McBride
 
 ## License
 This project uses the following license: <license_name>.
