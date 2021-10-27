@@ -39,7 +39,18 @@ Be sure to mention if the commands only work on a specific platform (eg. AWS, GC
 Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
 
 ## Contributors
-Here list the people who have contributed to this project. (ignore this section, if its a solo project)
+Here list the people who have contributed to this project. 
+@Michael-Kochis
+Michael Kochis
+
+@tbridey
+Taelor McBride
+
+@unclebanks
+Tyler Banks
+
+@dylanxu1213
+Xianwiang Xu
 
 ## License
 This project uses the MIT standard license.
