@@ -44,12 +44,17 @@ npm start
 ```
 
 ## Usage
-Using the login screen as seen below:
+After deploying the website using ```npm start``` we can see the login screen on ```localhost:3000``` as shown below.
 ![loginPage](https://github.com/Team-Dungeon-Keepers/Dungeon-Site/blob/main/public/loginpage.png)
-
-One can register a user, and after doing so, one may log in seeing the following screen:
+Clicking on "here" allows us to move to the registration screen. On the registration screen, one can see the required fields, 
+including firstname, lastname, e-mail and password. After filling the required fields in, one may also fill in their local address,
+(this functionality was designed to support local game searches, but isn't used now). Logging in, one will log in seeing the following screen:
 ![Dashboard](https://github.com/Team-Dungeon-Keepers/Dungeon-Site/blob/main/public/dashboard.png)
 The buttons will take you to their respective pages, performing their respective self-explanatory functions.
+By clicking the create game option, one will be requested to fill in all the fields related to a game.
+A title, a password (if the game should be private), what game will be played, and if there's any behavior requirements, 
+what time to meet, where to meet, etc. After creating a game, the game will be saved to the database, in which allows 
+people to search for the game via the "find games" page, and the original user to view it in the "my games" page.
 
 ## Contributors
 Here list the people who have contributed to this project. 
