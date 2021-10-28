@@ -26,6 +26,7 @@ To-do list:
 * The ability for users to add each other as friends, to then view and invite each other to games.
 * The ability to edit games after they have been created, and kick certain players from the game.
 * The ability for users to communicate with each other in real time via chat messaging.
+* The ability to search games via fragments of address to find games nearby
 ## Getting Started
 * Ensure that Node.js is installed.
 * Ensure that git is installed.
@@ -43,7 +44,11 @@ npm start
 ```
 
 ## Usage
-Here, you instruct other people on how to use your project after they’ve installed it. This would also be a good place to include screenshots of your project in action.
+Using the login screen as seen below:
+https://github.com/Team-Dungeon-Keepers/Dungeon-Site/blob/main/public/loginpage.png
+One can register a user, and after doing so, one may log in seeing the following screen:
+https://github.com/Team-Dungeon-Keepers/Dungeon-Site/blob/main/public/dashboard.png
+The buttons will take you to their respective pages, performing their respective self-explanatory functions.
 
 ## Contributors
 Here list the people who have contributed to this project. 
