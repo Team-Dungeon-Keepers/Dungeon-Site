@@ -45,9 +45,9 @@ npm start
 
 ## Usage
 Using the login screen as seen below:
-https://github.com/Team-Dungeon-Keepers/Dungeon-Site/blob/main/public/loginpage.png
+![loginPage]https://github.com/Team-Dungeon-Keepers/Dungeon-Site/blob/main/public/loginpage.png
 One can register a user, and after doing so, one may log in seeing the following screen:
-https://github.com/Team-Dungeon-Keepers/Dungeon-Site/blob/main/public/dashboard.png
+![Dashboard]https://github.com/Team-Dungeon-Keepers/Dungeon-Site/blob/main/public/dashboard.png
 The buttons will take you to their respective pages, performing their respective self-explanatory functions.
 
 ## Contributors
